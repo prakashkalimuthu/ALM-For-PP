@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{0ca64393-9b40-462c-85bc-83ea6f584daf}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{450be1f2-81ec-421a-b7b7-e6ecde233798}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{6c4b2568-2b27-4e37-867e-43be3532bef2}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{bfb77528-f3b9-40ff-bf18-a599cff8e65c}">
+                        <labels>
+                          <label description="Fund Name" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ukn_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5bab9b95-0d01-dbe5-2d42-dad245121297}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Vehicle Type" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_vehicletype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ukn_vehicletype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{198a364a-80c9-0c2c-ee51-69daadb6d62b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Logical Vehicle Type" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_logicalvehicletype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ukn_logicalvehicletype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{32ed66a5-8e1d-2467-6daa-53366479d423}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Asset Class" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_subassetclass" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_subassetclass" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f32596d2-2502-4b07-ab35-7e9a8447a9c2}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.CustomAction" Location="Mscrm.Form.lead.MainTab.Actions.Controls._children" Sequence="7">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.Alt" Command="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick" Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick" Image32by32="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_32.png" Image16by16="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_16.png" LabelText="$LocLabels:ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.LabelText" Sequence="7" TemplateAlias="o1" ToolTipTitle="$LocLabels:ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.ToolTipTitle" ToolTipDescription="$LocLabels:ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.ToolTipDescription" ModernImage="Qualify" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.Mscrm.Form.lead.ConvertLeadAs.CustomAction" Location="Mscrm.Form.lead.MainTab.Actions.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <FlyoutAnchor Alt="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.Alt" Command="Mscrm.Form.Lead.QualifyFlyout" Id="Mscrm.Form.lead.ConvertLeadAs" Image16by16="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_16.png" Image32by32="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_32.png" LabelText="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.LabelText" PopulateDynamically="true" PopulateQueryCommand="Mscrm.DynamicMenu.Form.PopulateQualifyAs" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.ToolTipDescription" ModernImage="Qualify" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.Mscrm.Form.lead.ConvertLeadAs.Web.CustomAction" Location="Mscrm.Form.lead.MainTab.Actions.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <FlyoutAnchor Alt="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.Web.Alt" Command="Mscrm.Form.Lead.QualifyFlyout.Web" Id="Mscrm.Form.lead.ConvertLeadAs.Web" Image16by16="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_16.png" Image32by32="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_32.png" LabelText="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.Web.LabelText" PopulateDynamically="true" PopulateQueryCommand="Mscrm.DynamicMenu.Form.QualifyAs" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.Web.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.lead.ConvertLeadAs.Web.ToolTipDescription" ModernImage="Qualify" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.Mscrm.Form.lead.ConvertLeadQuick.CustomAction" Location="Mscrm.Form.lead.MainTab.Actions.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.Alt" Command="Mscrm.Form.lead.ConvertQuick" Id="Mscrm.Form.lead.ConvertLeadQuick" Image32by32="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_32.png" Image16by16="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_16.png" LabelText="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.ToolTipDescription" ModernImage="Qualify" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.Mscrm.Form.lead.ConvertLeadQuick.Web.CustomAction" Location="Mscrm.Form.lead.MainTab.Actions.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.Web.Alt" Command="Mscrm.Form.lead.ConvertQuick.Web" Id="Mscrm.Form.lead.ConvertLeadQuick.Web" Image32by32="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_32.png" Image16by16="$webresource:MarketingSales/_imgs/ribbon/ConvertLead_16.png" LabelText="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.Web.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.Web.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.lead.ConvertLeadQuick.Web.ToolTipDescription" ModernImage="Qualify" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.Form.lead.ConvertQuick">
+      <EnableRules>
+        <EnableRule Id="Mscrm.LeadIsOpen" />
+        <EnableRule Id="Mscrm.Form.lead.IsUCI" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsAccountAvailableInMocaOffline" />
+        <EnableRule Id="Mscrm.IsContactAvailableInMocaOffline" />
+        <EnableRule Id="Mscrm.IsOpportunityAvailableInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.SingleQualifyStatusCode" />
+        <DisplayRule Id="Mscrm.DynamicMenu.NewRecord.opportunity" />
+        <DisplayRule Id="Mscrm.HideOnOutlookClient" />
+        <DisplayRule Id="ukn.lead.DisplayRule7.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.LeadCommandActions.qualifyLeadQuick" Library="$webresource:MarketingSales/Lead/Lead_main_system_library.js" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.Form.lead.Reactivate">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.LeadIsClosed" />
+        <DisplayRule Id="ukn.LeadIsDisqualified" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.LeadCommandActions.reactivateLead" Library="$webresource:MarketingSales/Lead/Lead_main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick">
+      <EnableRules>
+        <EnableRule Id="Mscrm.LeadIsOpen" />
+        <EnableRule Id="Mscrm.Form.lead.IsUCI" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsAccountAvailableInMocaOffline" />
+        <EnableRule Id="Mscrm.IsContactAvailableInMocaOffline" />
+        <EnableRule Id="Mscrm.IsOpportunityAvailableInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.SingleQualifyStatusCode" />
+        <DisplayRule Id="Mscrm.DynamicMenu.NewRecord.opportunity" />
+        <DisplayRule Id="Mscrm.HideOnOutlookClient" />
+        <DisplayRule Id="ukn.lead.DisplayRule4.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.LeadCommandActions.qualifyLeadQuick" Library="$webresource:MarketingSales/Lead/Lead_main_system_library.js" />
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.DynamicMenu.NewRecord.opportunity">
+        <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" EntityName="opportunity" />
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" EntityName="opportunity" />
+        <OrRule>
+          <Or>
+            <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" EntityName="account" />
+          </Or>
+          <Or>
+            <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" EntityName="contact" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideOnOutlookClient">
+        <CrmClientTypeRule Type="Outlook" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.LeadIsClosed">
+        <FormStateRule State="Disabled" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.SingleQualifyStatusCode">
+        <OptionSetRule OptionSet="lead_statuscode" StateCode="1" ObjectTypeCode="4" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.lead.DisplayRule4.DisplayRule">
+        <OrRule>
+          <Or>
+            <ValueRule Field="bbb_investmentprogramme" Value="ab26c418-8724-ed11-9db2-0022481b1335" />
+          </Or>
+          <Or>
+            <ValueRule Field="bbb_investmentprogramme" Value="6a486a7b-87df-e711-810a-70106faa2611" />
+          </Or>
+          <Or>
+            <ValueRule Field="bbb_investmentprogramme" Value="05c43653-d6d9-e711-810d-70106faa1531" />
+          </Or>
+          <Or>
+            <ValueRule Field="bbb_investmentprogramme" Value="b3cd6714-d6d9-e711-810d-70106faa1531" />
+          </Or>
+          <Or>
+            <ValueRule Field="bbb_investmentprogramme" Value="a7a6bd1c-d6d9-e711-810d-70106faa1531" />
+          </Or>
+          <Or>
+            <ValueRule Field="bbb_investmentprogramme" Value="9bd7b020-11b8-e811-a970-00224800c719" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="ukn.lead.DisplayRule7.DisplayRule">
+        <ValueRule Field="bbb_investmentprogramme" Value="ab26c418-8724-ed11-9db2-0022481b1335" InvertResult="true" />
+        <ValueRule Field="bbb_investmentprogramme" Value="6a486a7b-87df-e711-810a-70106faa2611" InvertResult="true" />
+        <ValueRule Field="bbb_investmentprogramme" Value="05c43653-d6d9-e711-810d-70106faa1531" InvertResult="true" />
+        <ValueRule Field="bbb_investmentprogramme" Value="b3cd6714-d6d9-e711-810d-70106faa1531" InvertResult="true" />
+        <ValueRule Field="bbb_investmentprogramme" Value="a7a6bd1c-d6d9-e711-810d-70106faa1531" InvertResult="true" />
+        <ValueRule Field="bbb_investmentprogramme" Value="9bd7b020-11b8-e811-a970-00224800c719" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.LeadIsDisqualified">
+        <ValueRule Field="statecode" Value="2" InvertResult="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.Form.lead.IsUCI">
+        <CustomRule FunctionName="ClientUtility.ClientUtil.isUCI" Library="$webresource:MarketingSales/Lead/Lead_main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsAccountAvailableInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <StringParameter Value="account" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsContactAvailableInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <StringParameter Value="contact" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsOpportunityAvailableInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <StringParameter Value="opportunity" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.LeadIsOpen">
+        <FormStateRule State="Existing" />
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.Alt">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.LabelText">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.ToolTipDescription">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.ToolTipTitle">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.Web.Alt">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.Web.LabelText">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.Web.ToolTipDescription">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadAs.Web.ToolTipTitle">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.Alt">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.LabelText">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.ToolTipDescription">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.ToolTipTitle">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.Web.Alt">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.Web.LabelText">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.Web.ToolTipDescription">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.lead.ConvertLeadQuick.Web.ToolTipTitle">
+      <Titles>
+        <Title description="Proceed to EOI" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.Alt">
+      <Titles>
+        <Title description="Proceed to Proposal" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.LabelText">
+      <Titles>
+        <Title description="Proceed to Proposal" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.ToolTipDescription">
+      <Titles>
+        <Title description="Proceed to Proposal" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ukn.lead.Button2.Button.Mscrm.Form.lead.ConvertLeadQuick.ToolTipTitle">
+      <Titles>
+        <Title description="Proceed to Proposal" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>
