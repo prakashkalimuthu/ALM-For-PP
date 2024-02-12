@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="ukn_tier" localizedName="Tier" description="Global option set for Tier field" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>10.5.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="Tier" languagecode="1033" />
+  </displaynames>
+  <Descriptions>
+    <Description description="Global option set for Tier field" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="968200000" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Equity" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200001" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Debt" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200002" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Smaller Loans" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

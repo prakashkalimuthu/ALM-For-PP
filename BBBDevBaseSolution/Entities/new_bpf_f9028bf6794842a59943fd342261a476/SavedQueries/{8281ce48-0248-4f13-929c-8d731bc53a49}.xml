@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{8281ce48-0248-4f13-929c-8d731bc53a49}</savedqueryid>
+    <layoutxml>
+      <grid name="new_bpf_f9028bf6794842a59943fd342261a476s" jump="bpf_name" select="1" icon="1" preview="0">
+        <row name="new_bpf_f9028bf6794842a59943fd342261a476" id="businessprocessflowinstanceid">
+          <cell name="bpf_ukn_approvalrequestid" width="300" />
+          <cell name="activestageid" width="150" />
+          <cell name="statuscode" width="150" />
+          <cell name="createdon" width="150" />
+          <cell name="processid" width="300" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="new_bpf_f9028bf6794842a59943fd342261a476">
+          <attribute name="businessprocessflowinstanceid" />
+          <attribute name="bpf_name" />
+          <attribute name="createdon" />
+          <attribute name="bpf_ukn_approvalrequestid" />
+          <attribute name="activestageid" />
+          <attribute name="statecode" />
+          <attribute name="createdby" />
+          <attribute name="processid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="BBB Approval Request BPF - Adjustment Only Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

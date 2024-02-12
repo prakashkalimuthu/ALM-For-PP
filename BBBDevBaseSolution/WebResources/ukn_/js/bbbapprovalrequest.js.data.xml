@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{91603ad7-c29e-ec11-b400-002248006d04}</WebResourceId>
+  <Name>ukn_/js/bbbapprovalrequest.js</Name>
+  <DisplayName>BBBApprovalRequest.js</DisplayName>
+  <Description>Approval request JavaScript with namespace definition.</Description>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"&gt;&lt;Library name="ukn_/js/helper.js" displayName="Helper.js" languagecode="1033" description="" libraryUniqueId="{3d22c6de-3bb6-6ca0-e242-26d79d412658}"/&gt;&lt;/Dependency&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/ukn_jsbbbapprovalrequestjs91603AD7-C29E-EC11-B400-002248006D04</FileName>
+</WebResource>
