@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{824563e3-39e4-ed11-8846-002248c87a25}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="opportunityid">
+          <cell name="name" width="150" />
+          <cell name="parentaccountid" width="100" />
+          <cell name="parentcontactid" width="100" />
+          <cell name="bbb_investmentprogramme" width="100" />
+          <cell name="bbb_dealname" width="100" />
+          <cell name="bbb_subprogrammetypeid" width="100" />
+          <cell name="bbb_investmentsubprogramme" width="100" />
+          <cell name="bbb_bbbcommitment" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="opportunity">
+          <attribute name="name" />
+          <order attribute="name" descending="false" />
+          <attribute name="bbb_investmentsubprogramme" />
+          <attribute name="bbb_subprogrammetypeid" />
+          <attribute name="bbb_dealname" />
+          <attribute name="bbb_investmentprogramme" />
+          <attribute name="bbb_bbbcommitment" />
+          <attribute name="parentcontactid" />
+          <attribute name="parentaccountid" />
+          <attribute name="opportunityid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Deal Lead (Opportunities)" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

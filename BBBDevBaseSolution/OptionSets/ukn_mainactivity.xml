@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="ukn_mainactivity" localizedName="Main Activity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <ExternalTypeName></ExternalTypeName>
+  <displaynames>
+    <displayname description="Main Activity" languagecode="1033" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="968200020" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Accelerator" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200014" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Accountant" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200035" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Advisor" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200000" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Angel" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200010" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Asset Finance" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200004" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Bank (Big 4)" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200005" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Bank (Challenger)" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200033" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Bank of England" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200036" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Broker" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200029" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="CBI" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200031" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Chamber of Commerce" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200044" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Charity / Not-for-Profit Organization" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200037" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Coach" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200002" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Combined Authorities" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200038" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Consultant" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200016" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Corporate Finance" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200008" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Credit Union" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200013" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Debt Fund" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200045" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Devolved Government" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200034" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Enterpreneur Group" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200019" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Enterprise Agency" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200030" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="FSB" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200011" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Grant Provider" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200017" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Growth Hub" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200021" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Incubator" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200003" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Innovate UK" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200026" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="International Trade Managers" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200009" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Invoice Finance" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200032" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="IoD" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200015" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Legal Firm" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200018" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="LEP" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200012" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Local Authority" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200039" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Marketing" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200040" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Member Organisation" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200046" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="National Government" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200025" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Other" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200006" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Platform Lender" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200041" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Property" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200042" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Recruitment" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200024" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Research Institute" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200007" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Responsible Finance Providers" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200023" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Science Park" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200043" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="SME" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200028" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="Tech Nation" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200027" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="UKEF" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200022" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="University" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="968200001" ExternalValue="" Color="#0000ff">
+      <labels>
+        <label description="VC/PE House" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+  </options>
+</optionset>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{0c16f6ef-60f8-ec11-82e6-0022481b1b0e}" Name="Account - GWS - Risk - Previous financial risk status" Description="If Previous financial risk status is N/A date of last change in NM else date of last change is mandatory." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/Account-GWS-Risk-Previousfinancialriskstatus-0C16F6EF-60F8-EC11-82E6-0022481B1B0E.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>2</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>10.1.1.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ProcessTriggerFormId>{3ab7af2a-f029-410b-8dc1-b019d2ba49c0}</ProcessTriggerFormId>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
+  <PrimaryEntity>Account</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Account - GWS - Risk - Previous financial risk status" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="If Previous financial risk status is N/A date of last change in NM else date of last change is mandatory." />
+  </Descriptions>
+</Workflow>

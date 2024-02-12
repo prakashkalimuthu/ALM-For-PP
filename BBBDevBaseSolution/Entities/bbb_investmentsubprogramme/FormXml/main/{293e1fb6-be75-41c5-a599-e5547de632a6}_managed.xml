@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{293e1fb6-be75-41c5-a599-e5547de632a6}</formid>
+    <IntroducedVersion>0.0.0.4</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab verticallayout="true" id="{79b1f735-e410-4486-8cba-d060b6d9e80d}" IsUserDefined="1" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{5d93e7d6-9e9d-422d-912c-ab512e3d542a}" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{bf325825-1d74-4b23-9639-af213b12a3e8}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b9743987-5341-4d6c-6621-634a733971a0}" showlabel="true" locklevel="0" ordinalvalue="10002" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{2af44f8f-48cb-44af-b669-221ab45565b4}" ordinalvalue="10004" solutionaction="Modified">
+                        <labels>
+                          <label description="Owner" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{01c93aad-14f7-4dae-a8d8-1bd958dab888}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Sub-Programme Short Name" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_subprogrammeshortname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ukn_subprogrammeshortname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{311363e9-9ed3-416e-aadc-ee7e8ca1f721}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10003" solutionaction="Added">
+                        <labels>
+                          <label description="Investment Sub Programme Category Code" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_investmentsubprogrammecategorycode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ukn_investmentsubprogrammecategorycode" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="{b21872a2-6c52-a5e2-709a-4747d175823d}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Investment Sub Programme Types" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{9b61c659-1457-81b8-9a6d-bad5909a592e}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1dcbe46b-d256-cc36-463a-a5670651339b}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Investment Sub-Programme Types (Sub Programme Type)" languagecode="1033" />
+                        </labels>
+                        <control id="subprogrammetypegrid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{F38E2EF7-A92E-45D8-B2C2-3DF8DC3E0BEE}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>bbb_bbb_investmentsubprogramme_bbb_investment</RelationshipName>
+                            <TargetEntityType>bbb_investmentsubprogrammetype</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{F38E2EF7-A92E-45D8-B2C2-3DF8DC3E0BEE}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar />
+      </Navigation>
+      <header id="{f3886709-869c-476b-8c76-1656c5c84722}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </header>
+      <footer id="{f1136293-9a31-4d74-ba94-e93b4f8880ad}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </footer>
+      <DisplayConditions FallbackForm="true" Order="0" solutionaction="Added">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

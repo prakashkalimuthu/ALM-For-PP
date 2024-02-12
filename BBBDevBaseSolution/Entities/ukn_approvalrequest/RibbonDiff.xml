@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ukn.ukn_approvalrequest.Button2.Button.CustomAction" Location="Mscrm.Form.ukn_approvalrequest.MainTab.Save.Controls._children" Sequence="49">
+      <CommandUIDefinition>
+        <Button Command="ukn.ukn_approvalrequest.Command0.Command" Id="ukn.ukn_approvalrequest.Button2.Button" Image32by32="$webresource:ukn_downloadbtn" Image16by16="$webresource:ukn_downloadbtn_16" LabelText="$LocLabels:ukn.ukn_approvalrequest.Button2.Button.LabelText" Sequence="49" TemplateAlias="o2" ModernImage="$webresource:ukn_downloadbutton" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.ukn_approvalrequest.Button4.Button.CustomAction" Location="Mscrm.Form.ukn_approvalrequest.MainTab.Save.Controls._children" Sequence="48">
+      <CommandUIDefinition>
+        <Button Command="ukn.ukn_approvalrequest.Command1.Command" Id="ukn.ukn_approvalrequest.Button4.Button" Image32by32="$webresource:ukn_downloadbtn" Image16by16="$webresource:ukn_downloadbtn_16" LabelText="$LocLabels:ukn.ukn_approvalrequest.Button4.Button.LabelText" Sequence="48" TemplateAlias="o2" ModernImage="$webresource:ukn_downloadbutton" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.ukn_approvalrequest.Button6.Button.CustomAction" Location="Mscrm.Form.ukn_approvalrequest.MainTab.Save.Controls._children" Sequence="45">
+      <CommandUIDefinition>
+        <Button Command="ukn.ukn_approvalrequest.Command2.Command" Id="ukn.ukn_approvalrequest.Button6.Button" Image32by32="$webresource:ukn_downloadbtn" Image16by16="$webresource:ukn_downloadbtn_16" LabelText="$LocLabels:ukn.ukn_approvalrequest.Button6.Button.LabelText" Sequence="45" TemplateAlias="o2" ModernImage="$webresource:ukn_downloadbutton" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="ukn.ukn_approvalrequest.Command0.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule0.DisplayRule" />
+        <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule2.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="BBBD365.ApprovalRequestReport.ribbon_generateReport" Library="$webresource:ukn_/js/ribbon/generateapprovalreportpdf.js">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="Drawdown Approval" />
+          <StringParameter Value="DRAWNDOWN APPROVAL.rdl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ukn.ukn_approvalrequest.Command1.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule0.DisplayRule" />
+        <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule1.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="BBBD365.ApprovalRequestReport.ribbon_generateReport" Library="$webresource:ukn_/js/ribbon/generateapprovalreportpdf.js">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="Distribution Approval" />
+          <StringParameter Value="Distribution Approval Report.rdl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ukn.ukn_approvalrequest.Command2.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule0.DisplayRule" />
+        <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule3.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="BBBD365.ApprovalRequestReport.ribbon_generateReport" Library="$webresource:ukn_/js/ribbon/generateapprovalreportpdf.js">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="Lender Settlement Approval" />
+          <StringParameter Value="Lender Settlement Approval Report.rdl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule0.DisplayRule">
+        <FormStateRule State="Create" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule1.DisplayRule">
+        <ValueRule Field="ukn_approvalrequesttype" Value="968200001" Default="true" InvertResult="false" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule2.DisplayRule">
+        <ValueRule Field="ukn_approvalrequesttype" Value="968200000" Default="true" InvertResult="false" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.ukn_approvalrequest.DisplayRule3.DisplayRule">
+        <ValueRule Field="ukn_approvalrequesttype" Value="968200002" Default="true" InvertResult="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="ukn.ukn_approvalrequest.Button2.Button.LabelText">
+      <Titles>
+        <Title description="DRAWDOWN REPORT" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ukn.ukn_approvalrequest.Button4.Button.LabelText">
+      <Titles>
+        <Title description="DISTRIBUTION REPORT" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ukn.ukn_approvalrequest.Button6.Button.LabelText">
+      <Titles>
+        <Title description="LENDER SETTLEMENT REPORT" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>
