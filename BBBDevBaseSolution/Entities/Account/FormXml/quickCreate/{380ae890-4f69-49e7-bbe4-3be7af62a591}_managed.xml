@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{380ae890-4f69-49e7-bbe4-3be7af62a591}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form maxWidth="1920">
+      <tabs>
+        <tab id="{8ca48364-f790-43e4-b753-aa35fa4f9c77}" name="tab_1" expanded="true" locklevel="0" showlabel="false" IsUserDefined="0" labelid="{54677a6a-2257-4287-a8b5-3c374f48c3ae}">
+          <labels>
+            <label description="Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="33%">
+              <sections>
+                <section id="{bcee7abc-6004-49f3-bc27-9eb7d1d3561b}" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{f0a02014-a5e6-4c9f-8587-3412c8e66a9e}">
+                  <labels>
+                    <label description="Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{7697e89b-cb21-2809-82b3-dc18084c2d6a}" showlabel="true" locklevel="0" labelid="{fb4d52a6-31c7-4ae8-a4b3-451da7198646}">
+                        <labels>
+                          <label description="Account Name" languagecode="1033" />
+                        </labels>
+                        <control id="name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4de2ba1-751d-79bc-c8b0-084d3a610da5}" showlabel="true" locklevel="0" labelid="{768e4d39-fcab-4724-8f2c-5c6508e38b60}">
+                        <labels>
+                          <label description="Relationship Lead" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_relationshiplead" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_relationshiplead" disabled="false" uniqueid="{b3576220-ad20-4966-347b-2d5c65516c80}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{544F69FD-CB24-EB11-A813-000D3A86D535}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="{32ff71fb-26e6-4b51-8e93-e94b5780a8ae}" name="tab_1_column_2_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{1dd507b9-febf-4e12-9a75-693f7a35da48}" visible="false">
+                  <labels>
+                    <label description="Description" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0b52c646-e775-1bd7-5943-3b5397543993}" showlabel="false" userspacer="true" labelid="{4eebff77-e7af-4682-9e75-1ec2d27a359d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ebb8e093-c034-a6d1-e4d3-e43923ec1d7d}" showlabel="true" locklevel="0" labelid="{0d7d6bc1-8537-42bf-83ed-ce6dad25770d}">
+                        <labels>
+                          <label description="Annual Revenue" languagecode="1033" />
+                        </labels>
+                        <control id="revenue" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="revenue" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d0c7e234-97a8-473c-39d9-78381c372375}" showlabel="true" locklevel="0" labelid="{c648a20e-8c88-4e31-aaca-09d9753b694d}">
+                        <labels>
+                          <label description="Number of Employees" languagecode="1033" />
+                        </labels>
+                        <control id="numberofemployees" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="numberofemployees" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4b76aee6-8414-a9d0-3066-78ed2ed42eb8}" showlabel="true" locklevel="0" rowspan="2" labelid="{15aa886b-7cbb-4ecc-81ec-ea6110fcd6bb}">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="description" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="{a549aa16-a731-41b7-9181-86710f8feef5}" name="tab_1_column_3_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{b39a61d4-3f89-4496-96cf-e13263e22a81}">
+                  <labels>
+                    <label description="Address" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{62E808A5-4DB5-4D56-9620-37EBAC8AFF72}" showlabel="true" locklevel="0" labelid="{d81ee9f0-cfed-45f9-a943-f6460af90c28}">
+                        <labels>
+                          <label description="Street 1" languagecode="1033" />
+                        </labels>
+                        <control id="address1_line1" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="address1_line1" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{30B0C670-408A-42B1-B373-607936DE2C8F}" showlabel="true" locklevel="0" labelid="{d3eecbe5-9602-4261-8a7f-393b914aad37}">
+                        <labels>
+                          <label description="Street 2" languagecode="1033" />
+                        </labels>
+                        <control id="address1_line2" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="address1_line2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0794FA63-F298-4831-BD5A-B3F46A91F146}" showlabel="true" locklevel="0" labelid="{be9b0599-3b2f-4788-8f48-3fb8d52bc5cc}">
+                        <labels>
+                          <label description="City" languagecode="1033" />
+                        </labels>
+                        <control id="address1_city" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="address1_city" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{C5E57D6C-8A9E-4A0D-89ED-D3F5B59B57AA}" showlabel="true" locklevel="0" labelid="{f3e12b4b-8269-4a0d-b596-2780551f0b98}">
+                        <labels>
+                          <label description="ZIP/Postal Code" languagecode="1033" />
+                        </labels>
+                        <control id="address1_postalcode" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="address1_postalcode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{74cc5c86-38eb-4d2f-94d6-1b7ae4752c08}" locklevel="0" colspan="1" rowspan="1" labelid="{70494310-3fc8-4980-8ecc-58fa451d89d3}">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_region" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <controlDescriptions />
+      <formLibraries>
+        <Library name="ukn_/webresource/js/account.js" libraryUniqueId="{0950c5f0-2dad-4df9-87bc-78121f526fd6}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="BBBD365.Account.onLoad_ECFQuickCreateForm" libraryName="ukn_/webresource/js/account.js" handlerUniqueId="{7c67b443-d402-79d7-8b9d-2ecdc9d0253d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions FallbackForm="true" Order="3">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Account Quick Create - ECF" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Default quick create form for Account" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

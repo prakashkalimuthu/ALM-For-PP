@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{dfa149e7-cfef-ed11-8848-002248c87aae}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_reference" select="1" icon="1" preview="1">
+        <row name="result" id="ukn_approvalrequestid">
+          <cell name="ukn_reference" width="300" />
+          <cell name="createdon" width="169" />
+          <cell name="ukn_programme" width="216" />
+          <cell name="ukn_funddeliverypartner" width="177" />
+          <cell name="ukn_adjustmentdate" width="100" />
+          <cell name="ukn_approvalstatus" width="204" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ukn_approvalrequest">
+          <attribute name="ukn_reference" />
+          <attribute name="createdon" />
+          <attribute name="ukn_programme" />
+          <attribute name="ukn_funddeliverypartner" />
+          <attribute name="ukn_approvalstatus" />
+          <attribute name="ukn_adjustmentdate" />
+          <order attribute="ukn_reference" descending="true" />
+          <filter type="and">
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="1" />
+              <condition attribute="ukn_approvalrequesttype" operator="eq" value="968200003" />
+            </filter>
+          </filter>
+          <attribute name="ukn_approvalrequestid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Approval Requests - Adjustment" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

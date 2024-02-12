@@ -1,0 +1,639 @@
+<Activity x:Class="XrmWorkflow00000000000000000000000000000000" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mcwc="clr-namespace:Microsoft.Crm.Workflow.ClientActivities;assembly=Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxs="clr-namespace:Microsoft.Xrm.Sdk;assembly=Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxsq="clr-namespace:Microsoft.Xrm.Sdk.Query;assembly=Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxswa="clr-namespace:Microsoft.Xrm.Sdk.Workflow.Activities;assembly=Microsoft.Xrm.Sdk.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:s="clr-namespace:System;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="InputEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
+    <x:Property Name="CreatedEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
+  </x:Members>
+  <this:XrmWorkflow00000000000000000000000000000000.InputEntities>
+    <InArgument x:TypeArguments="scg:IDictionary(x:String, mxs:Entity)" />
+  </this:XrmWorkflow00000000000000000000000000000000.InputEntities>
+  <this:XrmWorkflow00000000000000000000000000000000.CreatedEntities>
+    <InArgument x:TypeArguments="scg:IDictionary(x:String, mxs:Entity)" />
+  </this:XrmWorkflow00000000000000000000000000000000.CreatedEntities>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <mxswa:Workflow>
+    <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep1">
+      <mxswa:ActivityReference.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="Wait">False</InArgument>
+      </mxswa:ActivityReference.Arguments>
+      <mxswa:ActivityReference.Properties>
+        <sco:Collection x:TypeArguments="Variable" x:Key="Variables">
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep2_condition" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep2_1" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep2_2" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep2_3" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep2_4" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep2_5" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep2_6" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep3_condition" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep3_1" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep3_2" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep3_3" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep3_4" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep3_5" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep3_6" />
+          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep4_condition" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep4_1" />
+          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep4_2" />
+        </sco:Collection>
+        <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
+          <mxswa:GetEntityProperty Attribute="ukn_approvalrequesttype" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" Value="[ConditionBranchStep2_2]">
+            <mxswa:GetEntityProperty.TargetType>
+              <InArgument x:TypeArguments="s:Type">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
+                  <x:Null />
+                </mxswa:ReferenceLiteral>
+              </InArgument>
+            </mxswa:GetEntityProperty.TargetType>
+          </mxswa:GetEntityProperty>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.OptionSetValue, "968200003", "Picklist" }]</InArgument>
+              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[ConditionBranchStep2_3]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">Equal</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { ConditionBranchStep2_3 }]</InArgument>
+              <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep2_2]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep2_1]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:GetEntityProperty Attribute="ukn_iscapitalrecallableadjustment" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" Value="[ConditionBranchStep2_5]">
+            <mxswa:GetEntityProperty.TargetType>
+              <InArgument x:TypeArguments="s:Type">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
+                  <x:Null />
+                </mxswa:ReferenceLiteral>
+              </InArgument>
+            </mxswa:GetEntityProperty.TargetType>
+          </mxswa:GetEntityProperty>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Boolean, "0" }]</InArgument>
+              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[ConditionBranchStep2_6]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">Equal</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { ConditionBranchStep2_6 }]</InArgument>
+              <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep2_5]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep2_4]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateLogicalCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateLogicalCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:LogicalOperator" x:Key="LogicalOperator">And</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="LeftOperand">[ConditionBranchStep2_1]</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="RightOperand">[ConditionBranchStep2_4]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep2_condition]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionBranch, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep2">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="Condition">[ConditionBranchStep2_condition]</InArgument>
+            </mxswa:ActivityReference.Arguments>
+            <mxswa:ActivityReference.Properties>
+              <mxswa:ActivityReference x:Key="Then" AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep2">
+                <mxswa:ActivityReference.Properties>
+                  <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
+                  <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
+                    <Sequence DisplayName="SetVisibilityStep94: Hide Checked By">
+                      <mcwc:SetVisibility ControlId="ukn_checkedby" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep93: Hide Date Checked">
+                      <mcwc:SetVisibility ControlId="ukn_datechecked" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetDefaultValueStep93131: Set Gross Drawdown 0 by Default">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Object" Name="SetDefaultValueStep93131_1" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+                        <mxswa:ActivityReference.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+                          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Money, "0" }]</InArgument>
+                          <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:Money" />
+                          </InArgument>
+                          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SetDefaultValueStep93131_1]</OutArgument>
+                        </mxswa:ActivityReference.Arguments>
+                      </mxswa:ActivityReference>
+                      <mxswa:SetEntityProperty Attribute="ukn_grossamountrequested" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" Value="[SetDefaultValueStep93131_1]">
+                        <mxswa:SetEntityProperty.TargetType>
+                          <InArgument x:TypeArguments="s:Type">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:Money" />
+                          </InArgument>
+                        </mxswa:SetEntityProperty.TargetType>
+                      </mxswa:SetEntityProperty>
+                      <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep93131" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" />
+                      <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep87: Make Adjustment Date Business Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_adjustmentdate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep87" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="Required" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep86: Show Is Capital Recallable Adjustment">
+                      <mcwc:SetVisibility ControlId="ukn_iscapitalrecallableadjustment" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep85: Hide Mark all PTR Checks Pass">
+                      <mcwc:SetVisibility ControlId="ukn_markallptrcheckspass" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep84: Hide Mark all Op Checks Pass">
+                      <mcwc:SetVisibility ControlId="ukn_markallopcheckspass" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep56: Make Facility Not Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_facility" ControlType="standard" DisplayName="SetFieldRequiredLevelStep56" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="Required" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep55: Make Notice Received Date Not Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_noticereceiveddate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep55" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep56: Hide Comments">
+                      <mcwc:SetVisibility ControlId="ukn_comments" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep55: Hide Money in the Bank Account">
+                      <mcwc:SetVisibility ControlId="ukn_moneyinthebankaccountreceivedchecked" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep54: Hide 2nd Authoriser Date">
+                      <mcwc:SetVisibility ControlId="ukn_secondauthoriserdate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep53: Hide 1st Authoriser Bank">
+                      <mcwc:SetVisibility ControlId="ukn_firstauthoriserdate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep52: Hide Bankline2 Authorizer">
+                      <mcwc:SetVisibility ControlId="ukn_bankline2ndauthorisername" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep51: Hide Bankline 1st Authorized">
+                      <mcwc:SetVisibility ControlId="ukn_bankline1stauthorisername" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep50: Hide Date Actioned on bankline">
+                      <mcwc:SetVisibility ControlId="ukn_dateactionedonbankline" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep49: Hide Actioned on Bankline">
+                      <mcwc:SetVisibility ControlId="ukn_actionedbyonbankline" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep48: Hide Date to Be Received into Bank">
+                      <mcwc:SetVisibility ControlId="ukn_datereceivedintothebankaccount" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep47: Hide Date to Be Paid">
+                      <mcwc:SetVisibility ControlId="ukn_datetobepaid" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep42: Make Actual Sterling Amount Non Mendetory">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_actualsterlingamountpaid" ControlType="standard" DisplayName="SetFieldRequiredLevelStep42" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep46: Hide Actual Sterling Amount">
+                      <mcwc:SetVisibility ControlId="ukn_actualsterlingamountpaid" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep45: Hide Exchange Rate">
+                      <mcwc:SetVisibility ControlId="ukn_bbbexchangerate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep44: Hide Mark all PTR Check Passed">
+                      <mcwc:SetVisibility ControlId="ukn_markallptrcheckspass" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep43: Hide Mark all op Check Passed">
+                      <mcwc:SetVisibility ControlId="ukn_markallopcheckspass" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetAttributeValueStep41: Clear Distribution Approval Type">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Object" Name="SetAttributeValueStep41_1" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mxswa:SetEntityProperty Attribute="ukn_distributionapprovaltype" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" Value="[SetAttributeValueStep41_1]">
+                        <mxswa:SetEntityProperty.TargetType>
+                          <InArgument x:TypeArguments="s:Type">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+                          </InArgument>
+                        </mxswa:SetEntityProperty.TargetType>
+                      </mxswa:SetEntityProperty>
+                      <mcwc:SetAttributeValue DisplayName="SetAttributeValueStep41" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" />
+                      <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                    </Sequence>
+                    <Sequence DisplayName="SetAttributeValueStep40: Clear Drawdown Approval Type">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Object" Name="SetAttributeValueStep40_1" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mxswa:SetEntityProperty Attribute="ukn_drawdownapprovaltype" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" Value="[SetAttributeValueStep40_1]">
+                        <mxswa:SetEntityProperty.TargetType>
+                          <InArgument x:TypeArguments="s:Type">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+                          </InArgument>
+                        </mxswa:SetEntityProperty.TargetType>
+                      </mxswa:SetEntityProperty>
+                      <mcwc:SetAttributeValue DisplayName="SetAttributeValueStep40" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" />
+                      <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep39: SHow Gross Drawdown Equalization Capital">
+                      <mcwc:SetVisibility ControlId="ukn_gdaequalisationcapital" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep38: Show Narrative">
+                      <mcwc:SetVisibility ControlId="ukn_narrative" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep35: Hide Payment Value Date">
+                      <mcwc:SetVisibility ControlId="ukn_paymentvaluedate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep34: Make Payment Value Date Non Not Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_paymentvaluedate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep34" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep33: Show non-Utilization Fees">
+                      <mcwc:SetVisibility ControlId="ukn_nonutilisationfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep28: Show Gross Drawdown Amount">
+                      <mcwc:SetVisibility ControlId="ukn_grossamountrequested" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep25: Show Net Amount To Be Received">
+                      <mcwc:SetVisibility ControlId="ukn_netamounttobereceived" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep24: Show Net Amount To Be Paid">
+                      <mcwc:SetVisibility ControlId="ukn_netamounttobepaid" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep23: Show Equilization (Interest)">
+                      <mcwc:SetVisibility ControlId="ukn_directtopl" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep22: Show Other Levied Fees">
+                      <mcwc:SetVisibility ControlId="ukn_otherleviedfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep21: Show Arrangement Fees">
+                      <mcwc:SetVisibility ControlId="ukn_arrangementfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep20: Show Interest Fees">
+                      <mcwc:SetVisibility ControlId="ukn_interestfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep19: Show Loss Claims">
+                      <mcwc:SetVisibility ControlId="ukn_lossclaims" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep18: Show Commitment Fees">
+                      <mcwc:SetVisibility ControlId="ukn_commitmentfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep17: Show Non-Utilized Drawdown">
+                      <mcwc:SetVisibility ControlId="ukn_nonutiliseddrawdowns" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep16: Show field Interest/Prioritized Return">
+                      <mcwc:SetVisibility ControlId="ukn_interestprioritisedreturns" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep15: Show field Equalisation (Capital)">
+                      <mcwc:SetVisibility ControlId="ukn_equalisationreceivable" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep14: Show field Capital Recallable">
+                      <mcwc:SetVisibility ControlId="ukn_capitalrecallable" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep13: Show field Capital Repayment">
+                      <mcwc:SetVisibility ControlId="ukn_capitalrepayments" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep12: Show field Equalisation (Payable)">
+                      <mcwc:SetVisibility ControlId="ukn_equalisationpayable" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep1: Hide Gross Value of Drawdown">
+                      <mcwc:SetVisibility ControlId="ukn_grossvalueofdrawdown" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep3: Hide Net Value of Drawdown">
+                      <mcwc:SetVisibility ControlId="ukn_netvalueofdrawdown" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep3886: Hide Total Value of Claim">
+                      <mcwc:SetVisibility ControlId="ukn_totalvalueofclaim" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep4: Hide Adjustment Date">
+                      <mcwc:SetVisibility ControlId="ukn_adjustmentdate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep5: Show Remaining Commitment">
+                      <mcwc:SetVisibility ControlId="ukn_remainingcommitment" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep6: Hide Drawdown Request Type">
+                      <mcwc:SetVisibility ControlId="ukn_drawdownrequesttype" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep7: Hide Gross Value of Distribution">
+                      <mcwc:SetVisibility ControlId="ukn_grossvalueofdistributableproceeds" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep8: Hide Net Value of Distribution">
+                      <mcwc:SetVisibility ControlId="ukn_totalamountofdistributionsnotice" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep9: Hide Date of Transfer Into Bank">
+                      <mcwc:SetVisibility ControlId="ukn_dateoftransfertobankaccount" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                  </sco:Collection>
+                </mxswa:ActivityReference.Properties>
+              </mxswa:ActivityReference>
+              <x:Null x:Key="Else" />
+              <x:String x:Key="Description">Check if Adjustment</x:String>
+            </mxswa:ActivityReference.Properties>
+          </mxswa:ActivityReference>
+          <mxswa:GetEntityProperty Attribute="ukn_approvalrequesttype" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" Value="[ConditionBranchStep3_2]">
+            <mxswa:GetEntityProperty.TargetType>
+              <InArgument x:TypeArguments="s:Type">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
+                  <x:Null />
+                </mxswa:ReferenceLiteral>
+              </InArgument>
+            </mxswa:GetEntityProperty.TargetType>
+          </mxswa:GetEntityProperty>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.OptionSetValue, "968200003", "Picklist" }]</InArgument>
+              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[ConditionBranchStep3_3]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">Equal</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { ConditionBranchStep3_3 }]</InArgument>
+              <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep3_2]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep3_1]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:GetEntityProperty Attribute="ukn_iscapitalrecallableadjustment" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" Value="[ConditionBranchStep3_5]">
+            <mxswa:GetEntityProperty.TargetType>
+              <InArgument x:TypeArguments="s:Type">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
+                  <x:Null />
+                </mxswa:ReferenceLiteral>
+              </InArgument>
+            </mxswa:GetEntityProperty.TargetType>
+          </mxswa:GetEntityProperty>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Boolean, "1" }]</InArgument>
+              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[ConditionBranchStep3_6]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">Equal</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { ConditionBranchStep3_6 }]</InArgument>
+              <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep3_5]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep3_4]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateLogicalCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateLogicalCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:LogicalOperator" x:Key="LogicalOperator">And</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="LeftOperand">[ConditionBranchStep3_1]</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="RightOperand">[ConditionBranchStep3_4]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep3_condition]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionBranch, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep3">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="Condition">[ConditionBranchStep3_condition]</InArgument>
+            </mxswa:ActivityReference.Arguments>
+            <mxswa:ActivityReference.Properties>
+              <mxswa:ActivityReference x:Key="Then" AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep3">
+                <mxswa:ActivityReference.Properties>
+                  <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
+                  <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
+                    <Sequence DisplayName="SetDefaultValueStep92: Set Gross Drawdown 0 by Default">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Object" Name="SetDefaultValueStep92_1" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+                        <mxswa:ActivityReference.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+                          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Money, "0" }]</InArgument>
+                          <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:Money" />
+                          </InArgument>
+                          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SetDefaultValueStep92_1]</OutArgument>
+                        </mxswa:ActivityReference.Arguments>
+                      </mxswa:ActivityReference>
+                      <mxswa:SetEntityProperty Attribute="ukn_grossamountrequested" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" Value="[SetDefaultValueStep92_1]">
+                        <mxswa:SetEntityProperty.TargetType>
+                          <InArgument x:TypeArguments="s:Type">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:Money" />
+                          </InArgument>
+                        </mxswa:SetEntityProperty.TargetType>
+                      </mxswa:SetEntityProperty>
+                      <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep92" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" />
+                      <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep90: Make Adjustment Date Business Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_adjustmentdate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep90" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="Required" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep58: Make Facility Not Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_facility" ControlType="standard" DisplayName="SetFieldRequiredLevelStep58" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="Required" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep54: Make Notice Received Date Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_noticereceiveddate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep54" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep68: Make Actual Sterling Amount Non Mendetory">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_actualsterlingamountpaid" ControlType="standard" DisplayName="SetFieldRequiredLevelStep68" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                    <Sequence DisplayName="SetAttributeValueStep73: Clear Distribution Approval Type">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Object" Name="SetAttributeValueStep73_1" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mxswa:SetEntityProperty Attribute="ukn_distributionapprovaltype" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" Value="[SetAttributeValueStep73_1]">
+                        <mxswa:SetEntityProperty.TargetType>
+                          <InArgument x:TypeArguments="s:Type">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+                          </InArgument>
+                        </mxswa:SetEntityProperty.TargetType>
+                      </mxswa:SetEntityProperty>
+                      <mcwc:SetAttributeValue DisplayName="SetAttributeValueStep73" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" />
+                      <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                    </Sequence>
+                    <Sequence DisplayName="SetAttributeValueStep74: Clear Drawdown Approval Type">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Object" Name="SetAttributeValueStep74_1" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mxswa:SetEntityProperty Attribute="ukn_drawdownapprovaltype" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" Value="[SetAttributeValueStep74_1]">
+                        <mxswa:SetEntityProperty.TargetType>
+                          <InArgument x:TypeArguments="s:Type">
+                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+                          </InArgument>
+                        </mxswa:SetEntityProperty.TargetType>
+                      </mxswa:SetEntityProperty>
+                      <mcwc:SetAttributeValue DisplayName="SetAttributeValueStep74" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ukn_approvalrequest" />
+                      <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep75: Hide Gross Drawdown Equalization Capital">
+                      <mcwc:SetVisibility ControlId="ukn_gdaequalisationcapital" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep77: Hide Payment Value Date">
+                      <mcwc:SetVisibility ControlId="ukn_paymentvaluedate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep78: Make Payment Value Date Non Not Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_paymentvaluedate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep78" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep79: Show non-Utilization Fees">
+                      <mcwc:SetVisibility ControlId="ukn_nonutilisationfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep80: Show Gross Drawdown Amount">
+                      <mcwc:SetVisibility ControlId="ukn_grossamountrequested" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep82: Show Net Amount To Be Received">
+                      <mcwc:SetVisibility ControlId="ukn_netamounttobereceived" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep83: Show Net Amount To Be Paid">
+                      <mcwc:SetVisibility ControlId="ukn_netamounttobepaid" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep8492: Show Equilization (Interest)">
+                      <mcwc:SetVisibility ControlId="ukn_directtopl" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep85694: Show Other Levied Fees">
+                      <mcwc:SetVisibility ControlId="ukn_otherleviedfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep86867: Show Arrangement Fees">
+                      <mcwc:SetVisibility ControlId="ukn_arrangementfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep87: Show Interest Fees">
+                      <mcwc:SetVisibility ControlId="ukn_interestfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep88: Show Loss Claims">
+                      <mcwc:SetVisibility ControlId="ukn_lossclaims" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep89: Show Commitment Fees">
+                      <mcwc:SetVisibility ControlId="ukn_commitmentfees" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep90: Show Non-Utilized Drawdown">
+                      <mcwc:SetVisibility ControlId="ukn_nonutiliseddrawdowns" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep91: Show field Interest/Prioritized Return">
+                      <mcwc:SetVisibility ControlId="ukn_interestprioritisedreturns" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep92: Show field Equalisation (Capital)">
+                      <mcwc:SetVisibility ControlId="ukn_equalisationreceivable" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep93333: Show field Capital Recallable">
+                      <mcwc:SetVisibility ControlId="ukn_capitalrecallable" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep9413: Show field Capital Repayment">
+                      <mcwc:SetVisibility ControlId="ukn_capitalrepayments" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep95: Show field Equalisation (Payable)">
+                      <mcwc:SetVisibility ControlId="ukn_equalisationpayable" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep96: Hide Gross Value of Drawdown">
+                      <mcwc:SetVisibility ControlId="ukn_grossvalueofdrawdown" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep97: Hide Net Value of Drawdown">
+                      <mcwc:SetVisibility ControlId="ukn_netvalueofdrawdown" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep98: Hide Total Value of Claim">
+                      <mcwc:SetVisibility ControlId="ukn_totalvalueofclaim" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep99: Hide Adjustment Date">
+                      <mcwc:SetVisibility ControlId="ukn_adjustmentdate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep100: Show Remaining Commitment">
+                      <mcwc:SetVisibility ControlId="ukn_remainingcommitment" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="True" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep101: Hide Drawdown Request Type">
+                      <mcwc:SetVisibility ControlId="ukn_drawdownrequesttype" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep102: Hide Gross Value of Distribution">
+                      <mcwc:SetVisibility ControlId="ukn_grossvalueofdistributableproceeds" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep103: Hide Net Value of Distribution">
+                      <mcwc:SetVisibility ControlId="ukn_totalamountofdistributionsnotice" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                  </sco:Collection>
+                </mxswa:ActivityReference.Properties>
+              </mxswa:ActivityReference>
+              <x:Null x:Key="Else" />
+              <x:String x:Key="Description">Check if Capital Recallable Adjustment</x:String>
+            </mxswa:ActivityReference.Properties>
+          </mxswa:ActivityReference>
+          <mxswa:GetEntityProperty Attribute="ukn_approvalrequesttype" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" Value="[ConditionBranchStep4_1]">
+            <mxswa:GetEntityProperty.TargetType>
+              <InArgument x:TypeArguments="s:Type">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
+                  <x:Null />
+                </mxswa:ReferenceLiteral>
+              </InArgument>
+            </mxswa:GetEntityProperty.TargetType>
+          </mxswa:GetEntityProperty>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.OptionSetValue, "968200003", "Picklist" }]</InArgument>
+              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[ConditionBranchStep4_2]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">NotEqual</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { ConditionBranchStep4_2 }]</InArgument>
+              <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep4_1]</InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep4_condition]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionBranch, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep4">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="Condition">[ConditionBranchStep4_condition]</InArgument>
+            </mxswa:ActivityReference.Arguments>
+            <mxswa:ActivityReference.Properties>
+              <mxswa:ActivityReference x:Key="Then" AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep4">
+                <mxswa:ActivityReference.Properties>
+                  <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
+                  <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
+                    <Sequence DisplayName="SetVisibilityStep95127: Hide Field Is Adjustment Date">
+                      <mcwc:SetVisibility ControlId="ukn_adjustmentdate" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetVisibilityStep94928: Hide Field Is Capital Recallable Adjustment">
+                      <mcwc:SetVisibility ControlId="ukn_iscapitalrecallableadjustment" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" IsVisible="False" />
+                    </Sequence>
+                    <Sequence DisplayName="SetFieldRequiredLevelStep92: Make Adjustment Date Business Required">
+                      <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ukn_approvalrequest&quot;)]" />
+                      <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ukn_adjustmentdate" ControlType="standard" DisplayName="SetFieldRequiredLevelStep92" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ukn_approvalrequest" RequiredLevel="None" />
+                    </Sequence>
+                  </sco:Collection>
+                </mxswa:ActivityReference.Properties>
+              </mxswa:ActivityReference>
+              <x:Null x:Key="Else" />
+              <x:String x:Key="Description">IF not Adjustment</x:String>
+            </mxswa:ActivityReference.Properties>
+          </mxswa:ActivityReference>
+        </sco:Collection>
+        <x:Boolean x:Key="ContainsElseBranch">False</x:Boolean>
+      </mxswa:ActivityReference.Properties>
+    </mxswa:ActivityReference>
+  </mxswa:Workflow>
+</Activity>

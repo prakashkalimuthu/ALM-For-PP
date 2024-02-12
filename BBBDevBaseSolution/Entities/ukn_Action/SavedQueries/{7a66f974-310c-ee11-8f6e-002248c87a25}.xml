@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{7a66f974-310c-ee11-8f6e-002248c87a25}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_subject" select="1" icon="1" preview="1">
+        <row name="result" id="ukn_actionid">
+          <cell name="ukn_genericissues" width="123" />
+          <cell name="ukn_description" width="106" />
+          <cell name="ukn_actionowner" width="120" />
+          <cell name="ukn_subject" width="200" />
+          <cell name="ukn_duedate" width="100" />
+          <cell name="ukn_actionstatus" width="116" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="ukn_action">
+          <attribute name="ukn_subject" />
+          <attribute name="ukn_actionid" />
+          <attribute name="ukn_genericissues" />
+          <attribute name="ukn_description" />
+          <attribute name="ukn_actionowner" />
+          <attribute name="ukn_duedate" />
+          <attribute name="ukn_actionstatus" />
+          <filter type="and">
+            <condition attribute="ukn_genericissues" operator="not-null" />
+          </filter>
+          <order attribute="ukn_duedate" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Generic Issues" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
