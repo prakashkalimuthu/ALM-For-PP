@@ -4,16 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- D365YAMLpipeline
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-2019
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: PowerPlatformToolInstaller@2
+  inputs:
+    DefaultVersion: true
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PowerPlatformWhoAmi@2
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'Devops Test'
