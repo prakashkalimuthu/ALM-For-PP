@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8457965d-d2fe-ed11-8f6c-002248c87aae}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_reference" select="1" preview="1" icon="1">
+        <row name="result" id="ukn_approvalrequestid">
+          <cell name="ukn_reference" width="150" />
+          <cell name="ukn_facility" width="100" />
+          <cell name="ukn_funddeliverypartner" width="100" />
+          <cell name="ukn_iscapitalrecallableadjustment" width="100" />
+          <cell name="ukn_adjustmentdate" width="100" />
+          <cell name="ukn_approvalstatus" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ukn_approvalrequest">
+          <attribute name="ukn_reference" />
+          <attribute name="ukn_iscapitalrecallableadjustment" />
+          <attribute name="ukn_facility" />
+          <attribute name="ukn_approvalstatus" />
+          <attribute name="ukn_adjustmentdate" />
+          <attribute name="ukn_funddeliverypartner" />
+          <order attribute="ukn_reference" descending="false" />
+          <filter type="and">
+            <condition attribute="ukn_approvalrequesttype" operator="eq" value="968200003" />
+          </filter>
+          <attribute name="ukn_approvalrequestid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Adjustment Approval Requests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

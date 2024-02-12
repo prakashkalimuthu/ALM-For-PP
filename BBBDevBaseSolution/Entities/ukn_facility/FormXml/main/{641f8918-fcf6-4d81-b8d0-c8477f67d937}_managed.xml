@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{641f8918-fcf6-4d81-b8d0-c8477f67d937}</formid>
+    <IntroducedVersion>1.0.0.182</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab id="{284067aa-4079-4539-82ac-755aabf8896a}" verticallayout="true" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section id="{eb951fb5-c42a-4c4c-abab-9e65c9539c7f}" IsUserDefined="0" showlabel="false" showbar="false" name="{eb951fb5-c42a-4c4c-abab-9e65c9539c7f}" columns="1" locklevel="0" labelwidth="200" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0257a8ec-9478-09ee-8331-0a45a8809367}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Facility Reference" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_facilityreference" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ukn_facilityreference" disabled="true" uniqueid="{546d15ca-2dc8-107a-0498-644075460dd3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19787214-1a47-551e-752d-e29a18345970}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Investment ID" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_investmentid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ukn_investmentid" disabled="false" uniqueid="{a6a448e1-11eb-7369-3ad7-114aa529281c}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7c3bf2ab-659b-4b14-99aa-238239e4eaed}">
+                        <labels>
+                          <label description="Topic" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ukn_name" uniqueid="{1b47dd72-6556-0ce7-e2a7-b83c5994a319}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{28859600-2224-1979-88e6-d7a7a816a948}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Account" languagecode="1033" />
+                        </labels>
+                        <control disabled="false" id="ukn_account" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_account" uniqueid="{1114a94b-1c69-7587-65e9-57bd56198a63}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1bcecada-8755-98d2-3c52-6d4669aa9db1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Original Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_originalcommitment" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_originalcommitment" disabled="false" uniqueid="{97b5ec24-bd69-cb08-5776-b35596bee2b7}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8a9bd583-9a50-280e-03e3-1007c963cb3b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Current Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_bbbcommitment" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_bbbcommitment" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d585e983-3840-e10d-417d-18a4b345c08d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Programme" languagecode="1033" />
+                        </labels>
+                        <control disabled="false" id="ukn_investmentprogramme" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_investmentprogramme" uniqueid="{c9d1741a-c099-0196-70d0-b84638682cb1}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c0e4c1aa-d6db-3995-4dad-704d96309949}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Sub-Programme" languagecode="1033" />
+                        </labels>
+                        <control disabled="false" id="ukn_investmentsubprogramme" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_investmentsubprogramme" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cb14568d-e71d-52c4-28a0-43ecca5c0b75}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Opportunity Currency" languagecode="1033" />
+                        </labels>
+                        <control disabled="false" id="ukn_opportunitycurrency" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_opportunitycurrency" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4be6c1d4-128d-1d9b-9dbd-1ed25a899435}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Completion Date" languagecode="1033" />
+                        </labels>
+                        <control disabled="false" id="ukn_completiondate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ukn_completiondate" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{78add9a4-1407-837b-aab2-c0506c019dd0}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Number of Days" languagecode="1033" />
+                        </labels>
+                        <control disabled="false" id="ukn_numberofdays" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="ukn_numberofdays" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cba8cac9-4d0e-5cc3-bc5b-068aed312c96}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="End of Investment Period" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_endofinvestmentperiod" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ukn_endofinvestmentperiod" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4d7825fd-84c1-40d6-b03c-1279d2c3eafe}" showlabel="true" locklevel="1">
+                        <labels>
+                          <label description="Created By" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{a672ab4b-9948-22cd-2a6c-70665d8d2374}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ed8e085e-1758-e237-7b49-e1e7182dd770}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="First Contact" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_firstcontact" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_firstcontact" disabled="false" uniqueid="{42783732-13e0-41ed-7b0e-bcb1236c4d06}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1435baa8-8287-1d68-2710-9529448505d5}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Second Contact" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_secondcontact" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_secondcontact" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section id="{e7c8557d-b212-6503-c2c5-96b3a03e108d}" name="{284067aa-4079-4539-82ac-755aabf8896a}_section_2" IsUserDefined="0" columns="1" showlabel="true" showbar="false" locklevel="0" layout="varwidth" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Drawdown Requests" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{924482e6-19d7-539a-949e-12ebae149592}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Approval Requests (Facility)" languagecode="1033" />
+                        </labels>
+                        <control id="darview" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{704b6bac-2938-2433-a795-e7bc244d2c21}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{598DB6CF-58F9-E811-A97E-00224800C719}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ukn_ukn_facility_ukn_approvalrequest_Facility</RelationshipName>
+                            <TargetEntityType>ukn_approvalrequest</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{D2A6E343-0C71-4748-844F-D15CD2FB81D9},{598DB6CF-58F9-E811-A97E-00224800C719}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F5F5F5</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section id="{89b95361-dbcb-5043-385c-b7492be008ec}" name="{284067aa-4079-4539-82ac-755aabf8896a}_section_3" IsUserDefined="0" columns="1" showlabel="true" showbar="false" locklevel="0" layout="varwidth" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Distribution Requests" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{82ab124a-d5a0-7e60-1777-9e9bb26955a5}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Distribution Requests (Facility)" languagecode="1033" />
+                        </labels>
+                        <control id="darview1" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{63767a87-5486-13bb-0328-667918a7ca23}">
+                          <parameters>
+                            <ViewId>{0234C334-4847-E911-A982-00224800C719}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ukn_ukn_facility_ukn_approvalrequest_Facility</RelationshipName>
+                            <TargetEntityType>ukn_approvalrequest</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{D2A6E343-0C71-4748-844F-D15CD2FB81D9},{0234C334-4847-E911-A982-00224800C719}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F5F5F5</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="{284067aa-4079-4539-82ac-755aabf8896a}_section_4" showlabel="true" showbar="false" locklevel="0" id="{4355561d-5502-8cee-ec91-3570de6a95d2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Lender Settlement Requests" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{865c3241-e339-4cc5-49d9-b990d7319968}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="BBB Approval Requests (Facility)" languagecode="1033" />
+                        </labels>
+                        <control id="lendersettlement_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{98eb10e7-1598-d4e9-e298-7abc541bd4ac}">
+                          <parameters>
+                            <ViewId>{A117A604-6217-EB11-A813-000D3A86D535}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ukn_ukn_facility_ukn_approvalrequest_Facility</RelationshipName>
+                            <TargetEntityType>ukn_approvalrequest</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{D2A6E343-0C71-4748-844F-D15CD2FB81D9},{A117A604-6217-EB11-A813-000D3A86D535}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{7B3D920F-8DCD-E911-A812-000D3A86D7A8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F2F8FD</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="{284067aa-4079-4539-82ac-755aabf8896a}_section_5" showlabel="true" showbar="false" locklevel="0" id="{70843e02-e50e-dc46-a123-a6150c92028b}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Adjustment Requests" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6e35888a-4814-ddb9-9801-14ba749428e9}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="BBB Approval Requests (Facility)" languagecode="1033" />
+                        </labels>
+                        <control id="adjustment_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{8457965D-D2FE-ED11-8F6C-002248C87AAE}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ukn_ukn_facility_ukn_approvalrequest_Facility</RelationshipName>
+                            <TargetEntityType>ukn_approvalrequest</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{D2A6E343-0C71-4748-844F-D15CD2FB81D9},{8457965D-D2FE-ED11-8F6C-002248C87AAE}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{7B3D920F-8DCD-E911-A812-000D3A86D7A8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F2F8FD</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="{60305719-16c6-a8b7-e593-51d9ab3ea429}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Facility Limit" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{49046c14-e3cd-8c82-322c-26e875966b8b}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{deb3ec7b-6c11-2140-8254-dbd323bd2121}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Current Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_bbbcommitment" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_bbbcommitment" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0ba7ab29-9812-c64b-c04a-8d7dd703a626}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Historical Amount" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_historicalamount" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_historicalamount" disabled="false" uniqueid="{105e4443-6b49-c5bd-c5b3-d3a3696a8682}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dd339c84-15e5-5c02-2966-4ed77c8d626e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Gross Drawdown" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_totalgrossdrawdown" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_totalgrossdrawdown" disabled="false" uniqueid="{948864b4-6ade-72a3-3c6b-a0c73870b8da}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7646aac9-5284-e030-1969-15e9c5919696}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Capital Recallable" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_totalcapitalrecallable" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_totalcapitalrecallable" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6860aa4-8231-7d0a-906e-d405b87004ec}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Adjust Capital Recallable" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_adjustcapitalrecallable" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_adjustcapitalrecallable" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{15756329-928d-9324-6998-cb7300ca5b31}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Non-Utilised Drawdowns" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_totalnonutiliseddrawdowns" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_totalnonutiliseddrawdowns" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{44d762e8-c46d-ab74-4712-108838070976}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Remaining Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_remainingcommitment" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ukn_remainingcommitment" disabled="false" uniqueid="{6ecb6ce2-e7be-d437-95c6-96a7a7b90dd2}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="{5ceaa04a-dc01-c536-3e79-11a0b218b437}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Contributing Opportunities" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_3_section_1" showlabel="false" showbar="false" locklevel="0" id="{b4542c2e-4672-e632-be6e-c63498a6314a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{ea800117-967e-a744-0173-d329724aa0e2}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Facility Opportunities (Facility)" languagecode="1033" />
+                        </labels>
+                        <control id="subgrid_facilityopportunities" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{c8d5e2b3-bd09-40d8-957e-88186e79e101}">
+                          <parameters>
+                            <ViewId>{A8260482-00F8-EA11-A815-000D3A86D535}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ukn_ukn_facility_ukn_facilityopportunity_facility</RelationshipName>
+                            <TargetEntityType>ukn_facilityopportunity</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{3E92E6D9-9CA6-4A1C-9BEA-4ECBE576DF76},{A8260482-00F8-EA11-A815-000D3A86D535}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F2F8FD</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title Text="Common" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title Text="Sales" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title Text="Service" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title Text="Marketing" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title Text="Process Sessions" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <header id="{5bfea3fc-65ab-4688-83b3-8914d7dcf2c8}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{4629dd14-918f-4413-b3a3-b64a77a1555e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4953b9dc-7c49-4fba-b641-25aa78fac7ab}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a5d6f04a-262e-4a87-834d-989f421ce2ef}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{b2d76451-4dc6-4cdf-993a-175f5392f7f3}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{d5748569-9a2d-4f4c-884f-87d22412e5ae}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{5625a6f6-ca50-486a-9b13-74eb11e0f18a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ef1d4b15-1ae4-4a82-87f6-c9ead4fb6082}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

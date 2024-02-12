@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{56e44217-841c-ed11-b83e-0022481b1b0e}" Name="BBB - SULCO - Show Other field if Type Of Activity selected as Other" Description="Show Other field if Type Of Activity selected as Other" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/BBB-SULCO-ShowOtherfieldifTypeOfActivityselectedas-56E44217-841C-ED11-B83E-0022481B1B0E.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>2</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>10.3.1.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ProcessTriggerFormId>{549a8aa3-c349-4ab9-8bac-4873fa9a7a5c}</ProcessTriggerFormId>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
+  <PrimaryEntity>Appointment</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="BBB - SULCO - Show Other field if Type Of Activity selected as Other" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="Show Other field if Type Of Activity selected as Other" />
+  </Descriptions>
+</Workflow>
