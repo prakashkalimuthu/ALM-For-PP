@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{c9e7ec2d-efca-4e4c-b3e3-f63c4bba5e4b}</formid>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="{8ca48364-f790-43e4-b753-aa35fa4f9c77}" name="tab_1" expanded="true" locklevel="0" showlabel="false" IsUserDefined="0" ordinalvalue="0">
+          <columns>
+            <column width="33%" id="0">
+              <sections>
+                <section id="{bcee7abc-6004-49f3-bc27-9eb7d1d3561b}" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{7697e89b-cb21-2809-82b3-dc18084c2d6a}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Account Name" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1b493db6-167b-6b45-a790-8039e48ba201}" showlabel="true" locklevel="0" ordinalvalue="10001">
+                        <labels>
+                          <label description="Main Phone" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{74462bc8-31ba-726c-e195-bc30857d41e5}" showlabel="true" locklevel="0" ordinalvalue="10002">
+                        <labels>
+                          <label description="Primary Contact" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4de2ba1-751d-79bc-c8b0-084d3a610da5}" showlabel="true" locklevel="0" ordinalvalue="10003" solutionaction="Added">
+                        <labels>
+                          <label description="Relationship Lead" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_relationshiplead" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_relationshiplead" disabled="false" uniqueid="{b3576220-ad20-4966-347b-2d5c65516c80}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{544F69FD-CB24-EB11-A813-000D3A86D535}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section id="{32ff71fb-26e6-4b51-8e93-e94b5780a8ae}" name="tab_1_column_2_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{4b76aee6-8414-a9d0-3066-78ed2ed42eb8}" showlabel="true" locklevel="0" rowspan="2" ordinalvalue="10003">
+                        <labels>
+                          <label description="Description" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="2">
+              <sections>
+                <section id="{a549aa16-a731-41b7-9181-86710f8feef5}" name="tab_1_column_3_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{74cc5c86-38eb-4d2f-94d6-1b7ae4752c08}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_region" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <controlDescriptions solutionaction="Added" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Account Quick Create" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Default quick create form for Account" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

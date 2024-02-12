@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{64ce2c56-e86f-ed11-81ac-0022481b58bf}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="accountid">
+          <cell name="name" width="100" />
+          <cell name="ukn_requirementsfrequency" width="100" disableSorting="1" />
+          <cell name="ukn_frequencyofmonitoring" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_nextauditeddate" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_nextmanagementduedate" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="account">
+          <attribute name="ukn_requirementsfrequency" />
+          <attribute name="ukn_frequencyofmonitoring" />
+          <attribute name="ukn_nextmanagementduedate" />
+          <attribute name="ukn_nextauditeddate" />
+          <attribute name="name" />
+          <order attribute="ukn_nextauditeddate" descending="false" />
+          <filter type="and">
+            <condition attribute="ukn_requirementsfrequency" operator="contain-values">
+              <value>968200000</value>
+              <value>968200001</value>
+              <value>968200003</value>
+              <value>968200004</value>
+              <value>968200002</value>
+            </condition>
+          </filter>
+          <attribute name="accountid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Delivery Partner Financial Information Summary" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

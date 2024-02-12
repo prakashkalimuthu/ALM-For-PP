@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{0fbc21ff-e5f6-44c4-8f21-0496c5c031fc}</formid>
+    <IntroducedVersion>0.0.0.4</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab verticallayout="true" id="{63a60116-17ce-428f-b0a4-904e25f5dd5d}" IsUserDefined="1" ordinalvalue="0">
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section id="{33e69c87-2546-4bf8-a9bc-ee44b82f922b}" IsUserDefined="0" showbar="false" showlabel="false" visible="false" ordinalvalue="0" solutionaction="Modified">
+                  <rows>
+                    <row>
+                      <cell id="{66cc044b-ad93-4b42-8397-58d310daf68f}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" solutionaction="Added" />
+                        </labels>
+                        <control id="bbb_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="bbb_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7f7a0415-39fc-4c21-817d-030cbf7173b5}" ordinalvalue="10001" solutionaction="Removed" />
+                    </row>
+                  </rows>
+                </section>
+                <section name="null_section_3" id="d2d19618-f3f6-4668-9b12-91e3c36f80b5" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="1" solutionaction="Added">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{feaf8b11-0b98-4331-b47b-1bfe6d8de01f}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="bbb_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="bbb_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{36244ade-7519-460f-abe1-17dfd088d039}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001">
+                        <labels>
+                          <label description="Programme Short Name" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_programmeshortname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ukn_programmeshortname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3858426e-33d2-43bf-9178-6bc7281c19db}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10002">
+                        <labels>
+                          <label description="Vehicle Types" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_fundingvehicletype" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ukn_fundingvehicletype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{af9f6f7f-3251-46f5-868c-b50ce4ce9162}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10003">
+                        <labels>
+                          <label description="Programme Code Reference" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_programmecodereference" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ukn_programmecodereference" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cc4d3180-911d-467e-85d4-9b4cd8b68ec7}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10004">
+                        <labels>
+                          <label description="Business Unit" languagecode="1033" />
+                        </labels>
+                        <control id="ukn_businessunit" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ukn_businessunit" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="{25336464-5de8-8c7b-2ca7-d00063ae3d27}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Investment Sub Programmes" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{495b260a-250d-e481-ab0a-3e1ced9708a2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5eca157a-b78c-27a1-d8e0-4b1b970ad9bb}" showlabel="false" colspan="1" auto="true" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Investment Sub-Programmes (ProgrammeSubProgramme)" languagecode="1033" />
+                        </labels>
+                        <control id="subprogrammegrid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{cb9653ed-63e5-cc67-3192-1bd82536158a}">
+                          <parameters>
+                            <ViewId>{C87245E8-A6F9-47FE-8F3E-87C81B2E3B3E}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>bbb_bbb_investmentprogramme_bbb_investmentsub</RelationshipName>
+                            <TargetEntityType>bbb_investmentsubprogramme</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{C87245E8-A6F9-47FE-8F3E-87C81B2E3B3E}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{399366ce-1f02-4e6f-8d0d-a86dc8d07779}" columns="111" solutionaction="Added">
+        <rows>
+          <row>
+            <cell id="{b09b1812-7e6c-4e9c-bf5e-365d16ef0ab4}" showlabel="false" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d586685d-1df5-480c-8772-fe0ddb4c4cad}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bb9bd90d-6cdc-7174-9977-9a58508342ab}" showlabel="true" locklevel="0" ordinalvalue="30002">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <Navigation solutionaction="Added">
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title Text="Common" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title Text="Sales" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title Text="Service" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title Text="Marketing" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title Text="Process Sessions" LCID="1033" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions solutionaction="Added" />
+      <footer id="{06ee113a-8bb0-4e09-a401-9060f7155aae}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
+        <rows />
+      </footer>
+      <DisplayConditions FallbackForm="true" Order="0" solutionaction="Added" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

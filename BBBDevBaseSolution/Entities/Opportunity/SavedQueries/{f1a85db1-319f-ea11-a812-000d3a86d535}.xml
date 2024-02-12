@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{f1a85db1-319f-ea11-a812-000d3a86d535}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" icon="1" preview="1">
+        <row name="result" id="opportunityid">
+          <cell name="name" width="300" />
+          <cell name="customerid" width="150" />
+          <cell name="bbb_investmentsubprogramme" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="bbb_subprogrammetypeid" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="bbb_bbbcommitment" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="bbb_totalcommitment" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ownerid" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="actualclosedate" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="bbb_legalcompletiondate" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="opportunity">
+          <attribute name="name" />
+          <attribute name="customerid" />
+          <attribute name="opportunityid" />
+          <attribute name="bbb_totalcommitment" />
+          <attribute name="bbb_investmentsubprogramme" />
+          <attribute name="bbb_subprogrammetypeid" />
+          <attribute name="ownerid" />
+          <attribute name="bbb_legalcompletiondate" />
+          <attribute name="createdon" />
+          <attribute name="bbb_bbbcommitment" />
+          <attribute name="actualclosedate" />
+          <filter type="and">
+            <condition attribute="bbb_investmentprogramme" operator="eq" uiname="BBI" uitype="bbb_investmentprogramme" value="{a7a6bd1c-d6d9-e711-810d-70106faa1531}" />
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <order attribute="customerid" descending="false" />
+          <order attribute="name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="BBI - Won Opportunities - Investment Programme" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

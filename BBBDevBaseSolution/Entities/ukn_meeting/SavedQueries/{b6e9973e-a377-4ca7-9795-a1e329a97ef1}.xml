@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{b6e9973e-a377-4ca7-9795-a1e329a97ef1}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_name" select="1" icon="1" preview="1">
+        <row name="result" id="ukn_meetingid">
+          <cell name="ukn_meetingdate" width="100" />
+          <cell name="ukn_meetingdescription" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_meetingdealflowstage" width="100" />
+          <cell name="ukn_meetinguniqueid" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ukn_meeting">
+          <attribute name="createdon" />
+          <order attribute="ukn_meetingdate" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ukn_meetingdescription" />
+          <attribute name="ukn_meetingdate" />
+          <attribute name="ukn_meetinguniqueid" />
+          <attribute name="ukn_meetingdealflowstage" />
+          <attribute name="ukn_meetingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Meetings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

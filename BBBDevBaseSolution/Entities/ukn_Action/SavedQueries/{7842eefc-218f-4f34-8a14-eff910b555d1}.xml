@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{7842eefc-218f-4f34-8a14-eff910b555d1}</savedqueryid>
+    <layoutxml>
+      <grid name="ukn_actions" jump="ukn_subject" select="1" icon="1" preview="1">
+        <row name="ukn_action" id="ukn_actionid">
+          <cell name="ukn_subject" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="ukn_appointment" width="114" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ukn_action">
+          <attribute name="ukn_actionid" />
+          <attribute name="ukn_subject" />
+          <attribute name="createdon" />
+          <order attribute="ukn_subject" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ukn_appointment" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Action Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
