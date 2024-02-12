@@ -2,20 +2,6 @@
 <EntityMaps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <EntityMap>
     <EntitySource>lead</EntitySource>
-    <EntityTarget>account</EntityTarget>
-    <AttributeMaps>
-      <AttributeMap>
-        <AttributeSource>ukn_partyroles</AttributeSource>
-        <AttributeTarget>ukn_partyrole</AttributeTarget>
-      </AttributeMap>
-      <AttributeMap>
-        <AttributeSource>ukn_partytypes</AttributeSource>
-        <AttributeTarget>ukn_partytype</AttributeTarget>
-      </AttributeMap>
-    </AttributeMaps>
-  </EntityMap>
-  <EntityMap>
-    <EntitySource>lead</EntitySource>
     <EntityTarget>opportunity</EntityTarget>
     <AttributeMaps>
       <AttributeMap>
@@ -25,10 +11,6 @@
       <AttributeMap>
         <AttributeSource>ukn_expectedcompletiondate</AttributeSource>
         <AttributeTarget>bbb_completionexpected</AttributeTarget>
-      </AttributeMap>
-      <AttributeMap>
-        <AttributeSource>ukn_fundid</AttributeSource>
-        <AttributeTarget>ukn_fundid</AttributeTarget>
       </AttributeMap>
       <AttributeMap>
         <AttributeSource>ukn_fundlocation</AttributeSource>
@@ -53,10 +35,6 @@
       <AttributeMap>
         <AttributeSource>ukn_sector</AttributeSource>
         <AttributeTarget>ukn_sector</AttributeTarget>
-      </AttributeMap>
-      <AttributeMap>
-        <AttributeSource>ukn_subassetclass</AttributeSource>
-        <AttributeTarget>ukn_subassetclass</AttributeTarget>
       </AttributeMap>
       <AttributeMap>
         <AttributeSource>ukn_tier</AttributeSource>
