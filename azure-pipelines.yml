@@ -6,6 +6,9 @@
 trigger:
 - D365YAMLpipeline
 
+variables:
+  system_accesstoken: $(System.AccessToken)
+
 pool:
   vmImage: windows-2019
 
@@ -44,6 +47,10 @@ steps:
     SolutionType: 'Managed'
 
 - task: CmdLine@2
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  $myVar = $env:SYSTEM_ACCESSTOKEN
+    echo $myVar
   inputs:
     script: |
       git show-ref
