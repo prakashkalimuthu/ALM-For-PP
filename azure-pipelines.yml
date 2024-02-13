@@ -13,6 +13,8 @@ pool:
   vmImage: windows-2019
 
 steps:
+- checkout: self
+  persistCredentials: true
 - task: PowerPlatformToolInstaller@2
   inputs:
     DefaultVersion: true
