@@ -49,10 +49,10 @@ steps:
 - task: CmdLine@2
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-  $myVar = $env:SYSTEM_ACCESSTOKEN
-    echo $myVar
+      $myVar = $env:SYSTEM_ACCESSTOKEN
   inputs:
     script: |
+      echo $myVar
       git show-ref
       git config user.email "prakash.kalimuthu@british-business-bank.co.uk"
       git config user.name "prakashkalimuthu"
