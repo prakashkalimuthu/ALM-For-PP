@@ -86,19 +86,19 @@
     <MissingDependencies>
       <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24012.10003)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
         </Required>
         <Dependent type="1" schemaName="opportunity" displayName="Opportunity" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="name" displayName="Deal Name" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24012.10003)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
         </Required>
         <Dependent type="29" displayName="All Forms - Facility Top Up" id="{8739500e-b2f0-ec11-bb3c-0022481b1335}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="opportunityid" displayName="Opportunity" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24012.10003)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
         </Required>
         <Dependent type="29" displayName="All Forms - Facility Top Up" id="{8739500e-b2f0-ec11-bb3c-0022481b1335}" />
       </MissingDependency>
