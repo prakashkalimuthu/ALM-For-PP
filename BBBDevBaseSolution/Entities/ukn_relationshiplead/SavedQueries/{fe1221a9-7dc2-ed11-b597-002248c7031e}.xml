@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{fe1221a9-7dc2-ed11-b597-002248c7031e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_name" select="1" icon="1" preview="1">
+        <row name="result" id="ukn_relationshipleadid">
+          <cell name="a_405592aeca98ed11aad06045bd0b12c1.owningbusinessunit" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_405592aeca98ed11aad06045bd0b12c1.bbb_investmentprogramme" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_405592aeca98ed11aad06045bd0b12c1.bbb_deallead" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_405592aeca98ed11aad06045bd0b12c1.bbb_dealreference" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_405592aeca98ed11aad06045bd0b12c1.statecode" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ukn_relationshiplead">
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="false" />
+          <filter type="and">
+            <condition attribute="ukn_accountrelationshiplead" operator="null" />
+          </filter>
+          <link-entity name="opportunity" from="opportunityid" to="ukn_opportunity" alias="a_405592aeca98ed11aad06045bd0b12c1">
+            <attribute name="bbb_deallead" />
+            <attribute name="owningbusinessunit" />
+            <attribute name="bbb_investmentprogramme" />
+            <attribute name="statecode" />
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="0" />
+            </filter>
+            <attribute name="bbb_dealreference" />
+          </link-entity>
+          <attribute name="ukn_relationshipleadid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Relationship Leads without Account Relationship Lead for Opportunities" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

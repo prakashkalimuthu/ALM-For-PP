@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{45e0f578-5179-ec11-8d21-0022481b4c76}</WebResourceId>
+  <Name>ukn_/js/opportunity.js</Name>
+  <DisplayName>Opportunity.js</DisplayName>
+  <Description>Opportunity JS for validations.</Description>
+  <LanguageCode>0</LanguageCode>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>7.1.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"&gt;&lt;Library name="ukn_/js/helper.js" displayName="Helper.js" languagecode="1033" description="" libraryUniqueId="{24403ad7-8856-342b-cd87-1cc3e2b6be98}"/&gt;&lt;/Dependency&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/ukn_jsopportunityjs45E0F578-5179-EC11-8D21-0022481B4C76</FileName>
+</WebResource>

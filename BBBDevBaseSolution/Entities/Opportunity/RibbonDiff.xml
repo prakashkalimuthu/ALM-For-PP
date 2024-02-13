@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <HideCustomAction HideActionId="ukn.Mscrm.Form.opportunity.ReopenOpp.Hide" Location="Mscrm.Form.opportunity.ReopenOpp" />
+    <HideCustomAction HideActionId="ukn.Mscrm.HomepageGrid.opportunity.ReopenOpp.Hide" Location="Mscrm.HomepageGrid.opportunity.ReopenOpp" />
+    <CustomAction Id="ukn.opportunity.Button2.Button.Mscrm.Form.opportunity.createKYC.CustomAction" Location="Mscrm.Form.opportunity.MainTab.Actions.Controls._children" Sequence="6">
+      <CommandUIDefinition>
+        <Button Command="ukn.opportunity.Command0.Command" Id="ukn.opportunity.Button2.Button.Mscrm.Form.opportunity.createKYC" Image32by32="" Image16by16="" LabelText="$LocLabels:ukn.opportunity.Button2.Button.Mscrm.Form.opportunity.createKYC.LabelText" Sequence="6" TemplateAlias="o1" ModernImage="$webresource:ukn_uiiconkycrequest" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ukn.opportunity.Button4.Button.Mscrm.Form.opportunity.ReopenOpp.CustomAction" Location="Mscrm.Form.opportunity.MainTab.Actions.Controls._children" Sequence="5">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:Ribbon.Form.opportunity.MainTab.Actions.ReopenOpp" Command="ukn.opportunity.Button4.Button.Mscrm.Form.opportunity.ReopenOpp" Id="ukn.opportunity.Button4.Button.Mscrm.Form.opportunity.ReopenOpp" Image32by32="/_imgs/ribbon/ReopenOpportunity_32.png" Image16by16="/_imgs/ribbon/ReopenOpportunity_16.png" LabelText="$LocLabels:Ribbon.Form.opportunity.MainTab.Actions.ReopenOpp" Sequence="5" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm_Form_opportunity_MainTab_Actions_ReopenOpp_ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm_Form_opportunity_MainTab_Actions_ReopenOpp_ToolTipDescription" ModernImage="ReOpenOpportunity" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.Form.opportunity.ReopenOpp">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWriteOpportunity" />
+        <DisplayRule Id="Mscrm.OpportunityIsClosed" />
+        <DisplayRule Id="ukn.OpportunityIsLost" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.OpportunityCommandActions.opportunityReopen" Library="$webresource:Sales/Opportunity/Opportunity_main_system_library.js" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.HomepageGrid.opportunity.ReopenOpp">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWriteOpportunity" />
+        <DisplayRule Id="ukn.OpportunityIsLost" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.OpportunityGridCommandActions.opportunityReopen" Library="$webresource:Sales/Opportunity/Opportunity_main_system_library.js">
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ukn.opportunity.Button4.Button.Mscrm.Form.opportunity.ReopenOpp">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWriteOpportunity" />
+        <DisplayRule Id="Mscrm.OpportunityIsClosed" />
+        <DisplayRule Id="ukn.OpportunityIsLost" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.OpportunityCommandActions.opportunityReopen" Library="$webresource:Sales/Opportunity/Opportunity_main_system_library.js" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ukn.opportunity.Command0.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ukn.opportunity.DisplayRule0.DisplayRule" />
+        <DisplayRule Id="ukn.opportunity.DisplayRule1.DisplayRule" />
+        <DisplayRule Id="ukn.opportunity.DisplayRule2.DisplayRule" />
+        <DisplayRule Id="ukn.opportunity.DisplayRule3.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="createKycRequest" Library="$webresource:ukn_kycrequestbutton">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.CanWriteOpportunity">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" EntityName="opportunity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.OpportunityIsClosed">
+        <FormStateRule State="Disabled" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.opportunity.DisplayRule0.DisplayRule">
+        <ValueRule Field="ukn_kycstatus" Value="968200000" Default="true" InvertResult="false" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.opportunity.DisplayRule1.DisplayRule">
+        <ValueRule Field="ukn_kycstatus" Value="968200001" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.opportunity.DisplayRule2.DisplayRule">
+        <ValueRule Field="ukn_kycstatus" Value="968200002" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.opportunity.DisplayRule3.DisplayRule">
+        <ValueRule Field="ukn_kycstatus" Value="968200003" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ukn.OpportunityIsLost">
+        <ValueRule Field="statecode" Value="2" InvertResult="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
+        <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.VisualizationPaneNotMaximized">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="Mscrm.GridCommandActions.disableButtonsWhenChartMaximized" Library="/_static/_common/scripts/CommandBarActions.js">
+              <CrmParameter Value="SelectedControl" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="ukn.opportunity.Button2.Button.Mscrm.Form.opportunity.createKYC.LabelText">
+      <Titles>
+        <Title description="KYC REQUEST" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

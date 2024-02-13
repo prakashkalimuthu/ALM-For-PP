@@ -1,0 +1,62 @@
+//===========================================================//
+// Uses: CRM Odata and REST-ful web services.
+//
+// Description: 
+// 1.   Method : onChange_DeclineStatus- ECF - allow to select multichoice on selection of Other field
+
+// Version - 1.0.0.0    05/07/2023
+//===========================================================// 
+
+if ("undefined" == typeof (BBBD365)) {
+    BBBD365 = 
+	{ __namespace: true};	
+}
+
+BBBD365.Contact = {	
+
+    onChange_DeclineStatus: function(executionContext)
+    {
+        var formContext = executionContext.getFormContext();
+
+         //ukn_performriskassessment selected as yes
+         if(formContext.getAttribute("ukn_performriskassessment").getValue() == null)
+         {
+             formContext.getAttribute("ukn_covenantsset").setValue(null);
+             formContext.getAttribute("ukn_buspinplace").setValue(null);
+             formContext.getAttribute("ukn_spvstructureinplace").setValue(null);
+         }
+    },
+ 	
+		onSave_riskRequirements: function(executionContext) 
+	{
+		var formContext = executionContext.getFormContext();		
+        var selectedRequirementsValues = formContext.getAttribute("ukn_requirementsfrequency").getValue();
+
+       
+        if(selectedRequirementsValues)
+        {
+            if(formContext.getAttribute("ukn_performriskassessment").getValue() == 0)
+            {
+                formContext.getAttribute("ukn_requirementsfrequency").setValue(null);
+            }
+
+            var otherOption = selectedRequirementsValues.includes(968200004);
+
+            if(selectedRequirementsValues.length >= 2 && !otherOption)
+            {
+                var alertStrings = { text: "For Risk - Requirements, multiple choice options can be only selected along with option 'Other'." };
+                var alertOptions = { height: 120, width: 260 };
+                //Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then( function () { }  );
+                //formContext.getAttribute("ukn_requirementsfrequency").setValue(null);
+            }
+        }
+    },
+
+onLoad_quickCreateContact: function(executionContext)
+    {
+        var formContext = executionContext.getFormContext();
+
+         formContext.getAttribute("parentcustomerid").setRequiredLevel("none");
+    },
+
+};
