@@ -59,10 +59,10 @@ steps:
       git show-ref
       git config user.email "prakash.kalimuthu@british-business-bank.co.uk"
       git config user.name "prakashkalimuthu"
-      git checkout -b Dev
+      git checkout -b D365YAMLpipeline
       git add --all
       git commit -m "$(CommitMessage)"
-      git -c http.extraheader="AUTHORIZATION: bearer $(system_accesstoken)" push origin Dev
+      git -c http.extraheader="AUTHORIZATION: bearer $(system_accesstoken)" push origin D365YAMLpipeline
 
 - task: PublishBuildArtifacts@1
   inputs:
