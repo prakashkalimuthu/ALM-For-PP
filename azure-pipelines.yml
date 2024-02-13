@@ -49,12 +49,6 @@ steps:
       git commit -m "$(CommitMessage)"
       git -c http.extraheader="AUTHORIZATION: bearer $(system_accesstoken)" push origin D365YAMLpipeline
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(SolutionName)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
