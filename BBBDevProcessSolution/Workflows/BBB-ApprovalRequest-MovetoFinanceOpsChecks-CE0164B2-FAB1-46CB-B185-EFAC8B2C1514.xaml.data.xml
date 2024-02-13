@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{ce0164b2-fab1-46cb-b185-efac8b2c1514}" Name="BBB - Approval Request - Move to Finance Ops Checks" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/BBB-ApprovalRequest-MovetoFinanceOpsChecks-CE0164B2-FAB1-46CB-B185-EFAC8B2C1514.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>0</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>1</OnDemand>
+  <TriggerOnUpdateAttributeList>ukn_ptaflowdecision</TriggerOnUpdateAttributeList>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <UpdateStage>40</UpdateStage>
+  <RunAs>0</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>2.6.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>ukn_approvalrequest</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="BBB - Approval Request - Move to Finance Ops Checks" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{4eeb0f40-303b-404e-bf1b-1a2406458fce}">
+      <label languagecode="1033" description="You cannot progress to next stage as Operations Decision is Reject" />
+    </steplabels>
+    <steplabels id="{83133324-97f1-4cad-aaaa-73a6e3619955}">
+      <label languagecode="1033" description="Product Team Decision is Reject so cannot move to next stage. " />
+    </steplabels>
+    <steplabels id="{f0bbadb4-5cad-43c1-900b-91f1ee826964}">
+      <label languagecode="1033" description="Product Team Decision is Reject so cannot move to next stage. " />
+    </steplabels>
+  </labels>
+</Workflow>

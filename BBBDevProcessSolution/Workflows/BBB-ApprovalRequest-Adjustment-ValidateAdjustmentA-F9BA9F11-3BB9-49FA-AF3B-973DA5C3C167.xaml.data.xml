@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{f9ba9f11-3bb9-49fa-af3b-973da5c3c167}" Name="BBB - Approval Request - Adjustment - Validate Adjustment Amount is Equal to Sum of Breakdown Fields" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/BBB-ApprovalRequest-Adjustment-ValidateAdjustmentA-F9BA9F11-3BB9-49FA-AF3B-973DA5C3C167.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>0</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnUpdateAttributeList>ukn_otherleviedfees,ukn_nonutiliseddrawdowns,ukn_nonutilisationfees,ukn_lossclaims,ukn_interestprioritisedreturns,ukn_interestfees,ukn_grossamountrequested,ukn_equalisationpayable,ukn_directtopl,ukn_equalisationreceivable,ukn_commitmentfees,ukn_capitalrepayments,ukn_capitalrecallable,ukn_arrangementfees</TriggerOnUpdateAttributeList>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <UpdateStage>40</UpdateStage>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>ukn_approvalrequest</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="BBB - Approval Request - Adjustment - Validate Adjustment Amount is Equal to Sum of Breakdown Fields" />
+  </LocalizedNames>
+</Workflow>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{b310096d-ce26-4e15-94d0-0fbaa1affc0f}" Name="BBI Deal Flow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/BBIDealFlow-B310096D-CE26-4E15-94D0-0FBAA1AFFC0F.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>4</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <processorder>1</processorder>
+  <RunAs>1</RunAs>
+  <UniqueName>new_bpf_b310096dce264e1594d00fbaa1affc0f</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
+  <PrimaryEntity>Lead</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="BBI Deal Flow" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{d1bc3b6b-ec43-4d58-96de-7602da6aee82}">
+      <label languagecode="1033" description="Market Engagement" />
+    </steplabels>
+    <steplabels id="{a58dc081-3695-4514-9c8b-64c3d1f4b0ff}">
+      <label languagecode="1033" description="Deal Name" />
+    </steplabels>
+    <steplabels id="{107b19ba-f87b-4325-989e-54fd2aa30898}">
+      <label languagecode="1033" description="Project Name" />
+    </steplabels>
+    <steplabels id="{44deee88-bb7b-48d9-b85d-ed166706b371}">
+      <label languagecode="1033" description="Existing Contact?" />
+    </steplabels>
+    <steplabels id="{3a0718ba-9425-4521-ab00-6f2b8b0b8b2e}">
+      <label languagecode="1033" description="Existing Account?" />
+    </steplabels>
+    <steplabels id="{283fb799-7837-4057-bead-1618083f4b6a}">
+      <label languagecode="1033" description="Programme" />
+    </steplabels>
+    <steplabels id="{fe5b3f32-2272-4f2f-8f43-05b8f4e20e7a}">
+      <label languagecode="1033" description="Sector" />
+    </steplabels>
+    <steplabels id="{43720817-2a01-4d6d-af8a-7f1f86fbeff5}">
+      <label languagecode="1033" description="Initial Contact Date" />
+    </steplabels>
+    <steplabels id="{3de939b6-ec49-47c8-bc35-867ebba532ec}">
+      <label languagecode="1033" description="Account Lead" />
+    </steplabels>
+    <steplabels id="{7956c7cd-8adc-497b-a625-ebeb7cbe1c2d}">
+      <label languagecode="1033" description="Sub-Programme" />
+    </steplabels>
+    <steplabels id="{8454c6d8-f235-4feb-84f6-782711434227}">
+      <label languagecode="1033" description="Sub Programme Type" />
+    </steplabels>
+    <steplabels id="{423b86bc-d90a-4b37-8718-2a262dd06c63}">
+      <label languagecode="1033" description="Expected BBB Commitment" />
+    </steplabels>
+    <steplabels id="{4d0ee97f-f2c6-443c-a56d-0682374b63fe}">
+      <label languagecode="1033" description="Expected Completion Date" />
+    </steplabels>
+    <steplabels id="{9f75621f-7e20-462e-8bf7-8ae76068d8cf}">
+      <label languagecode="1033" description="Expression Of Interest" />
+    </steplabels>
+    <steplabels id="{2f99cba4-a9c1-4ba1-80e6-573169c4be43}">
+      <label languagecode="1033" description="Expected Completion Date" />
+    </steplabels>
+    <steplabels id="{c8a3754a-c461-44e6-8a80-2c86c4672882}">
+      <label languagecode="1033" description="Expected BBB Commitment" />
+    </steplabels>
+    <steplabels id="{738bb2be-6e48-4d56-ba59-e1f46b8908aa}">
+      <label languagecode="1033" description="Expected Total Commitment" />
+    </steplabels>
+    <steplabels id="{934f95be-d5b2-4d30-bb66-865aca810314}">
+      <label languagecode="1033" description="EOI Scored" />
+    </steplabels>
+    <steplabels id="{cc69a312-dbde-47d0-9f4d-c51b444a8bd3}">
+      <label languagecode="1033" description="Applicant Meeting Held To Discuss EOI" />
+    </steplabels>
+    <steplabels id="{67a40f4c-72a4-4a7d-a9f2-db89b661ccf3}">
+      <label languagecode="1033" description="Sighting Paper Completed" />
+    </steplabels>
+    <steplabels id="{7c99c771-9d55-41c4-a6e1-e2e7dfb6c3dc}">
+      <label languagecode="1033" description="BBI Team Approved Move to P Date" />
+    </steplabels>
+    <steplabels id="{5a55286e-be4e-4bc1-9db8-6d129ebc1a81}">
+      <label languagecode="1033" description="Proposal Requested" />
+    </steplabels>
+    <steplabels id="{9717c36e-a55c-429a-b1bf-28cd516cd329}">
+      <label languagecode="1033" description="Proposal" />
+    </steplabels>
+    <steplabels id="{2c8f7a36-fe43-47d9-9433-da71560039d0}">
+      <label languagecode="1033" description="Proposal Received Date" />
+    </steplabels>
+    <steplabels id="{5fef983f-9fc2-4713-9133-f540d9bd82ad}">
+      <label languagecode="1033" description="Expected IC/Board Approval Date" />
+    </steplabels>
+    <steplabels id="{d3079508-1a3c-438a-8f26-8b61fe3a7390}">
+      <label languagecode="1033" description="SLT Meeting Discussion" />
+    </steplabels>
+    <steplabels id="{f49dd3d4-e309-48e2-8f8a-cb5d7ff2448e}">
+      <label languagecode="1033" description="Proposal Reviewed" />
+    </steplabels>
+    <steplabels id="{b18c355d-9da9-4a6c-a765-0331ed449b3c}">
+      <label languagecode="1033" description="Applicant Meeting Held To Discuss P" />
+    </steplabels>
+    <steplabels id="{378a8082-c9df-4579-940b-63284a22c93c}">
+      <label languagecode="1033" description="Initial Investment Report Completed" />
+    </steplabels>
+    <steplabels id="{a1b41be8-4d0a-4c8d-8dca-9f643f039ae0}">
+      <label languagecode="1033" description="IIR Circulated to BBI Team Date" />
+    </steplabels>
+    <steplabels id="{39674f84-c1cb-4aa7-8aaa-811a23ecc126}">
+      <label languagecode="1033" description="Proposal RAG Rated" />
+    </steplabels>
+    <steplabels id="{e17a9190-8827-4872-aa79-fc00d415caff}">
+      <label languagecode="1033" description="BBI Team IIR Discussion Date" />
+    </steplabels>
+    <steplabels id="{9fc078af-5f74-4a9d-9c3b-5cd027221257}">
+      <label languagecode="1033" description="MD Decision Made" />
+    </steplabels>
+    <steplabels id="{7ad03abd-8756-43f5-8dc2-d8d3fb670a54}">
+      <label languagecode="1033" description="MD Decision Date" />
+    </steplabels>
+    <steplabels id="{65cd5bc3-72ed-4448-b7fb-12c3412ef3a8}">
+      <label languagecode="1033" description="Due Diligence" />
+    </steplabels>
+    <steplabels id="{0443b15e-92cc-4c9c-b14b-8ac2fde091b4}">
+      <label languagecode="1033" description="DDQ Sent Date" />
+    </steplabels>
+    <steplabels id="{7c01269e-f37a-488e-bb88-ecb47e80a237}">
+      <label languagecode="1033" description="DDQ Received Date" />
+    </steplabels>
+    <steplabels id="{4c8dd048-86cf-49e7-aa19-685d4f872bcd}">
+      <label languagecode="1033" description="Reviewed Document Submissions" />
+    </steplabels>
+    <steplabels id="{63eaa636-886f-4a2e-aa8e-2da122ecf50d}">
+      <label languagecode="1033" description="Reference Calls" />
+    </steplabels>
+    <steplabels id="{3c09b8dd-84ff-45bd-86ea-e2714c23b7c2}">
+      <label languagecode="1033" description="Financial Model Compliance" />
+    </steplabels>
+    <steplabels id="{5800d0fe-4a29-4fb0-a7d3-82e957bdb282}">
+      <label languagecode="1033" description="Financial Model Sensitivities" />
+    </steplabels>
+    <steplabels id="{46042c5b-21f2-4389-a834-ef0cbe9f1ce3}">
+      <label languagecode="1033" description="ESG Impact Considered" />
+    </steplabels>
+    <steplabels id="{407783c6-9e1a-471f-8004-98f99c8968af}">
+      <label languagecode="1033" description="Mandatory Terms Agreed" />
+    </steplabels>
+    <steplabels id="{e7af451f-617e-425f-b306-cfc558511136}">
+      <label languagecode="1033" description="Final Investment Report Completed" />
+    </steplabels>
+    <steplabels id="{cb8274ca-ba6a-48a4-bfc5-408e75132300}">
+      <label languagecode="1033" description="FIR Circulation to Sub-team Date" />
+    </steplabels>
+    <steplabels id="{990b7d9b-e258-4237-9e51-904ebb6671f3}">
+      <label languagecode="1033" description="MD Decision Made" />
+    </steplabels>
+    <steplabels id="{29d31ee4-0eb3-4e76-8e8d-3770fbaac08a}">
+      <label languagecode="1033" description="MD Decision Date" />
+    </steplabels>
+    <steplabels id="{a2e00f3d-505d-434f-b4a3-0f6932974d71}">
+      <label languagecode="1033" description="FIR Circulation to Support Teams Date" />
+    </steplabels>
+    <steplabels id="{95b1431e-9f95-4ca4-8a69-68057c0b4318}">
+      <label languagecode="1033" description="Support Team Function Input Date" />
+    </steplabels>
+    <steplabels id="{7edb6245-b1c6-497e-9862-800ce95aec51}">
+      <label languagecode="1033" description="Award Paper (Including CP's) Submitted to IC Date" />
+    </steplabels>
+    <steplabels id="{fc68feb5-70f5-4ff0-9a40-51cb9a578eea}">
+      <label languagecode="1033" description="IC/Board Decision Date" />
+    </steplabels>
+    <steplabels id="{757c2057-8e6b-499f-8e31-2993e0d0526a}">
+      <label languagecode="1033" description="Fund Name" />
+    </steplabels>
+    <steplabels id="{ad92ce63-8fff-4218-baf3-1aa1eb01bf44}">
+      <label languagecode="1033" description="Execution" />
+    </steplabels>
+    <steplabels id="{65ef9661-9f54-4c37-88b7-edda79dcf8c8}">
+      <label languagecode="1033" description="Legal Number of Days to Pay Drawdown" />
+    </steplabels>
+    <steplabels id="{84d38156-002a-475a-9519-7f0076f071c3}">
+      <label languagecode="1033" description="Applicant Informed of Decision" />
+    </steplabels>
+    <steplabels id="{4918e800-3984-41ca-9da0-28a5ee2ec8e8}">
+      <label languagecode="1033" description="Initial Term Sheet Issued Date" />
+    </steplabels>
+    <steplabels id="{97b4a34f-2d42-4c13-9939-357a1ddcde74}">
+      <label languagecode="1033" description="Term Sheet Executed Date" />
+    </steplabels>
+    <steplabels id="{c0c6a800-e7a2-4123-9216-e4333019c9fb}">
+      <label languagecode="1033" description="Lawyers Fee Quote" />
+    </steplabels>
+    <steplabels id="{b394e2af-d832-462b-a83c-a87117b3646a}">
+      <label languagecode="1033" description="PO Obtained" />
+    </steplabels>
+    <steplabels id="{dca27d16-8d38-4127-b9db-a0a346a4219e}">
+      <label languagecode="1033" description="Lawyers Appointed" />
+    </steplabels>
+    <steplabels id="{4628a81e-c2d6-40fa-a5d3-05856a1e7db2}">
+      <label languagecode="1033" description="Comms Team Advised for Press Release" />
+    </steplabels>
+    <steplabels id="{ec859fd9-5e3c-47f9-92a4-3b8582b71a92}">
+      <label languagecode="1033" description="Legal Documents Agreed" />
+    </steplabels>
+    <steplabels id="{c471320d-c75d-4d6b-be0b-506cad4b1152}">
+      <label languagecode="1033" description="Conditions Precedent Met" />
+    </steplabels>
+    <steplabels id="{37e112b7-84b4-473c-ba88-304c87dcb3dd}">
+      <label languagecode="1033" description="Completion Date" />
+    </steplabels>
+    <steplabels id="{448c78dd-18d7-4c8a-9570-d56c926cb201}">
+      <label languagecode="1033" description="Completion of Onboarding Form" />
+    </steplabels>
+    <steplabels id="{36777ba5-9126-4afd-8755-9057ad7d677b}">
+      <label languagecode="1033" description="Onboarding Signed Off By Finance" />
+    </steplabels>
+    <steplabels id="{1abf9eba-7c56-4a65-a8c6-c69172994631}">
+      <label languagecode="1033" description="End of Investment Period" />
+    </steplabels>
+  </labels>
+</Workflow>

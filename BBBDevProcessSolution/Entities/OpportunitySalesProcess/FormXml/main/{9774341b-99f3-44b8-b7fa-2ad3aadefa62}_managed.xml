@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{9774341b-99f3-44b8-b7fa-2ad3aadefa62}</formid>
+    <IntroducedVersion>8.2.0.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <hiddencontrols solutionaction="Removed" />
+      <tabs>
+        <tab name="general" id="{9575be08-7daa-7761-ccdc-7e9d414c5874}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="0" solutionaction="Removed" />
+        <tab verticallayout="true" id="{6b9ce798-221a-4260-90b2-2a95ed51a5bc}" name="StageStep3" locklevel="0" expanded="true" visible="false" labelid="{9e97c7f7-e605-4361-96dd-22f9420311b1}" ordinalvalue="0" solutionaction="Added">
+          <labels>
+            <label description="Expression Of Interest" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showbar="false" columns="1" id="{39a0d55a-c438-745c-b518-fa96b4654ffe}" name="StageStep3_section1" labelid="{d9f87e05-6fee-495b-86a1-0638f8cc513a}" ordinalvalue="0">
+                  <labels>
+                    <label description="Expression Of Interest" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{a3072d4e-c33d-4630-ad4d-6a063d591e58}" showlabel="true" visible="true" labelid="{a54fd2ec-6b70-4286-836c-87b4cfc80646}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Top Up Existing Facility?" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_topupexistingfacility" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="ukn_topupexistingfacility" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8e72feec-7fcb-4230-9f82-c57ca695d9e6}" showlabel="true" visible="true" labelid="{6d3af5e4-841e-477b-94f2-82b2baf56d6b}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Facility to Top Up" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_facilitytotopup" classid="{270bd3db-d9af-4782-9025-509e298dec0a}" datafieldname="ukn_facilitytotopup" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f7b1351d-9ebd-4640-a587-7a2c0e2545d0}" showlabel="true" visible="true" labelid="{3ca3837b-35a2-4da0-ba0f-76f4676eda14}" ordinalvalue="10002">
+                        <labels>
+                          <label description="If IC Board Approval Required?" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_icboardapprovalrequiredyesno" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_icboardapprovalrequiredyesno" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5d842586-07c9-4955-906e-176fb0deaf9e}" showlabel="true" visible="true" labelid="{ab156ba2-df66-4d24-b9b7-bee9ab4777cf}" ordinalvalue="10003">
+                        <labels>
+                          <label description="Expression of Interest Received" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_eoireceived" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="bbb_eoireceived" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9a1dc19b-a105-41f8-98e0-e348fb883539}" showlabel="true" visible="true" labelid="{7ed9067f-3306-40cb-8564-bff01d4b8afd}" ordinalvalue="10004">
+                        <labels>
+                          <label description="Expected BBB Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_bbbcommitment" classid="{533b9e00-756b-4312-95a0-dc888637ac78}" datafieldname="bbb_bbbcommitment" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{150ae834-36a3-4cc6-8a11-3d1269dcddd4}" showlabel="true" visible="true" labelid="{1d0050f6-8ab5-4043-993d-ee485ebbdd00}" ordinalvalue="10005">
+                        <labels>
+                          <label description="Expected Total Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_totalcommitment" classid="{533b9e00-756b-4312-95a0-dc888637ac78}" datafieldname="bbb_totalcommitment" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{76611a8c-8913-41e0-92ad-a867c12fae8d}" showlabel="true" visible="true" labelid="{14af1c9b-bacd-4a7b-ab98-a8898e47fdea}" ordinalvalue="10006">
+                        <labels>
+                          <label description="Initial Meeting Date " languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_initialmeetingdate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_initialmeetingdate" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{52ced7f5-5507-482f-8677-d8598e5a0d17}" showlabel="true" visible="true" labelid="{91b9ef43-c75a-4df7-9310-f781a372f8f9}" ordinalvalue="10007">
+                        <labels>
+                          <label description="Sighting Paper (Attached)" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_sightingpaperattached" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_sightingpaperattached" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4c0681df-162d-47fd-8dc2-f1e27be8ae3f}" showlabel="true" visible="true" labelid="{946602cb-3fe1-4006-b905-abbbc4200c7a}" ordinalvalue="10008">
+                        <labels>
+                          <label description="Feedback Provided" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_feedbackprovided" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_feedbackprovided" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{37baf991-686c-4adc-b253-978666e3ef72}" showlabel="true" visible="true" labelid="{ed4ece0b-50b5-4b1a-936f-67cddba0d8a0}" ordinalvalue="10009">
+                        <labels>
+                          <label description="BPF Finished" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_bpffinished" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_bpffinished" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{650e06b4-789b-46c1-822b-0da76bedb1ed}" name="StageStep27" locklevel="0" expanded="true" visible="false" labelid="{8c5db693-23e4-42c8-b445-6e3428c3730d}" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Formal Proposal" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showbar="false" columns="1" id="{6eb2bfa3-da87-1843-abde-5ab7bb0e6c5f}" name="StageStep27_section1" labelid="{03447326-11c5-4b3b-84b3-83f713628393}" ordinalvalue="0">
+                  <labels>
+                    <label description="Formal Proposal" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e658f0ba-8024-4d3d-90c4-397003057b2d}" showlabel="true" visible="true" labelid="{338a8142-aa7c-4f9d-8ef0-4162205e8a4e}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Follow On Meeting Held" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_followonmeetingheld" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_followonmeetingheld" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2a24b27a-d287-47b0-8d03-f1922a284c69}" showlabel="true" visible="true" labelid="{84a90017-50e2-48f5-9c7b-895881807f0c}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Updated Sighting Paper" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_updatedsightingpaper" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_updatedsightingpaper" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{40586ed2-9206-4013-941f-2e91f558a0e8}" showlabel="true" visible="true" labelid="{b7fae4e1-9ed8-4d11-a8a2-b6b787c0f5a0}" ordinalvalue="10002">
+                        <labels>
+                          <label description="WIP Discussion Held" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_wipdiscussionheld" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_wipdiscussionheld" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0d4ac03b-320b-4317-9eec-104b4334040d}" showlabel="true" visible="true" labelid="{b47696d3-09c2-49e0-b3a0-21515daed27c}" ordinalvalue="10003">
+                        <labels>
+                          <label description="Move to Light DD" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_movetolightdd" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_movetolightdd" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{90293d1b-03ce-451d-9e81-3ca3b94e03de}" showlabel="true" visible="true" labelid="{ee178957-25bb-4496-9c93-8fb56581b919}" ordinalvalue="10004">
+                        <labels>
+                          <label description="Referencing Done" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_referencingdone" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_referencingdone" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83adbe0a-7af7-4675-a5af-24c6246179ac}" showlabel="true" visible="true" labelid="{23cfa6c2-bc16-46d0-bf4f-76f59584b991}" ordinalvalue="10005">
+                        <labels>
+                          <label description="Expected Completion Date" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_completionexpected" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="bbb_completionexpected" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{d3ca8878-8d7b-47b9-852d-fcd838790cfd}" name="StageStep43" locklevel="0" expanded="true" visible="false" labelid="{1368f9a8-df9c-4513-a80a-3f743c7db743}" ordinalvalue="2" solutionaction="Added">
+          <labels>
+            <label description="Due Diligence" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showbar="false" columns="1" id="{3caf009e-a909-b04b-4ed5-4858e5361c1d}" name="StageStep43_section1" labelid="{5a10e3bc-190d-4f98-9d83-9a52b27354ad}" ordinalvalue="0">
+                  <labels>
+                    <label description="Due Diligence" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{686456bb-9c88-4a2a-810f-a0bfd31b718b}" showlabel="true" visible="true" labelid="{524ca5f8-0675-4a41-862c-5d6483a3e794}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Onsite Meeting" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_onsitemeeting" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_onsitemeeting" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d7d1694c-38f9-419d-b058-6d2763204868}" showlabel="true" visible="true" labelid="{b3681c55-46a7-401c-a088-5f9f86eaed8b}" ordinalvalue="10001">
+                        <labels>
+                          <label description="DD Report" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_ddreport" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="bbb_ddreport" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c1c9ed49-1a1f-4ebc-ad86-803da48e0d60}" showlabel="true" visible="true" labelid="{b0e0a2a8-961c-45d6-92db-7f0c0ba07307}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Notify IC" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_notifyic" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_notifyic" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4c8b1247-702e-487a-9f52-5af3e6963acd}" showlabel="true" visible="true" labelid="{4e1fdd7d-d4d4-438f-a71e-aa75971aa845}" ordinalvalue="10003">
+                        <labels>
+                          <label description="Draft IC Paper Completed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_drafticpapercompleted" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_drafticpapercompleted" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f3f582a2-37dc-4d6a-b820-7582421ffb81}" showlabel="true" visible="true" labelid="{770911db-b331-4e6e-98f5-a9d565c01d76}" ordinalvalue="10004">
+                        <labels>
+                          <label description="Final IC Paper Completed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_finalicpapercompleted" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_finalicpapercompleted" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fb75eba4-beb4-42c8-9ae2-65a676bdfedd}" showlabel="true" visible="true" labelid="{9c30749a-26af-43b0-9327-5f4dfb140775}" ordinalvalue="10005">
+                        <labels>
+                          <label description="IC Committee" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_iccommittee" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_iccommittee" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d08760f5-3c56-4193-a153-16ae16acc6d7}" showlabel="true" visible="true" labelid="{ae280004-3dee-4cba-9fd4-de156bc5c079}" ordinalvalue="10006">
+                        <labels>
+                          <label description="IC Committee Date" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_iccommitteedate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_iccommitteedate" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{564a8841-386f-4e71-98fc-cf566a762f1e}" showlabel="true" visible="true" labelid="{a74af555-606b-4489-9c72-90085654e32d}" ordinalvalue="10007">
+                        <labels>
+                          <label description="IC Minutes Received" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_icminutesreceived" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_icminutesreceived" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4824bb36-4143-47e0-b8ad-90e57a8a9e49}" showlabel="true" visible="true" labelid="{608bec01-b69a-4da4-a406-57009e660c09}" ordinalvalue="10008">
+                        <labels>
+                          <label description="CDD Completed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_ddcomplete" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="bbb_ddcomplete" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0cdbf919-5801-43c4-98c1-af8e7c65847a}" showlabel="true" visible="true" labelid="{97be593c-233e-447f-9f6b-2a3b18efb6e0}" ordinalvalue="10009">
+                        <labels>
+                          <label description="Fund Name" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_fundname" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="ukn_fundname" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="false" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{bb7e830a-61bd-441b-b1fd-6bb104ffa027}" name="StageStep67" locklevel="0" expanded="true" visible="false" labelid="{c1c56e27-b1fb-419f-997f-ed2acee4485e}" ordinalvalue="3" solutionaction="Added">
+          <labels>
+            <label description="Execution" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section showbar="false" columns="1" id="{ea013e3d-cf8a-dc5e-b705-1ecb4f269238}" name="StageStep67_section1" labelid="{d4105069-729f-474f-92f2-158f17960758}" ordinalvalue="0">
+                  <labels>
+                    <label description="Execution" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{a4b93fb5-6921-42e5-88b4-1dbb7f114ea8}" showlabel="true" visible="true" labelid="{6c59fd6b-7f07-4a68-9ab7-4ad52d0d7ae0}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Offer Letter Sent" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_offerlettersent" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_offerlettersent" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6607ffd7-ac73-4baa-a023-11078351c842}" showlabel="true" visible="true" labelid="{14229bc9-36f6-47a4-8d9e-401f8ef747fb}" ordinalvalue="10001">
+                        <labels>
+                          <label description="Offer Letter Sent Date" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_offerlettersentdate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_offerlettersentdate" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e523586a-6884-4657-b28f-00b3833d6c86}" showlabel="true" visible="true" labelid="{ef708e75-d8e6-4639-93fd-04dee3cc35b4}" ordinalvalue="10002">
+                        <labels>
+                          <label description="Offer Letter Signed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_offerlettersigned" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_offerlettersigned" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0a03d609-0628-4165-bb38-87d3b1fa36b2}" showlabel="true" visible="true" labelid="{34605186-7db8-4de0-b05f-7375228430d6}" ordinalvalue="10003">
+                        <labels>
+                          <label description="Lawyers Appointed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:bbb_appointedlawyer" classid="{270bd3db-d9af-4782-9025-509e298dec0a}" datafieldname="bbb_appointedlawyer" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d27105ec-9b80-48fd-b2c3-23ee12a62ba6}" showlabel="true" visible="true" labelid="{0f86c18d-4ab6-4187-825e-3298af4ecd6d}" ordinalvalue="10004">
+                        <labels>
+                          <label description="Draft LPA Received" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_draftlparecieved" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_draftlparecieved" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{546f54b0-b2a1-40c7-8a5d-7aedabf10468}" showlabel="true" visible="true" labelid="{f40b7557-cd4c-48d3-9299-fb4e1c52569a}" ordinalvalue="10005">
+                        <labels>
+                          <label description="Tick and Tie Received" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_tickandtiereceived" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_tickandtiereceived" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{734b089d-4bc2-46ce-ad6b-1dd44377affd}" showlabel="true" visible="true" labelid="{87ecf921-ae43-4792-a0c3-e79618f3a86c}" ordinalvalue="10006">
+                        <labels>
+                          <label description="LPA Agreed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_lpaagreed" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_lpaagreed" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{68394c8c-20d7-42dc-a16c-bd77ab5b680f}" showlabel="true" visible="true" labelid="{d10eb11c-01ef-4888-83b7-6df1e06a932f}" ordinalvalue="10007">
+                        <labels>
+                          <label description="Side Letter Agreed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_sideletteragreed" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_sideletteragreed" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2810eb17-7f10-4552-9383-040298111be7}" showlabel="true" visible="true" labelid="{c29545e1-653a-47bf-b123-bd7c4cfd06cd}" ordinalvalue="10008">
+                        <labels>
+                          <label description="Legals Agreed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_legalsagreed" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_legalsagreed" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{133b18c4-addd-4e84-807f-f87c63189b27}" showlabel="true" visible="true" labelid="{ce5c9fbd-b0f3-4e38-b548-dcee698c90dd}" ordinalvalue="10009">
+                        <labels>
+                          <label description="Portfolio Ops Onboarding Completed" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_portfolioopsonboardingcompleted" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_portfolioopsonboardingcompleted" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b25272a8-13fa-4c74-9890-0d5a642bde44}" showlabel="true" visible="true" labelid="{129c41e8-9b85-41b8-9766-958e72fa9210}" ordinalvalue="10010">
+                        <labels>
+                          <label description="Completion Date" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_completiondate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_completiondate" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{874104f0-8a29-4403-9aeb-107008762249}" showlabel="true" visible="true" labelid="{eb604365-9a5b-4438-ab7a-0a68841ab1b8}" ordinalvalue="10011">
+                        <labels>
+                          <label description="Finished" languagecode="1033" />
+                        </labels>
+                        <control id="lk_opportunitysalesprocess_opportunityid:ukn_bpffinished" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_bpffinished" disabled="false" relationship="lk_opportunitysalesprocess_opportunityid" isrequired="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <footer id="{734bf81d-0937-4ba9-a4c3-5f9685717765}" columns="1" celllabelposition="Left" celllabelalignment="Left" labelwidth="115" solutionaction="Removed" />
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="OpportunitySalesProcesses" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{6df34101-5c1a-4d1f-b1d7-8ca7bfc1f931}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{daf21f53-c50b-4876-99ec-2617448de681}" name="StageStep3" locklevel="0" expanded="true" visible="false" labelid="{84d37e65-03bc-4ad8-a22d-9c638c83d092}">
+          <labels>
+            <label description="Expression Of Interest" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{ee6c4487-fb9b-54d9-4a88-579c4add8f73}" name="StageStep3_section1" labelid="{2847561e-b21d-4019-b1c6-c30b1c69e6de}">
+                  <labels>
+                    <label description="Expression Of Interest" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6cd8f9e0-800b-418e-aa60-583716e1c883}" showlabel="true" visible="true" labelid="{f6c693bb-ee48-4e16-80e3-d4069636640b}">
+                        <labels>
+                          <label description="Top Up Existing Facility?" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_topupexistingfacility" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="ukn_topupexistingfacility" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{25d0d514-76d6-44a4-9266-b4e56e6a731c}" showlabel="true" visible="true" labelid="{30eb3e99-7c34-4ffd-a32e-a000a0156418}">
+                        <labels>
+                          <label description="Facility to Top Up" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_facilitytotopup" classid="{270bd3db-d9af-4782-9025-509e298dec0a}" datafieldname="ukn_facilitytotopup" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1ef8c936-3961-46d1-b231-ad574641d77c}" showlabel="true" visible="true" labelid="{6219936d-6718-40c6-a774-4fb6c708d9f8}">
+                        <labels>
+                          <label description="IC Board Approval Required?" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_icboardapprovalrequiredyesno" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="ukn_icboardapprovalrequiredyesno" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f3b79a1d-53c5-4906-9f5a-61324d0705af}" showlabel="true" visible="true" labelid="{8660d583-1472-4424-8bde-2d53ed356bdd}">
+                        <labels>
+                          <label description="Expression of Interest Received" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:bbb_eoireceived" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="bbb_eoireceived" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1f2171a8-151c-4f56-93a8-49f9d3b8afb2}" showlabel="true" visible="true" labelid="{6b6aac51-59e9-4a7f-8617-2289db3d33b1}">
+                        <labels>
+                          <label description="Expected BPC Commitment" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:bbb_bbbcommitment" classid="{533b9e00-756b-4312-95a0-dc888637ac78}" datafieldname="bbb_bbbcommitment" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{df268431-f489-4d83-b9db-53b24ce6779c}" showlabel="true" visible="true" labelid="{23f6dd67-3e8b-42b0-b272-a580e8a025c9}">
+                        <labels>
+                          <label description="Target Fund Size" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_targetfundsize" classid="{533b9e00-756b-4312-95a0-dc888637ac78}" datafieldname="ukn_targetfundsize" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6d7198de-bcc3-41e6-b2cb-086113386826}" showlabel="true" visible="true" labelid="{499e2cec-f387-4016-9ca0-0b1ce91d7522}">
+                        <labels>
+                          <label description="WIP Discussion" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_wipdiscussion" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_wipdiscussion" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{53a6942e-85a8-4f46-a87c-3f98feef45b2}" showlabel="true" visible="true" labelid="{d6ca6e40-2538-4a79-a139-13c4ff7dfdaa}">
+                        <labels>
+                          <label description="Fund Domicile" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_funddomicile" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="ukn_funddomicile" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bec42a18-54e7-4486-a6df-e7d6201d04bd}" showlabel="true" visible="true" labelid="{1f11df47-6db7-415c-afd4-200f75f5ab7f}">
+                        <labels>
+                          <label description="Received Completed Questionnaire" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_receivedcompletedquestionnaire" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_receivedcompletedquestionnaire" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{79b8f705-f523-480a-868f-25d591e0b2bc}" showlabel="true" visible="true" labelid="{c3c44777-948a-4595-a3fa-2435d8027a4a}">
+                        <labels>
+                          <label description="Date Questionnaire Received" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_datequestionnairereceived" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_datequestionnairereceived" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{af72087d-ff22-4864-a27b-81d5305d0085}" name="StageStep27" locklevel="0" expanded="true" visible="false" labelid="{5d6d0697-211a-4dd6-80c0-3677978beef1}">
+          <labels>
+            <label description="Formal Proposal" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{f739ec22-1734-0d5a-98b4-b803f2850118}" name="StageStep27_section1" labelid="{15bb20ea-6f0f-4bf0-8237-0c2b0c0825b7}">
+                  <labels>
+                    <label description="Formal Proposal" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{87cbce01-bb2e-4f01-b422-aed80095f8b1}" showlabel="true" visible="true" labelid="{584e1852-e880-4878-9d44-cc206060dd8f}">
+                        <labels>
+                          <label description="Intro Meeting Date" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_intromeetingdate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_intromeetingdate" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6ea52f1c-7df5-4e08-895e-a1d11ce7195c}" showlabel="true" visible="true" labelid="{56fa9b12-8687-42a5-a784-05a5fe2d70b9}">
+                        <labels>
+                          <label description="Investment Summary Note" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_investmentsummarynote" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_investmentsummarynote" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bde100d7-86ac-4345-9153-8aea56a2e6b0}" showlabel="true" visible="true" labelid="{a49a65ca-ecc1-45c2-92a5-fc573b2cb4ce}">
+                        <labels>
+                          <label description="Pre-Pitch Paper" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_prepitchpaper" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_prepitchpaper" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{68014a03-4853-4441-8d01-858b31ca728d}" showlabel="true" visible="true" labelid="{16a907d6-1b5e-4852-9dc1-a8e5709072ec}">
+                        <labels>
+                          <label description="Pitch Meeting Date" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_pitchmeetingdate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_pitchmeetingdate" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{45e640ce-df17-408c-a7ad-5a2cc8bc48ba}" showlabel="true" visible="true" labelid="{f807a5f6-b221-462f-a016-20de0daf44f4}">
+                        <labels>
+                          <label description="Team Decision" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_teamdecision" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_teamdecision" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5cb8c367-d649-45d3-a416-13e43361158b}" showlabel="true" visible="true" labelid="{2b70c6d9-0b77-4199-bdb6-bfb70c3d3e24}">
+                        <labels>
+                          <label description="Director Approval" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_directorapproval" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_directorapproval" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9df2256f-a6ed-4b17-9c4f-83d51ddae840}" showlabel="true" visible="true" labelid="{ecb375ea-6663-4033-a75c-16a5f802f5af}">
+                        <labels>
+                          <label description="Feedback Provided" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_feedbackprovided" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_feedbackprovided" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{15097512-1e4f-42dc-a357-e11a6d80c3d9}" showlabel="true" visible="true" labelid="{d930902e-5140-45f3-b06f-6e674d4c90df}">
+                        <labels>
+                          <label description="BPC UK Content Requirement %" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_bpcukcontentrequirement" classid="{c6d124ca-7eda-4a60-aea9-7fb8d318b68f}" datafieldname="ukn_bpcukcontentrequirement" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e11b1e1b-3c70-4e89-9d67-c3ee07fb06e6}" showlabel="true" visible="true" labelid="{7a13757d-5785-4574-b867-a72866f80d2f}">
+                        <labels>
+                          <label description="BPC Sectors" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_bpcsectors" classid="{e0dece4b-6fc8-4a8f-a065-082708572369}" datafieldname="ukn_bpcsectors" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9eca29a4-b9a1-4d62-b401-823913a3d7ca}" showlabel="true" visible="true" labelid="{33591fa9-eb24-4a40-b9f4-66ecc7d2cd84}">
+                        <labels>
+                          <label description="BPC Sub-Sectors" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_bpcsubsectors" classid="{e0dece4b-6fc8-4a8f-a065-082708572369}" datafieldname="ukn_bpcsubsectors" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{b8e44030-a101-4b4c-9b4d-37c09bc0e98e}" name="StageStep51" locklevel="0" expanded="true" visible="false" labelid="{11048942-6298-4923-8b9e-75dff2f2c284}">
+          <labels>
+            <label description="Due Diligence" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{2c30783e-35a2-731c-46a9-78f05b7f4c18}" name="StageStep51_section1" labelid="{d8a4b24e-67a5-4cbc-8e37-d324673cdfca}">
+                  <labels>
+                    <label description="Due Diligence" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{9c979628-57f4-419b-a14b-9468f5c62a57}" showlabel="true" visible="true" labelid="{3d1f47d8-d332-4689-8374-8140516667a0}">
+                        <labels>
+                          <label description="IC Committee to be held" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_iccommitteedate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_iccommitteedate" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{46b9afe9-e7f7-4002-98aa-e633a6a9bde5}" showlabel="true" visible="true" labelid="{474713a4-0def-4a47-82eb-b5ae38917f42}">
+                        <labels>
+                          <label description="Onsite Meeting" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_onsitemeeting" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_onsitemeeting" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{eb53ff47-dbde-48ba-9220-5dfe07d14be1}" showlabel="true" visible="true" labelid="{77916ecc-2787-443e-b42d-1488f2170508}">
+                        <labels>
+                          <label description="Referencing Done" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_referencingdone" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_referencingdone" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0e0d46a6-c269-479b-9ae6-56652f64aff1}" showlabel="true" visible="true" labelid="{442f83c4-7734-4981-bada-e2f0f181595b}">
+                        <labels>
+                          <label description="DD Report" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:bbb_ddreport" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="bbb_ddreport" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c536493f-6cde-4d8a-8bd6-e919010e3cce}" showlabel="true" visible="true" labelid="{1091779a-3128-447a-b59f-bb9b88cefa54}">
+                        <labels>
+                          <label description="IC Paper Dates" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_icpaperdates" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_icpaperdates" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fcc4de17-7155-44b9-b127-a6a6c7b6df2b}" showlabel="true" visible="true" labelid="{a84280ac-a887-4c23-9dc9-3f4b5fb7aad7}">
+                        <labels>
+                          <label description="IC Committee Approval" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_iccommittee" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_iccommittee" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{11e065d3-42cc-4c28-9d36-cca71a5c650b}" showlabel="true" visible="true" labelid="{62ca9a0a-88b4-4ce8-81b1-97334ee3c3af}">
+                        <labels>
+                          <label description="Expected Completion Date" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:bbb_completionexpected" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="bbb_completionexpected" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6d787b9d-512b-4647-bd76-23c979078f96}" showlabel="true" visible="true" labelid="{d9774062-763d-4932-ba37-d30c77557bac}">
+                        <labels>
+                          <label description="IC Committee Approved Date" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_iccommitteeapproved" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_iccommitteeapproved" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{21f0df48-6c58-4bc0-8ab0-eeec885e1d69}" showlabel="true" visible="true" labelid="{94aaa948-9038-4182-afac-4f955acdf586}">
+                        <labels>
+                          <label description="Identifier / New Funding Vehicle" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_fundname" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="ukn_fundname" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{175163cf-d66e-4093-bd29-b61ff3ee20bc}" name="StageStep73" locklevel="0" expanded="true" visible="false" labelid="{b9145e81-7991-4e36-8c6d-241e484a2a63}">
+          <labels>
+            <label description="Execution" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{42e6f44a-f0ed-7a61-4681-1173c7edbca2}" name="StageStep73_section1" labelid="{4a228896-d0a3-4662-b063-e5ab87fbc904}">
+                  <labels>
+                    <label description="Execution" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{56769443-e00a-430e-8ec4-1481d205a096}" showlabel="true" visible="true" labelid="{5d538090-7438-4736-a64c-d0e0c7d56c46}">
+                        <labels>
+                          <label description="Term Sheet Issued" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_termsheetissued" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_termsheetissued" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2583a68a-79a5-49f9-8ee5-f16fc875e167}" showlabel="true" visible="true" labelid="{815e3cb1-b243-40bc-889a-d47390d358d1}">
+                        <labels>
+                          <label description="LPA Agreed" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_lpaagreed" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_lpaagreed" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{32b2a0ab-f9c9-40d9-ba3e-4757a8ee441d}" showlabel="true" visible="true" labelid="{f8712eab-5db4-48ea-9be9-e95ecb1a7e09}">
+                        <labels>
+                          <label description="Side Letter Agreed" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_sideletteragreed" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_sideletteragreed" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{02a762dc-e0b0-4ec0-81ae-14ccee4f3599}" showlabel="true" visible="true" labelid="{c2f4cdc8-e620-4f41-b5a8-220bfb30c934}">
+                        <labels>
+                          <label description="Sign Off" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_signoff" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_signoff" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{900c40ee-3fd4-4b60-bc41-43ad9ca7f197}" showlabel="true" visible="true" labelid="{39bf4e31-acb8-4a60-8ea9-bc76b995a334}">
+                        <labels>
+                          <label description="Onboarding Process Complete" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_onboardingprocesscomplete" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_onboardingprocesscomplete" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2b975575-0fe1-4ca7-8c44-9f7f00e93c18}" showlabel="true" visible="true" labelid="{a4ea0b50-5850-4477-8b0c-fc4c3bb26ab6}">
+                        <labels>
+                          <label description="Completion Date" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_completiondate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_completiondate" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0249286a-3987-418d-b592-8ace9a32996e}" showlabel="true" visible="true" labelid="{76b067df-77f7-4c20-9ee4-7933bb6f4fde}">
+                        <labels>
+                          <label description="End of Investment Period" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_firstexpirydate" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="ukn_firstexpirydate" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c43eb7f2-8c1a-41a0-a1ed-66476a00711d}" showlabel="true" visible="true" labelid="{80911707-4813-40f2-ab17-530e8364e5ae}">
+                        <labels>
+                          <label description="Finished" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_bpffinished" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_bpffinished" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{d2613042-c383-4034-a1f4-094abd630cdc}" name="StageStep94" locklevel="0" expanded="true" visible="false" labelid="{17d44722-b689-464f-b3a1-7e5bc7984b9d}">
+          <labels>
+            <label description="Execution" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{caa3d932-4afd-2c7d-318c-7e052ab4f484}" name="StageStep94_section1" labelid="{f354bdaf-f0da-4a33-ae97-66b92146487a}">
+                  <labels>
+                    <label description="Execution" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5051180b-f6f5-41c5-8c72-075acc331bc7}" showlabel="true" visible="true" labelid="{e6337942-cf80-40b2-a9a5-68432406c29b}">
+                        <labels>
+                          <label description="Finished" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47:ukn_bpffinished" classid="{67fac785-cd58-4f9f-abb3-4b7ddc6ed5ed}" datafieldname="ukn_bpffinished" disabled="false" relationship="bpf_opportunity_new_bpf_a5a44a055d1c4a9ba8d9368f5f636b47" isrequired="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

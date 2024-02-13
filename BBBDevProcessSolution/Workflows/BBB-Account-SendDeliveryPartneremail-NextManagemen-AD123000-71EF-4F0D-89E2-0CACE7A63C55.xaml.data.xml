@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{ad123000-71ef-4f0d-89e2-0cace7a63c55}" Name="BBB - Account - Send Delivery Partner email - Next Management account due date" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/BBB-Account-SendDeliveryPartneremail-NextManagemen-AD123000-71EF-4F0D-89E2-0CACE7A63C55.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>3</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>0</StateCode>
+  <StatusCode>1</StatusCode>
+  <CreateStage>40</CreateStage>
+  <RunAs>1</RunAs>
+  <SdkMessageId>{b32f4595-fe91-ed11-aad0-6045bd0b12c1}</SdkMessageId>
+  <UniqueName>BBBAccountSendDeliveryPartneremailNextManagementaccountduedate</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>10.4.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <FormId>{00000000-0000-0000-0000-000000000000}</FormId>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>Account</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="BBB - Account - Send Delivery Partner email - Next Management account due date" />
+  </LocalizedNames>
+</Workflow>
