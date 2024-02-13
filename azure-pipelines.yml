@@ -44,7 +44,7 @@ steps:
       git checkout -b Dev
       git add --all
       git commit -m "$(CommitMessage)"
-      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin Dev
+      git -c http.extraheader="AUTHORIZATION: bearer $env:SYSTEM_ACCESSTOKEN" push origin Dev
 
 - task: PublishBuildArtifacts@1
   inputs:
