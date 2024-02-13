@@ -53,6 +53,7 @@ steps:
   inputs:
     script: |
       echo $myVar
+      echo $(system_accesstoken)
       git show-ref
       git config user.email "prakash.kalimuthu@british-business-bank.co.uk"
       git config user.name "prakashkalimuthu"
