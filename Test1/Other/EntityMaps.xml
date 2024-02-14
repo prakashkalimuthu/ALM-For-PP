@@ -2,6 +2,20 @@
 <EntityMaps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <EntityMap>
     <EntitySource>lead</EntitySource>
+    <EntityTarget>account</EntityTarget>
+    <AttributeMaps>
+      <AttributeMap>
+        <AttributeSource>ukn_partyroles</AttributeSource>
+        <AttributeTarget>ukn_partyrole</AttributeTarget>
+      </AttributeMap>
+      <AttributeMap>
+        <AttributeSource>ukn_partytypes</AttributeSource>
+        <AttributeTarget>ukn_partytype</AttributeTarget>
+      </AttributeMap>
+    </AttributeMaps>
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>lead</EntitySource>
     <EntityTarget>opportunity</EntityTarget>
     <AttributeMaps>
       <AttributeMap>
