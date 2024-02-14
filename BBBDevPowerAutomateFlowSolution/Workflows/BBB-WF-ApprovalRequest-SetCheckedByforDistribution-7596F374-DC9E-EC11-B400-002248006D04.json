@@ -1,0 +1,124 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_BBB_Approval_Request_is_added": {
+          "metadata": {
+            "operationMetadataId": "3bcc674a-081e-47e6-8f35-8183b3de2bfc"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ukn_approvalrequest",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/runas": 2
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "If_Approval_Type_is_Distribution": {
+          "actions": {
+            "Set_Checked_by_to_Owner": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "55249b68-58ba-4ff8-afef-82039b2921f0"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_approvalrequests",
+                  "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+                  "item/ukn_Checkedby@odata.bind": "/systemusers/@{outputs('Get_Owner')?['body/systemuserid']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Owner": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ukn_approvalrequesttype']",
+                  968200001
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ukn_approvalrequesttype']",
+                  968200003
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4aafd8c1-529d-408f-b984-ce2e30538724"
+          },
+          "type": "If"
+        },
+        "Get_Owner": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5ef2177d-9c3d-438b-a80a-e9345c3b9ae1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@triggerOutputs()?['body/_ownerid_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

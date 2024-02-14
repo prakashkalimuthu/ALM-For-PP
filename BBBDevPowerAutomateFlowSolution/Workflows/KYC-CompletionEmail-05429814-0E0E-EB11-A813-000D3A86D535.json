@@ -1,0 +1,441 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_onedriveforbusiness": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedonedriveforbusiness_0fe6d"
+        },
+        "api": {
+          "name": "shared_onedriveforbusiness"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_4e8d7"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedoffice365_4094d"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_4e8d7"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_KYC_Request_is_Completed": {
+          "metadata": {
+            "operationMetadataId": "b3fe031e-956e-40cc-ac96-1f3f9f05fca7"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ukn_kycrequest",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ukn_datesenttormcomplete",
+              "subscriptionRequest/filterexpression": "ukn_datesenttormcomplete ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Apply_to_each_Note_with_attachment": {
+          "foreach": "@outputs('List_Notes_with_Title_Completion_Report_and_Attachment')?['body/value']",
+          "actions": {
+            "Create_file": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "b00b76dc-d197-4c69-9c85-feefd4600e44"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_onedriveforbusiness",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                },
+                "parameters": {
+                  "folderPath": "/KYC Files",
+                  "name": "@{triggerOutputs()?['body/ukn_name']}_@{items('Apply_to_each_Note_with_attachment')?['filename']}",
+                  "body": "@base64ToBinary(items('Apply_to_each_Note_with_attachment')?['documentbody'])"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Get_file_content": {
+              "runAfter": {
+                "Create_file": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2f860d1a-8a1a-4ca5-a3fa-b4944f7087a3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_onedriveforbusiness",
+                  "operationId": "GetFileContent",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                },
+                "parameters": {
+                  "id": "@outputs('Create_file')?['body/Id']",
+                  "inferContentType": true
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Append_to_attachmentArray": {
+              "runAfter": {
+                "Get_file_content": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "512c4f95-b63e-40b1-809f-6ad2d17af423"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "attachmentArray",
+                "value": {
+                  "Name": "@items('Apply_to_each_Note_with_attachment')?['filename']",
+                  "ContentBytes": "@outputs('Get_file_content')?['body']"
+                }
+              }
+            },
+            "Append_to_oneDriveFilesArray": {
+              "runAfter": {
+                "Append_to_attachmentArray": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "41754ab0-ce09-420f-a24a-9633bd77646a"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "oneDriveFilesArray",
+                "value": "@outputs('Create_file')?['body/Id']"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Notes_with_Title_Completion_Report_and_Attachment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0f0804e3-bcbd-4665-8efc-2dd459b05f38"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_array_to_hold_multiple_attachments": {
+          "runAfter": {
+            "Get_Dynamics_Shared_Mailbox_Configuration_record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d26e1776-ac0f-47ac-a662-87812612d3c9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "attachmentArray",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "List_Notes_with_Title_Completion_Report_and_Attachment": {
+          "runAfter": {
+            "List_KYC_Interested_Parties": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "98f83181-93f1-4df9-a059-43db133505d1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "annotations",
+              "$select": "filename,mimetype,documentbody",
+              "$filter": "_objectid_value eq @{triggerOutputs()?['body/ukn_kycrequestid']} and isdocument eq true and subject eq 'Completion Report'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_KYC_Interested_Parties": {
+          "runAfter": {
+            "Initialize_array_to_hold_OneDrive_Files": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ed06f03d-3c57-439f-972d-fdd188c5201c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_kycinterestedparties",
+              "$filter": "_ukn_kycrequest_value eq @{triggerOutputs()?['body/ukn_kycrequestid']} and statecode eq 0",
+              "$expand": "ukn_bbbproductmanagerrelationshiplead($select=internalemailaddress,fullname)"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_Interested_Party": {
+          "foreach": "@outputs('List_KYC_Interested_Parties')?['body/value']",
+          "actions": {
+            "Send_an_email_from_a_shared_mailbox_to_BBB_Product_Manager_Relationship_Lead": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "eea0a4df-1d7f-42ef-a202-73e7acae83ae"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365",
+                  "operationId": "SharedMailboxSendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
+                "parameters": {
+                  "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_record')?['body/ukn_dynamicscrmemail']",
+                  "emailMessage/To": "@items('Apply_to_each_Interested_Party')?['ukn_bbbproductmanagerrelationshiplead/internalemailaddress']",
+                  "emailMessage/Subject": "KYC Completed for @{outputs('Get_Delivery_Partner_(New)')?['body/name']}",
+                  "emailMessage/Body": "<p>Dear @{items('Apply_to_each_Interested_Party')?['ukn_bbbproductmanagerrelationshiplead/fullname']}<br>\n<br>\nKYC has been completed for @{outputs('Get_Delivery_Partner_(New)')?['body/name']}.<br>\n<br>\nRisk Rating is @{triggerOutputs()?['body/ukn_finalriskrating@OData.Community.Display.V1.FormattedValue']}.<br>\n<br>\n@{triggerOutputs()?['body/ukn_completionemailcustomcontent']}<br>\n<br>\nIf you require any further information, please reach out to POps.KYC@british-business-bank.co.uk.<br>\n<br>\n<br>\nPortfolio Ops, Operational Compliance Team<br>\n</p>",
+                  "emailMessage/Cc": "@outputs('Get_Configuration_File')?['body/ukn_recipients']",
+                  "emailMessage/Attachments": "@variables('attachmentArray')",
+                  "emailMessage/Importance": "High"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_Note_with_attachment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8e6ad1fb-d3e6-4271-a243-1e71a940bfe2"
+          },
+          "type": "Foreach"
+        },
+        "Apply_to_each_OneDrive_File": {
+          "foreach": "@variables('oneDriveFilesArray')",
+          "actions": {
+            "Delete_file": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3c1c4147-00d5-4473-af41-9dcd35936018"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_onedriveforbusiness",
+                  "operationId": "DeleteFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                },
+                "parameters": {
+                  "id": "@items('Apply_to_each_OneDrive_File')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_Interested_Party": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "47566d1f-96ba-470b-9a73-ae337e6730ae"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_array_to_hold_OneDrive_Files": {
+          "runAfter": {
+            "Initialize_array_to_hold_multiple_attachments": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "016f071b-53c1-4588-9025-f23ff66a4132"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "oneDriveFilesArray",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Get_Configuration_File": {
+          "runAfter": {
+            "Get_Delivery_Partner_(New)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c95a4081-dd5e-4bc5-a3ce-6fe237f4d516"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "22e1c772-3818-eb11-a813-0022481a773b"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "The CC Email address is stored in this file"
+        },
+        "Get_Dynamics_Shared_Mailbox_Configuration_record": {
+          "runAfter": {
+            "Get_Configuration_File": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2804f202-f967-4ec3-9148-f27d49d29f3c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "2890368a-f132-eb11-a813-0022481a773b"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "The CC Email address is stored in this file"
+        },
+        "If_final_risk_rating_is_equal_to_low": {
+          "actions": {
+            "Update_renewal_date_to_36_months_from_Date_sent_to_RM_complete": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2fd3e8ea-f7cd-4c7f-af64-0af5b1d45044"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_kycrequests",
+                  "recordId": "@triggerOutputs()?['body/ukn_kycrequestid']",
+                  "item/ukn_renewaldate": "@addToTime(triggerOutputs()?['body/ukn_datesenttormcomplete'], 36, 'Month')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ukn_finalriskrating']",
+              968200000
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3942bcba-2529-4f36-9784-5a64874c3138"
+          },
+          "type": "If"
+        },
+        "Get_Delivery_Partner_(New)": {
+          "runAfter": {
+            "If_final_risk_rating_is_equal_to_low": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "18a1352a-b423-4a42-8d8a-32ec0d1d52f8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts",
+              "recordId": "@triggerOutputs()?['body/_ukn_deliverypartner_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

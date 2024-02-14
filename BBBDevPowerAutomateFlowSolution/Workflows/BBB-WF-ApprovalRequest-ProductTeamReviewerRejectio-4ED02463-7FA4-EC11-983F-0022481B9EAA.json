@@ -1,0 +1,403 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedoffice365_0402e"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_BBB_Approval_Requests_PTR_Decision_is_Rejected": {
+          "metadata": {
+            "operationMetadataId": "c31adb9f-92a5-4117-9fef-142c9a3769a1"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ukn_approvalrequest",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ukn_productteamreviewerdecision",
+              "subscriptionRequest/filterexpression": "ukn_productteamreviewerdecision eq 968200001",
+              "subscriptionRequest/runas": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [],
+          "description": "Trigger condition present for product team decision reviewer decision eq reject."
+        }
+      },
+      "actions": {
+        "Update_BBB_Approval_Request": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "96c917c1-f149-4e42-9f88-6716a689a581"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_approvalrequests",
+              "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+              "item/ukn_approvalstatus": 968200006,
+              "item/statecode": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Dynamics_Shared_Mailbox_Configuration_Record": {
+          "runAfter": {
+            "Update_BBB_Approval_Request": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "912dae8e-de47-4045-9114-ef1bdf04107c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "2890368a-f132-eb11-a813-0022481a773b"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Environment_URL_Configuration_Record": {
+          "runAfter": {
+            "Get_Dynamics_Shared_Mailbox_Configuration_Record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "15359d3b-ca35-4b55-822a-2a99bff84c93"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "d9be3fa2-ab84-ea11-a811-000d3a86d535"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Compose_URL": {
+          "runAfter": {
+            "Get_Currency": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "10fc8926-f0bf-4f86-858a-dd43565a746a"
+          },
+          "type": "Compose",
+          "inputs": "<a href=\"@{outputs('Get_Environment_URL_Configuration_Record')?['body/ukn_environmenturl']}?pagetype=entityrecord&etn=ukn_approvalrequest&id=@{triggerOutputs()?['body/ukn_approvalrequestid']}\">Click here to view the record in Dynamics 365</a>"
+        },
+        "Get_Related_Facility": {
+          "runAfter": {
+            "If_Distribution": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "579d6c58-5e83-4a2d-93a1-c142fe91d761"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_facilities",
+              "recordId": "@triggerOutputs()?['body/_ukn_facility_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Account": {
+          "runAfter": {
+            "Get_Related_Facility": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5cc981ec-1413-42e9-9106-9ef232d90703"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts",
+              "recordId": "@triggerOutputs()?['body/_ukn_funddeliverypartner_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Currency": {
+          "runAfter": {
+            "Get_Account": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b279b7e7-ad77-4c1b-ae72-dd8665705469"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "transactioncurrencies",
+              "recordId": "@triggerOutputs()?['body/_transactioncurrencyid_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Compose_URL": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Drawdown": {
+              "case": 968200000,
+              "actions": {
+                "Send_an_email_from_a_shared_mailbox_(V2)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0eb652e3-f275-40e1-98f0-9a0f04834465"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SharedMailboxSendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_Record')?['body/ukn_dynamicscrmemail']",
+                      "emailMessage/To": "@outputs('Get_Approved_By_OPS')?['body/internalemailaddress']",
+                      "emailMessage/Subject": "Drawdown Rejection",
+                      "emailMessage/Body": "<p>Dear @{outputs('Get_Approved_By_OPS')?['body/fullname']},<br>\n<br>\nThe Drawdown Record @{triggerOutputs()?['body/ukn_reference']} has been rejected at the PTR stage.<br>\n<br>\nFacility:&nbsp;@{outputs('Get_Related_Facility')?['body/ukn_name']}<br>\n<br>\nFund/Delivery Partner:&nbsp;@{outputs('Get_Account')?['body/name']}<br>\n<br>\nGross Amount: @{triggerOutputs()?['body/ukn_grossamountrequested']}<br>\n<br>\nNet Amount to Be Paid: @{triggerOutputs()?['body/ukn_netamounttobepaid']}<br>\n<br>\nCurrency: @{outputs('Get_Currency')?['body/currencyname']}<br>\n<br>\nNotice Received Date: @{triggerOutputs()?['body/ukn_noticereceiveddate']}<br>\n<br>\nPayment Value Date: @{triggerOutputs()?['body/ukn_paymentvaluedate']}<br>\n<br>\nReason for Reject: @{outputs('Update_BBB_Approval_Request')?['body/ukn_productteamreviewerapprovaltext']}<br>\n<br>\n@{outputs('Compose_URL')}</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Lender_Settlement": {
+              "case": 968200002,
+              "actions": {
+                "Send_an_email_from_a_shared_mailbox_(V2)_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "d7e90cff-8a25-4f8e-bf2f-5245fd53fa1b"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SharedMailboxSendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_Record')?['body/ukn_dynamicscrmemail']",
+                      "emailMessage/To": "@outputs('Get_Approved_By_OPS')?['body/internalemailaddress']",
+                      "emailMessage/Subject": "Lender Settlement Rejection",
+                      "emailMessage/Body": "<p>Dear @{outputs('Get_Approved_By_OPS')?['body/fullname']},<br>\n<br>\nThe Lender Settlement Record @{triggerOutputs()?['body/ukn_reference']} has been rejected at the PTR stage.<br>\n<br>\nFacility:&nbsp;@{outputs('Get_Related_Facility')?['body/ukn_name']}<br>\n<br>\nFund/Delivery Partner:&nbsp;@{outputs('Get_Account')?['body/name']}<br>\n<br>\nNet Amount to Be Paid: @{triggerOutputs()?['body/ukn_netamounttobepaid']}<br>\n<br>\nCurrency: @{outputs('Get_Currency')?['body/currencyname']}<br>\n<br>\nNotice Received Date: @{triggerOutputs()?['body/ukn_noticereceiveddate']}<br>\n<br>\nPayment Value Date: @{triggerOutputs()?['body/ukn_paymentvaluedate']}<br>\n<br>\nReason for Reject: @{outputs('Update_BBB_Approval_Request')?['body/ukn_productteamreviewerapprovaltext']}<br>\n<br>\n@{outputs('Compose_URL')}</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Distribution": {
+              "case": 968200001,
+              "actions": {
+                "Send_an_email_from_a_shared_mailbox_(V2)_3": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "7cf74656-9a67-4681-a1af-32925eb87f18"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SharedMailboxSendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_Record')?['body/ukn_dynamicscrmemail']",
+                      "emailMessage/To": "@outputs('Get_Checked_By')?['body/internalemailaddress']",
+                      "emailMessage/Subject": "Distribution Rejection",
+                      "emailMessage/Body": "<p>Dear @{outputs('Get_Approved_By_OPS')?['body/fullname']},<br>\n<br>\nThe Distribution Record @{triggerOutputs()?['body/ukn_reference']} has been rejected at the PTR stage.<br>\n<br>\nFacility:&nbsp;@{outputs('Get_Related_Facility')?['body/ukn_name']}<br>\n<br>\nFund/Delivery Partner:&nbsp;@{outputs('Get_Account')?['body/name']}<br>\n<br>\nGross Amount: @{triggerOutputs()?['body/ukn_grossamountrequested']}<br>\n<br>\nNet Amount to Be Received: @{outputs('Update_BBB_Approval_Request')?['body/ukn_netamounttobereceived']}<br>\n<br>\nCurrency: @{outputs('Get_Currency')?['body/currencyname']}<br>\n<br>\nNotice Received Date: @{triggerOutputs()?['body/ukn_noticereceiveddate']}<br>\n<br>\nPayment Value Date: @{triggerOutputs()?['body/ukn_paymentvaluedate']}<br>\n<br>\nReason for Reject: @{outputs('Update_BBB_Approval_Request')?['body/ukn_productteamreviewerapprovaltext']}<br>\n<br>\n@{outputs('Compose_URL')}</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Send_an_email_from_a_shared_mailbox_(V2)_4": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "c356e96b-3943-487d-a32a-b173ce370c2f"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_office365",
+                    "operationId": "SharedMailboxSendEmailV2",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                  },
+                  "parameters": {
+                    "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_Record')?['body/ukn_dynamicscrmemail']",
+                    "emailMessage/To": "@outputs('Get_Approved_By_OPS')?['body/internalemailaddress']",
+                    "emailMessage/Subject": "Adjustment Rejection",
+                    "emailMessage/Body": "<p>Dear @{outputs('Get_Approved_By_OPS')?['body/fullname']},<br>\n<br>\nThe Adjustment Record @{triggerOutputs()?['body/ukn_reference']} has been rejected at the PTR stage.<br>\n<br>\nFacility:&nbsp;@{outputs('Get_Related_Facility')?['body/ukn_name']}<br>\n<br>\nFund/Delivery Partner:&nbsp;@{outputs('Get_Account')?['body/name']}<br>\n<br>\nCurrency: @{outputs('Get_Currency')?['body/currencyname']}<br>\n<br>\nAdjustment Date: @{outputs('Update_BBB_Approval_Request')?['body/ukn_adjustmentdate']}<br>\n<br>\nReason for Reject: @{outputs('Update_BBB_Approval_Request')?['body/ukn_productteamreviewerapprovaltext']}<br>\n<br>\n@{outputs('Compose_URL')}</p>",
+                    "emailMessage/Importance": "Normal"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": "@outputs('Update_BBB_Approval_Request')?['body/ukn_approvalrequesttype']",
+          "metadata": {
+            "operationMetadataId": "8aa705bd-255e-42f5-a0e6-f48db1b271d5"
+          },
+          "type": "Switch"
+        },
+        "If_Distribution": {
+          "actions": {
+            "Get_Checked_By": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "4c46e9da-6ede-4f64-ba73-38f02a22e67c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@outputs('Update_BBB_Approval_Request')?['body/_ukn_checkedby_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Environment_URL_Configuration_Record": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Get_Approved_By_OPS": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "4c46e9da-6ede-4f64-ba73-38f02a22e67c"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "GetItem",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "systemusers",
+                    "recordId": "@outputs('Update_BBB_Approval_Request')?['body/_ukn_approvedbyops_value']"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@outputs('Update_BBB_Approval_Request')?['body/ukn_approvalrequesttype']",
+              968200001
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "38f33eef-f7c1-41a1-8c3c-6248a17a6a9b"
+          },
+          "type": "If"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,661 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "impersonation": {
+          "source": "invoker"
+        },
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_4e8d7"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedoffice365_c1b94"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_approvals": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_Approvals"
+        },
+        "api": {
+          "name": "shared_approvals"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Trigger_when_date_approved_finance_approval_gets_populated": {
+          "metadata": {
+            "operationMetadataId": "6e006ed0-3199-4c28-99e1-a4db4b1f4df9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ukn_approvalrequest",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ukn_dateapprovedfinanceapproval",
+              "subscriptionRequest/filterexpression": "ukn_approvalrequesttype ne 968200001",
+              "subscriptionRequest/runas": 2
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Try": {
+          "actions": {
+            "If_response_is_equal_to_approve": {
+              "actions": {
+                "Update_finance_2nd_approver_decision_to_approve": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "bae62b87-83c6-4d04-81c6-be24aa2cce4c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ukn_approvalrequests",
+                      "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+                      "item/ukn_finance2ndapproverdecision": 968200000
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_an_email_to_finance_approver_2_as_approval_request_approved": {
+                  "runAfter": {
+                    "Update_finance_2nd_approver_decision_to_approve": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "53df980e-41e9-4826-94e5-5015ae387e3d"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SharedMailboxSendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_record')?['body/ukn_dynamicscrmemail']",
+                      "emailMessage/To": "@outputs('Get_finance_2nd_approver')?['body/internalemailaddress']",
+                      "emailMessage/Subject": "@concat(outputs('variable_for_approval_request_type'), ' Approved')",
+                      "emailMessage/Body": "<p>Dear @{outputs('Get_finance_2nd_approver')?['body/fullname']}<br>\n<br>\nYou have Approved @{string(outputs('variable_for_approval_request_type'))} Record @{triggerOutputs()?['body/ukn_reference']}.<br>\n<br>\nFacility: &nbsp;&nbsp;@{outputs('Get_facility')?['body/ukn_name']}<br>\n<br>\nFund/Delivery Partner: &nbsp;@{outputs('Get_delivery_partner')?['body/name']}<br>\n<br>\nNet Amount to Be Paid: &nbsp;&nbsp;@{outputs('Update_finance_2nd_approver_decision_to_approve')?['body/ukn_netamounttobepaid']}<br>\n<br>\nCurrency: &nbsp;@{if(equals(triggerOutputs()?['body/ukn_approvalrequesttype'], 968200002), 'Pound Sterling', outputs('Get_currency')?['body/currencyname'])}&nbsp;<br>\n<br>\nNotice Received Date: &nbsp;&nbsp;@{formatDateTime(triggerBody()?['ukn_noticereceiveddate'], 'dd-MM-yyyy')}<br>\n<br>\nPayment Value Date: &nbsp;&nbsp;@{formatDateTime(triggerBody()?['ukn_paymentvaluedate'], 'dd-MM-yyyy')}<br>\n<br>\n<br>\n@{outputs('Confirmation_URL')}</p>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Start_and_wait_for_finance_approver_2": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Update_finance_2nd_approver_decision_to_reject": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "911177e5-5373-4e3e-a94f-722a4f9099bf"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ukn_approvalrequests",
+                        "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+                        "item/ukn_approvalstatus": 968200006,
+                        "item/ukn_finance2ndapproverdecision": 968200001,
+                        "item/statecode": 1
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Apply_to_each": {
+                    "foreach": "@outputs('Start_and_wait_for_finance_approver_2')?['body/responses']",
+                    "actions": {
+                      "Send_an_email_to_finance_approver_2_as_approval_request_rejected": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "8f7bdf21-3049-4746-a4bc-9e21999ae42e"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_office365",
+                            "operationId": "SharedMailboxSendEmailV2",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                          },
+                          "parameters": {
+                            "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_record')?['body/ukn_dynamicscrmemail']",
+                            "emailMessage/To": "@outputs('Get_finance_2nd_approver')?['body/internalemailaddress']",
+                            "emailMessage/Subject": "@concat(outputs('variable_for_approval_request_type'), ' Rejected')",
+                            "emailMessage/Body": "<p>Dear @{outputs('Get_finance_2nd_approver')?['body/fullname']}<br>\n<br>\nYou have Rejected @{string(outputs('variable_for_approval_request_type'))} Record @{triggerOutputs()?['body/ukn_reference']}.<br>\n<br>\nFacility: &nbsp;&nbsp;@{outputs('Get_facility')?['body/ukn_name']}<br>\n<br>\nFund/Delivery Partner: &nbsp;@{outputs('Get_delivery_partner')?['body/name']}<br>\n<br>\nNet Amount to Be Paid: &nbsp;&nbsp;@{outputs('Update_finance_2nd_approver_decision_to_reject')?['body/ukn_netamounttobepaid']}<br>\n<br>\nCurrency: &nbsp;@{if(equals(triggerOutputs()?['body/ukn_approvalrequesttype'], 968200002), 'Pound Sterling', outputs('Get_currency')?['body/currencyname'])} &nbsp;&nbsp;<br>\n<br>\nNotice Received Date: &nbsp;&nbsp;@{formatDateTime(triggerBody()?['ukn_noticereceiveddate'], 'dd-MM-yyyy')}<br>\n<br>\nPayment Value Date: &nbsp;&nbsp;@{formatDateTime(triggerBody()?['ukn_paymentvaluedate'], 'dd-MM-yyyy')}<br>\n<br>\nReason for Reject: @{items('Apply_to_each')?['comments']}<br>\n<br>\n@{outputs('Confirmation_URL')}</p>"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Update_finance_2nd_approver_decision_to_reject": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "9ca0abdb-1c44-48c8-868d-90f88387f247"
+                    },
+                    "type": "Foreach"
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@outputs('Start_and_wait_for_finance_approver_2')?['body/outcome']",
+                  "Approve"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "139780ab-6ccc-445b-b671-5b989d9c81c1"
+              },
+              "type": "If"
+            },
+            "Start_and_wait_for_finance_approver_2": {
+              "runAfter": {
+                "Confirmation_URL": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "27a31ff0-63a0-44c9-bdd5-720424a84673"
+              },
+              "type": "OpenApiConnectionWebhook",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_approvals",
+                  "operationId": "StartAndWaitForAnApproval",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals"
+                },
+                "parameters": {
+                  "approvalType": "Basic",
+                  "WebhookApprovalCreationInput/title": "@concat(outputs('variable_for_approval_request_type'), ' Authorisation - ', triggerOutputs()?['body/ukn_reference'])",
+                  "WebhookApprovalCreationInput/assignedTo": "@outputs('Get_finance_2nd_approver')?['body/internalemailaddress']",
+                  "WebhookApprovalCreationInput/details": "Dear @{outputs('Get_finance_2nd_approver')?['body/fullname']}\nYou have been assigned @{string(outputs('variable_for_approval_request_type'))} Record @{triggerBody()?['ukn_reference']} to authorise.\n\n@{replace(trim(outputs('variable_for_approval_email_body')), decodeUriComponent('%0A%0A'), decodeUriComponent('%0A'))}",
+                  "WebhookApprovalCreationInput/itemLink": "@outputs('Approval_request_URL')",
+                  "WebhookApprovalCreationInput/itemLinkDescription": "Please follow the link to view this Approval Request in Dynamics 365",
+                  "WebhookApprovalCreationInput/requestor": "@{outputs('Get_finance_1st_approver')?['body/internalemailaddress']};",
+                  "WebhookApprovalCreationInput/enableNotifications": true,
+                  "WebhookApprovalCreationInput/enableReassignment": true
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Confirmation_URL": {
+              "runAfter": {
+                "Approval_request_URL": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "004ab21c-7b5f-4eb0-bb36-6dcbc87fa62a"
+              },
+              "type": "Compose",
+              "inputs": "<a href=@{outputs('Approval_request_URL')}>Click this link to view the record in Dynamics 365</a>"
+            },
+            "Approval_request_URL": {
+              "runAfter": {
+                "variable_for_approval_email_body": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d277c617-bd45-47a3-9df7-e59e5c0b4676"
+              },
+              "type": "Compose",
+              "inputs": "@{outputs('Get_environment_URL_value_from_configuration')?['body/ukn_environmenturl']}?pagetype=entityrecord&etn=ukn_approvalrequest&id=@{triggerOutputs()?['body/ukn_approvalrequestid']}"
+            },
+            "variable_for_approval_email_body": {
+              "runAfter": {
+                "variable_for_approval_request_type": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6863e26c-6d1a-4e47-80b3-e164e573524c"
+              },
+              "type": "Compose",
+              "inputs": "Facility:  @{outputs('Get_facility')?['body/ukn_name']}\nFund/Delivery Partner:  @{outputs('Get_delivery_partner')?['body/name']}\n@{if(equals(triggerOutputs()?['body/ukn_approvalrequesttype'], 968200000), concat('Gross Amount: ', triggerOutputs()?['body/ukn_grossamountrequested']),'')}\nNet Amount to Be Paid:  @{triggerBody()?['ukn_netamounttobepaid']}\nCurrency:  @{if(equals(triggerOutputs()?['body/ukn_approvalrequesttype'], 968200002), 'Pound Sterling', outputs('Get_currency')?['body/currencyname'])}\nNotice Received Date:  @{formatDateTime(triggerBody()?['ukn_noticereceiveddate'],'dd-MM-yyyy')}\nPayment Value Date:  @{formatDateTime(triggerBody()?['ukn_paymentvaluedate'],'dd-MM-yyyy')}\n@{if(equals(triggerOutputs()?['body/ukn_approvalrequesttype'], 968200000), concat('Approval Type: ', triggerOutputs()?['body/_ukn_drawdownapprovaltype_label']),'')}"
+            },
+            "variable_for_approval_request_type": {
+              "runAfter": {
+                "Get_finance_2nd_approver": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "04e21a5f-f90b-4454-a0f8-67a82e6f7e05"
+              },
+              "type": "Compose",
+              "inputs": "@triggerOutputs()?['body/_ukn_approvalrequesttype_label']"
+            },
+            "Get_finance_2nd_approver": {
+              "runAfter": {
+                "Get_finance_1st_approver": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c927dbb2-431e-44b1-b3c8-28ac01c050b8"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@triggerOutputs()?['body/_ukn_approvalrequiredbyfinance2ndapproval_value']",
+                  "$select": "internalemailaddress, fullname"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_finance_1st_approver": {
+              "runAfter": {
+                "Get_currency": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a0e25348-601e-43b2-bb9d-d27dc98a0767"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@triggerOutputs()?['body/_ukn_approvalrequiredbyfinance_value']",
+                  "$select": "internalemailaddress, fullname"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_currency": {
+              "runAfter": {
+                "Get_delivery_partner": [
+                  "Succeeded",
+                  "Failed"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a4c52bdf-98ad-4369-a04d-6bee6c6c0627"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "transactioncurrencies",
+                  "recordId": "@outputs('Get_facility')?['body/_ukn_opportunitycurrency_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_delivery_partner": {
+              "runAfter": {
+                "Get_facility": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ba57ab3a-ae1e-4001-87d4-75decaa02dc4"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "accounts",
+                  "recordId": "@triggerOutputs()?['body/_ukn_funddeliverypartner_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_facility": {
+              "runAfter": {
+                "Get_Dynamics_Shared_Mailbox_Configuration_record": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7f46f1ac-3d3d-46c5-b517-9d3511133b2f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_facilities",
+                  "recordId": "@triggerOutputs()?['body/_ukn_facility_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_Dynamics_Shared_Mailbox_Configuration_record": {
+              "runAfter": {
+                "Get_environment_URL_value_from_configuration": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "42e6a94d-c9a3-4f47-9861-864d678be234"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_configurations",
+                  "recordId": "2890368a-f132-eb11-a813-0022481a773b"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_environment_URL_value_from_configuration": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "9fd25de3-cb36-4433-ba98-3a802e55ac3d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_configurations",
+                  "recordId": "d9be3fa2-ab84-ea11-a811-000d3a86d535"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "43ada439-19f7-446b-8d01-1b4c85175a09"
+          },
+          "type": "Scope"
+        },
+        "Catch": {
+          "actions": {
+            "Filter_array_of_try_scope_to_status_failed": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "17010f67-01f1-44e1-9055-48d11370973d"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@result('Try')",
+                "where": "@equals(item()?['status'], 'Failed')"
+              }
+            },
+            "If_array_is_empty_terminate_the_run_as_cancelled": {
+              "actions": {
+                "Terminate": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "bcb2290f-1155-460f-8a71-34e209e3cb9c"
+                  },
+                  "type": "Terminate",
+                  "inputs": {
+                    "runStatus": "Cancelled"
+                  }
+                }
+              },
+              "runAfter": {
+                "Filter_array_of_try_scope_to_status_failed": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Select_and_map_values_from_filter_array": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "13a46f57-ca1d-440a-a619-5c875a177956"
+                    },
+                    "type": "Select",
+                    "inputs": {
+                      "from": "@body('Filter_array_of_try_scope_to_status_failed')",
+                      "select": {
+                        "Error Code": "@if(contains(string(body('Filter_array_of_try_scope_to_status_failed')), 'body'), item()['outputs/body/error/code'], item()['error/code'])",
+                        "Error Message": "@if(contains(string(body('Filter_array_of_try_scope_to_status_failed')), 'body'), item()['outputs/body/error/message'], item()['error/message'])"
+                      }
+                    }
+                  },
+                  "Create_HTML_table_from_select": {
+                    "runAfter": {
+                      "Select_and_map_values_from_filter_array": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "947c2e60-9ad3-40f6-9e01-f6c5d5adfc80"
+                    },
+                    "type": "Table",
+                    "inputs": {
+                      "from": "@body('Select_and_map_values_from_filter_array')",
+                      "format": "HTML"
+                    }
+                  },
+                  "Add_styling_to_HTML_table": {
+                    "runAfter": {
+                      "Create_HTML_table_from_select": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "ee98c350-afd9-41de-954d-9cae9f7d1cb7"
+                    },
+                    "type": "Compose",
+                    "inputs": "@replace(replace(body('Create_HTML_table_from_select'),'<table>','<table border=\"1\"'),'<td>','<td style=\"padding:20px;\">')"
+                  },
+                  "Retrieve_flow_properties": {
+                    "runAfter": {
+                      "Add_styling_to_HTML_table": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "cd55a7b3-5b5a-4d36-a9ce-b8a1396c54cb"
+                    },
+                    "type": "Compose",
+                    "inputs": "@workflow()"
+                  },
+                  "Parse_JSON_of_flow_property_response": {
+                    "runAfter": {
+                      "Retrieve_flow_properties": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "76c03814-3100-4a6a-b9c0-2dc3f8a28979"
+                    },
+                    "type": "ParseJson",
+                    "inputs": {
+                      "content": "@outputs('Retrieve_flow_properties')",
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "location": {
+                            "type": "string"
+                          },
+                          "tags": {
+                            "type": "object",
+                            "properties": {
+                              "flowDisplayName": {
+                                "type": "string"
+                              },
+                              "environmentName": {
+                                "type": "string"
+                              },
+                              "logicAppName": {
+                                "type": "string"
+                              },
+                              "environmentFlowSuspensionReason": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "run": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Compose_flow_run_URL": {
+                    "runAfter": {
+                      "Parse_JSON_of_flow_property_response": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "5427ddd1-4130-4267-b336-cd90b34b03d1"
+                    },
+                    "type": "Compose",
+                    "inputs": "@concat('https://unitedkingdom.flow.microsoft.com/manage/environments/', body('Parse_JSON_of_flow_property_response')?['tags']?['environmentName'], '/flows/', body('Parse_JSON_of_flow_property_response')?['name'], '/runs/', body('Parse_JSON_of_flow_property_response')?['run']?['name'])"
+                  },
+                  "Send_an_email_to_dev_team": {
+                    "runAfter": {
+                      "Compose_flow_run_URL": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "e9fe1fc2-e8f1-45cb-bae1-7857c8fb849a"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_office365",
+                        "operationId": "SendEmailV2",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                      },
+                      "parameters": {
+                        "emailMessage/To": "svc.dynamicscrmadmin@british-business-bank.co.uk",
+                        "emailMessage/Subject": "D365 CRM - Error in flow BBB finance approver 2 teams notification for approval",
+                        "emailMessage/Body": "<p>Hi,<br>\n<br>\nError in finance approver 2 flow.<br>\nApproval request Reference : @{triggerOutputs()?['body/ukn_reference']}<br>\nPlease find below table for error description.<br>\n<br>\n@{outputs('Add_styling_to_HTML_table')}<br>\n<br>\nFlow URL : @{outputs('Compose_flow_run_URL')}</p>",
+                        "emailMessage/Cc": "Prakash.Kalimuthu@british-business-bank.co.uk",
+                        "emailMessage/Importance": "High"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@empty(body('Filter_array_of_try_scope_to_status_failed'))",
+                  true
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cb856b87-6672-463c-b8c5-777dca49ee03"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Try": [
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "092b3384-5218-4d68-a1b5-338e71362dc9"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

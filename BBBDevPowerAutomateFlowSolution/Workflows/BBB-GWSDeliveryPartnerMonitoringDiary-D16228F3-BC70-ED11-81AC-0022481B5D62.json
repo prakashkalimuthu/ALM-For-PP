@@ -1,0 +1,270 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_7e118"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Flow_runs_every_day_to_pick_Due_dates_and_send_emails._": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "GMT Standard Time",
+            "startTime": "2022-11-30T10:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "bbecc309-7f5b-4caf-a13f-9b284e57b166"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_of_accounts_which_will_30_days_from_Date_Next_Management_Accounts_Due": {
+          "runAfter": {
+            "Initialize_flag_for_Next_Due_date": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "96f7244e-1371-4386-bc74-820b6f20e49d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"account\">\n    <attribute name=\"name\" />\n    <attribute name=\"accountid\" />\n    <attribute name=\"ukn_nextauditeddate\" />\n    <attribute name=\"ukn_flagmanagementaccountsotherdue\" />\n    <order attribute=\"name\" descending=\"false\" />\n    <filter type=\"and\">\n      <condition attribute=\"ukn_nextmanagementduedate\" operator=\"olderthan-x-days\" value=\"30\" />\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_of_accounts_which_will_30_days_from_Date__Next_Audited_Accounts_Due": {
+          "runAfter": {
+            "Initialize_flag_for_Next_Due_date": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "90ca79bb-cfa9-499e-a176-6233468c20b0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"account\">\n    <attribute name=\"name\" />\n    <attribute name=\"accountid\" />\n    <attribute name=\"ukn_nextauditeddate\" />\n    <attribute name=\"ukn_flagnextauditedaccountsduedate\" />\n    <order attribute=\"name\" descending=\"false\" />\n    <filter type=\"and\">\n      <condition attribute=\"ukn_nextauditeddate\" operator=\"olderthan-x-days\" value=\"30\" />\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_Environment_URL": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "99b3afc9-92f1-4b86-910e-712f8cfce5dc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Environment URL",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_Dynamics_SharedMailBox_details": {
+          "runAfter": {
+            "Get_Environment_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "591c0411-c948-495c-8e86-068fea396d24"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "56a58b1f-6a7a-ed11-81ac-6045bd0b12c3"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Environment_URL": {
+          "runAfter": {
+            "Initialize_Environment_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3a1f7739-b145-4e11-93f1-e0afbcf4059a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "d9be3fa2-ab84-ea11-a811-000d3a86d535"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_flag_for_Next_Due_date": {
+          "runAfter": {
+            "Get_Dynamics_SharedMailBox_details": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "656a77e6-a96c-4b10-8c41-575f97a20d1a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "flag1",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Loop_to_check_Next_Management_Account_due_date_flag_to_send_email": {
+          "foreach": "@outputs('List_of_accounts_which_will_30_days_from_Date_Next_Management_Accounts_Due')?['body/value']",
+          "actions": {
+            "Loop_to_send_email_for_each_account": {
+              "foreach": "@outputs('List_of_accounts_which_will_30_days_from_Date_Next_Management_Accounts_Due')?['body/value']",
+              "actions": {
+                "Perform_a_bound_action_to_send_email_to_DP_for_Date_Next_Management_Due_date": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "22ed718a-a5b7-4255-adea-9e718e856ed7"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "PerformBoundAction",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "accounts",
+                      "actionName": "Microsoft.Dynamics.CRM.ukn_BBBAccountSendDeliveryPartneremailNextManagementaccountduedate",
+                      "recordId": "@items('Loop_to_send_email_for_each_account')?['accountid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a7f26b64-4b6c-4004-b2d5-937bac1c9ec8"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "List_of_accounts_which_will_30_days_from_Date_Next_Management_Accounts_Due": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "eff6a1de-c68b-41be-b477-cfc2d0792811"
+          },
+          "type": "Foreach"
+        },
+        "Loop_to_check_Date_Next_Audited_Account_due_date_flag_to_send_email": {
+          "foreach": "@outputs('List_of_accounts_which_will_30_days_from_Date__Next_Audited_Accounts_Due')?['body/value']",
+          "actions": {
+            "Loop_to_send_email_for_each_account_Next_Audited_Date": {
+              "foreach": "@outputs('List_of_accounts_which_will_30_days_from_Date__Next_Audited_Accounts_Due')?['body/value']",
+              "actions": {
+                "Perform_a_bound_action_to_send_email_to_DP_for_Date_Next_Audited_Due_date": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "409d120f-7be7-4cdf-8da6-f8b8f10f16f5"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "PerformBoundAction",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "accounts",
+                      "actionName": "Microsoft.Dynamics.CRM.ukn_AccountSentDPemail",
+                      "recordId": "@items('Loop_to_send_email_for_each_account_Next_Audited_Date')?['accountid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "4c63c752-e6c5-4d00-907a-0698fa185960"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "List_of_accounts_which_will_30_days_from_Date__Next_Audited_Accounts_Due": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f6b7240d-91c3-498b-b077-639b8742edef"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

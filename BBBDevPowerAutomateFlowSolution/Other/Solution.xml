@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.24014.176" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>BBBDevPowerAutomateFlowSolution</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="BBB - Dev - PowerAutomateFlowSolution" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Upgrade of BBB - Dev - PowerAutomateFlowSolution" languagecode="1033" />
+    </Descriptions>
+    <Version>10.7.0.0</Version>
+    <Managed>1</Managed>
+    <Publisher>
+      <UniqueName>uknetworkteam</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="UK Network Team" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>ukn</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>96820</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="29" id="{00ffee38-a1cb-ec11-a7b6-0022481a5954}" behavior="0" />
+      <RootComponent type="29" id="{05429814-0e0e-eb11-a813-000d3a86d535}" behavior="0" />
+      <RootComponent type="29" id="{07e12f15-8f58-ee11-be6f-002248c87a25}" behavior="0" />
+      <RootComponent type="29" id="{109c406f-6883-ec11-8d21-0022481afac2}" behavior="0" />
+      <RootComponent type="29" id="{478cb00b-cbc1-ea11-a812-000d3a86d535}" behavior="0" />
+      <RootComponent type="29" id="{4ed02463-7fa4-ec11-983f-0022481b9eaa}" behavior="0" />
+      <RootComponent type="29" id="{628dbf3a-a1cb-ec11-a7b6-0022481a8f14}" behavior="0" />
+      <RootComponent type="29" id="{7596f374-dc9e-ec11-b400-002248006d04}" behavior="0" />
+      <RootComponent type="29" id="{8126e682-256a-eb11-a812-000d3a87002d}" behavior="0" />
+      <RootComponent type="29" id="{8cba7f8f-3814-ee11-9cbe-002248c87217}" behavior="0" />
+      <RootComponent type="29" id="{8f63fa82-efb5-ed11-b597-0022481b5bf9}" behavior="0" />
+      <RootComponent type="29" id="{8f928517-c5c1-ea11-a812-000d3a86d535}" behavior="0" />
+      <RootComponent type="29" id="{a16efc7a-3597-ed11-aad1-0022481b5965}" behavior="0" />
+      <RootComponent type="29" id="{a1fd47de-b456-ed11-9562-0022481b5217}" behavior="0" />
+      <RootComponent type="29" id="{b30b230d-ca01-ed11-82e6-0022481b1b0e}" behavior="0" />
+      <RootComponent type="29" id="{c27461b9-d508-ed11-82e5-0022481b1b0e}" behavior="0" />
+      <RootComponent type="29" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" behavior="0" />
+      <RootComponent type="29" id="{d16228f3-bc70-ed11-81ac-0022481b5d62}" behavior="0" />
+      <RootComponent type="29" id="{ee3e9b58-85a4-ec11-983f-0022481b9ff8}" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="bbb_investmentprogramme" displayName="Investment Programme" solution="BritishBusinessBank (0.0.0.13)" />
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="bbb_investmentsubprogramme" displayName="Investment Sub-Programme" solution="BritishBusinessBank (0.0.0.13)" />
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+        </Required>
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Seconds" id="{07e12f15-8f58-ee11-be6f-002248c87a25}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+        </Required>
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Contact" id="{8cba7f8f-3814-ee11-9cbe-002248c87217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+        </Required>
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Party Role Types" id="{a16efc7a-3597-ed11-aad1-0022481b5965}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+        </Required>
+        <Dependent type="29" displayName="BBB - Create facility when opportunity moves from DD to execution for BPC when KYC completed" id="{a1fd47de-b456-ed11-9562-0022481b5217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+        </Required>
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_action" displayName="Action" solution="Active" />
+        <Dependent type="29" displayName="BBB - Recurrence - Send reminder email to action owner" id="{b30b230d-ca01-ed11-82e6-0022481b1b0e}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_action" displayName="Action" solution="Active" />
+        <Dependent type="29" displayName="BBB - Send email to action owner on create of action or if due date is today on create" id="{c27461b9-d508-ed11-82e5-0022481b1b0e}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 2 teams notification for approval" id="{00ffee38-a1cb-ec11-a7b6-0022481a5954}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB - Approval Request - Product Team Authoriser Approvals Process (New)" id="{109c406f-6883-ec11-8d21-0022481afac2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB - WF - Approval Request - Product Team Reviewer Rejection" id="{4ed02463-7fa4-ec11-983f-0022481b9eaa}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 1 teams notification for approval" id="{628dbf3a-a1cb-ec11-a7b6-0022481a8f14}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB - WF - Approval Request - Set Checked By for Distribution" id="{7596f374-dc9e-ec11-b400-002248006d04}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="Submit Approval to Focal Point" id="{8126e682-256a-eb11-a812-000d3a87002d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_approvalrequest" displayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="WF - Move Request to Product Team queue" id="{ee3e9b58-85a4-ec11-983f-0022481b9ff8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 2 teams notification for approval" id="{00ffee38-a1cb-ec11-a7b6-0022481a5954}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="KYC - Completion Email" id="{05429814-0e0e-eb11-a813-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB - Approval Request - Product Team Authoriser Approvals Process (New)" id="{109c406f-6883-ec11-8d21-0022481afac2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB - WF - Approval Request - Product Team Reviewer Rejection" id="{4ed02463-7fa4-ec11-983f-0022481b9eaa}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 1 teams notification for approval" id="{628dbf3a-a1cb-ec11-a7b6-0022481a8f14}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="Submit Approval to Focal Point" id="{8126e682-256a-eb11-a812-000d3a87002d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB - Create facility when opportunity moves from DD to execution for BPC when KYC completed" id="{a1fd47de-b456-ed11-9562-0022481b5217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB - Recurrence - Send reminder email to action owner" id="{b30b230d-ca01-ed11-82e6-0022481b1b0e}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB - Send email to action owner on create of action or if due date is today on create" id="{c27461b9-d508-ed11-82e5-0022481b1b0e}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="BBB - GWS Delivery Partner Monitoring Diary" id="{d16228f3-bc70-ed11-81ac-0022481b5d62}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_configuration" displayName="Configuration" solution="Active" />
+        <Dependent type="29" displayName="WF - Move Request to Product Team queue" id="{ee3e9b58-85a4-ec11-983f-0022481b9ff8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_dealcontact" displayName="Deal Contact" solution="Active" />
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Contact" id="{8cba7f8f-3814-ee11-9cbe-002248c87217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 2 teams notification for approval" id="{00ffee38-a1cb-ec11-a7b6-0022481a5954}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="BBB - Approval Request - Product Team Authoriser Approvals Process (New)" id="{109c406f-6883-ec11-8d21-0022481afac2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="Set Delivery Partner Status When Facility Created or Updated" id="{478cb00b-cbc1-ea11-a812-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="BBB - WF - Approval Request - Product Team Reviewer Rejection" id="{4ed02463-7fa4-ec11-983f-0022481b9eaa}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 1 teams notification for approval" id="{628dbf3a-a1cb-ec11-a7b6-0022481a8f14}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="Submit Approval to Focal Point" id="{8126e682-256a-eb11-a812-000d3a87002d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="Set Delivery Partner Status When Account is Created or Updated" id="{8f928517-c5c1-ea11-a812-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="BBB - Create facility when opportunity moves from DD to execution for BPC when KYC completed" id="{a1fd47de-b456-ed11-9562-0022481b5217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facility" displayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="WF - Move Request to Product Team queue" id="{ee3e9b58-85a4-ec11-983f-0022481b9ff8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facilityopportunity" displayName="Facility Opportunity" solution="Active" />
+        <Dependent type="29" displayName="BBB - Create facility when opportunity moves from DD to execution for BPC when KYC completed" id="{a1fd47de-b456-ed11-9562-0022481b5217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_facilityopportunity" displayName="Facility Opportunity" solution="Active" />
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_kycinterestedparty" displayName="KYC Interested Party" solution="Active" />
+        <Dependent type="29" displayName="KYC - Completion Email" id="{05429814-0e0e-eb11-a813-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_kycrequest" displayName="KYC Request" solution="Active" />
+        <Dependent type="29" displayName="KYC - Completion Email" id="{05429814-0e0e-eb11-a813-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_meeting" displayName="Meeting" solution="Active" />
+        <Dependent type="29" displayName="BBB - Update Meeting Record Owner on Appointment Creation" id="{8f63fa82-efb5-ed11-b597-0022481b5bf9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_partyroletype" displayName="Party Role Type" solution="Active" />
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Party Role Types" id="{a16efc7a-3597-ed11-aad1-0022481b5965}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ukn_secondarydeallead" displayName="Deal Second(s)" solution="Active" />
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Seconds" id="{07e12f15-8f58-ee11-be6f-002248c87a25}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="ukn_facility" parentDisplayName="Facility" solution="Active" />
+        <Dependent type="29" displayName="Set Delivery Partner Status When Facility Created or Updated" id="{478cb00b-cbc1-ea11-a812-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+        </Required>
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_bpcfacilitycreated" displayName="BPC facility created" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="Active" />
+        <Dependent type="29" displayName="BBB - Create facility when opportunity moves from DD to execution for BPC when KYC completed" id="{a1fd47de-b456-ed11-9562-0022481b5217}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_dateapprovedfinanceapproval" displayName="Date Approved (Finance Approval)" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 2 teams notification for approval" id="{00ffee38-a1cb-ec11-a7b6-0022481a5954}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_datecheckedfinanceops" displayName="Date Checked (Finance Ops)" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB finance approver 1 teams notification for approval" id="{628dbf3a-a1cb-ec11-a7b6-0022481a8f14}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_datereviewedproductteam" displayName="Date Reviewed Product Team" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB - Approval Request - Product Team Authoriser Approvals Process (New)" id="{109c406f-6883-ec11-8d21-0022481afac2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_datesenttormcomplete" displayName="Date Sent to RM/Complete" parentSchemaName="ukn_kycrequest" parentDisplayName="KYC Request" solution="Active" />
+        <Dependent type="29" displayName="KYC - Completion Email" id="{05429814-0e0e-eb11-a813-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_partyrole" displayName="Party Roles" parentSchemaName="account" parentDisplayName="Account" solution="Active" />
+        <Dependent type="29" displayName="Set Delivery Partner Status When Account is Created or Updated" id="{8f928517-c5c1-ea11-a812-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_productteamreviewerdecision" displayName="Product Team Reviewer Decision" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="BBB - WF - Approval Request - Product Team Reviewer Rejection" id="{4ed02463-7fa4-ec11-983f-0022481b9eaa}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_submittofocalpoint" displayName="Submit to FocalPoint" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="Submit Approval to Focal Point" id="{8126e682-256a-eb11-a812-000d3a87002d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ukn_withdrawn" displayName="Withdrawn" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
+        <Dependent type="29" displayName="WF - Move Request to Product Team queue" id="{ee3e9b58-85a4-ec11-983f-0022481b9ff8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="ukn_sharedcommondataserviceforapps_313b1" solution="Active" id.connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_313b1" />
+        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="ukn_sharedcommondataserviceforapps_ad96f" solution="Active" id.connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_ad96f" />
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Seconds" id="{07e12f15-8f58-ee11-be6f-002248c87a25}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="ukn_sharedcommondataserviceforapps_ad96f" solution="Active" id.connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_ad96f" />
+        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Contact" id="{8cba7f8f-3814-ee11-9cbe-002248c87217}" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

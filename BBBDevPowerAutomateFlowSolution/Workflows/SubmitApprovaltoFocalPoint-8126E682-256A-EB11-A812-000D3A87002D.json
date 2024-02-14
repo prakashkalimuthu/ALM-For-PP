@@ -1,0 +1,941 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_fe8da"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedoffice365_c1b94"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_Submit_to_Focal_Point_is_Checked": {
+          "metadata": {
+            "operationMetadataId": "384b47e6-31bb-42b5-9a27-38d9b3374bd3"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ukn_approvalrequest",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ukn_submittofocalpoint",
+              "subscriptionRequest/filterexpression": "ukn_submittofocalpoint eq true"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_BizTalk_Configuration_Data": {
+          "runAfter": {
+            "Exchange_Rate": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f5bfccc8-bdbc-473d-bc21-a538deb83dd1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "$select": "ukn_environmenturl,ukn_key",
+              "$filter": "ukn_name eq 'BizTalk Api'",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Successful_Api_Response": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "28df6f53-6ed3-4afd-9618-102b598fb91c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SuccessfulApiResponse",
+                "type": "boolean",
+                "value": false
+              }
+            ]
+          }
+        },
+        "BizTalk_URL": {
+          "runAfter": {
+            "Successful_Api_Response": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7b13a70f-5de6-4127-a9ff-4ab74a480f0a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "BizTalkURL",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "BizTalk_Secret_Key": {
+          "runAfter": {
+            "BizTalk_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "85dce90c-2f52-4204-85a5-b318f87522f8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "BizTalkSecretKey",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_Currency": {
+          "runAfter": {
+            "Get_Modified_Users_Email_Address": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b97f9f39-e7f7-4163-8abb-670dbd3ccb9c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "transactioncurrencies",
+              "recordId": "@triggerOutputs()?['body/_transactioncurrencyid_value']",
+              "$select": "isocurrencycode,exchangerate"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Facility": {
+          "runAfter": {
+            "Get_Currency": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "81590004-13a8-4420-ae63-1032ec9b0a11"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_facilities",
+              "recordId": "@triggerOutputs()?['body/_ukn_facility_value']",
+              "$select": "ukn_investmentid"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Loop_Configuration_Data_Only_1_Retrieved": {
+          "foreach": "@outputs('Get_BizTalk_Configuration_Data')?['body/value']",
+          "actions": {
+            "Check_All_Values_Are_Present_and_1_NAC_Exists": {
+              "actions": {
+                "Check_Returned_Status_Code": {
+                  "actions": {
+                    "Set_Record_As_Submitted": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "10cf9d83-2190-493c-a301-893d146c7321"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ukn_approvalrequests",
+                          "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+                          "item/ukn_submittofocalpoint": false,
+                          "item/ukn_submittedtofocalpoint": true
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "If_Adjustment_Or_Net_Nil_Drawdown": {
+                      "actions": {
+                        "Update_a_row": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "9b35dca2-fadd-4ce8-8d38-e1d9fc302883"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ukn_approvalrequests",
+                              "recordId": "@outputs('Set_Record_As_Submitted')?['body/ukn_approvalrequestid']",
+                              "item/ukn_approvalstatus": 968200011,
+                              "item/statecode": 1
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Set_Record_As_Submitted": [
+                          "Succeeded"
+                        ]
+                      },
+                      "expression": {
+                        "or": [
+                          {
+                            "equals": [
+                              "@outputs('Set_Record_As_Submitted')?['body/ukn_approvalrequesttype']",
+                              968200003
+                            ]
+                          },
+                          {
+                            "and": [
+                              {
+                                "equals": [
+                                  "@outputs('Set_Record_As_Submitted')?['body/ukn_approvalrequesttype']",
+                                  968200000
+                                ]
+                              },
+                              {
+                                "equals": [
+                                  "@outputs('Set_Record_As_Submitted')?['body/ukn_netvalueofdrawdown']",
+                                  0
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "a2540d56-87e6-4fa0-b225-6a3d4298f7d2"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": {
+                    "Post_Approval_to_BizTalk": [
+                      "Succeeded",
+                      "Failed",
+                      "Skipped",
+                      "TimedOut"
+                    ]
+                  },
+                  "else": {
+                    "actions": {
+                      "Send_Failure_Email": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "ae28617b-df96-44e4-ad94-57cc4cdff5d1"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_office365",
+                            "operationId": "SharedMailboxSendEmailV2",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                          },
+                          "parameters": {
+                            "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_record')?['body/ukn_dynamicscrmemail']",
+                            "emailMessage/To": "@{outputs('Get_Modified_Users_Email_Address')?['body/internalemailaddress']}; svc.dynamicscrmadmin@british-business-bank.co.uk",
+                            "emailMessage/Subject": "Submit to Focal Point failed: @{triggerOutputs()?['body/ukn_reference']}",
+                            "emailMessage/Body": "<p>Approval: @{triggerOutputs()?['body/ukn_reference']} failed to post to Focal Point<br>\n<br>\nFailure Message:<br>\n<br>\n@{body('Post_Approval_to_BizTalk')}</p>"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Set_Submit_to_Focal_Point_Back_to_No_API_Failure": {
+                        "runAfter": {
+                          "Send_Failure_Email": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "9100cf5b-f905-4f5c-9a9f-7809eb884610"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_commondataserviceforapps",
+                            "operationId": "UpdateRecord",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                          },
+                          "parameters": {
+                            "entityName": "ukn_approvalrequests",
+                            "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+                            "item/ukn_submittofocalpoint": false
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "or": [
+                      {
+                        "equals": [
+                          "@outputs('Post_Approval_to_BizTalk')['statusCode']",
+                          200
+                        ]
+                      },
+                      {
+                        "equals": [
+                          "@outputs('Post_Approval_to_BizTalk')['statusCode']",
+                          201
+                        ]
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a6e72072-aa8a-4f13-b233-3b700c79733e"
+                  },
+                  "type": "If"
+                },
+                "Post_Approval_to_BizTalk": {
+                  "runAfter": {
+                    "Compose": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "0354a7b2-2eb8-4564-aafa-90e9b7aa3b0e"
+                  },
+                  "type": "Http",
+                  "inputs": {
+                    "method": "POST",
+                    "uri": "@items('Loop_Configuration_Data_Only_1_Retrieved')?['ukn_environmenturl']",
+                    "headers": {
+                      "Content": "application/json",
+                      "Ocp-Apim-Subscription-Key": "@items('Loop_Configuration_Data_Only_1_Retrieved')?['ukn_key']"
+                    },
+                    "body": {
+                      "data": {
+                        "uniqueIdentifier": "CRM@{triggerOutputs()?['body/ukn_focalpointreference']}",
+                        "transactionDate": "@{variables('TransactionDate')}",
+                        "description": "@{triggerOutputs()?['body/ukn_narrative']}",
+                        "facilityCode": "@outputs('Get_Facility')?['body/ukn_investmentid']",
+                        "currencyCode": "@{outputs('Get_Currency')?['body/isocurrencycode']}",
+                        "exchangeRate": "@variables('Exchange Rate')",
+                        "netAmount": "@outputs('Get_Net_Amount_Final_Calculation')",
+                        "nacs": [
+                          {
+                            "code": 1,
+                            "value": "@triggerOutputs()?['body/ukn_grossamountrequested']"
+                          },
+                          {
+                            "code": 2,
+                            "value": "@triggerOutputs()?['body/ukn_equalisationpayable']"
+                          },
+                          {
+                            "code": 3,
+                            "value": "@triggerOutputs()?['body/ukn_capitalrepayments']"
+                          },
+                          {
+                            "code": 4,
+                            "value": "@triggerOutputs()?['body/ukn_capitalrecallable']"
+                          },
+                          {
+                            "code": 5,
+                            "value": "@triggerOutputs()?['body/ukn_equalisationreceivable']"
+                          },
+                          {
+                            "code": 6,
+                            "value": "@triggerOutputs()?['body/ukn_directtopl']"
+                          },
+                          {
+                            "code": 7,
+                            "value": "@triggerOutputs()?['body/ukn_interestprioritisedreturns']"
+                          },
+                          {
+                            "code": 8,
+                            "value": "@triggerOutputs()?['body/ukn_nonutiliseddrawdowns']"
+                          },
+                          {
+                            "code": 9,
+                            "value": "@triggerOutputs()?['body/ukn_commitmentfees']"
+                          },
+                          {
+                            "code": 10,
+                            "value": "@triggerOutputs()?['body/ukn_arrangementfees']"
+                          },
+                          {
+                            "code": 11,
+                            "value": "@triggerOutputs()?['body/ukn_nonutilisationfees']"
+                          }
+                        ]
+                      }
+                    },
+                    "retryPolicy": {
+                      "type": "none"
+                    }
+                  }
+                },
+                "Get_Net_Amount_Caculation_Credit_Fields": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0a25edc8-719c-4afa-aec6-923fe1cc745f"
+                  },
+                  "type": "Compose",
+                  "inputs": "@add(triggerOutputs()?['body/ukn_grossamountrequested'], triggerOutputs()?['body/ukn_equalisationpayable'])"
+                },
+                "Get_Net_Amount_Final_Calculation": {
+                  "runAfter": {
+                    "Get_Net_Amount_Caculation_Credit_Fields": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f73525e3-aa31-4276-a1d9-38a536678d47"
+                  },
+                  "type": "Compose",
+                  "inputs": "@sub(outputs('Get_Net_Amount_Caculation_Credit_Fields'), triggerOutputs()?['body/ukn_allcal'])"
+                },
+                "Compose": {
+                  "runAfter": {
+                    "Get_Net_Amount_Final_Calculation": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "5a7540d8-4067-41fa-b87d-d721c72e5d04"
+                  },
+                  "type": "Compose",
+                  "inputs": "@items('Loop_Configuration_Data_Only_1_Retrieved')?['ukn_environmenturl']"
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Set_Submit_to_Focal_Point_Back_to_No": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "5357720a-c424-4617-8f53-7e2c6b17028a"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ukn_approvalrequests",
+                        "recordId": "@triggerOutputs()?['body/ukn_approvalrequestid']",
+                        "item/ukn_submittofocalpoint": false
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Send_Failure_Email_2": {
+                    "runAfter": {
+                      "Set_Submit_to_Focal_Point_Back_to_No": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "68664f68-ab34-4350-81ce-d228cb9aaf59"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_office365",
+                        "operationId": "SharedMailboxSendEmailV2",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                      },
+                      "parameters": {
+                        "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_record')?['body/ukn_dynamicscrmemail']",
+                        "emailMessage/To": "@{outputs('Get_Modified_Users_Email_Address')?['body/internalemailaddress']}; svc.dynamicscrmadmin@british-business-bank.co.uk",
+                        "emailMessage/Subject": "Submit to Focal Point failed: @{triggerOutputs()?['body/ukn_reference']}",
+                        "emailMessage/Body": "<p>Approval: @{triggerOutputs()?['body/ukn_reference']} failed to post to Focal Point<br>\n<br>\nFailure Message:<br>\n<br>\nPlease ensure the following fields have values:<br>\n<br>\nNarrative<br>\nInvestment ID<br>\nCurrency<br>\nAt least one NACS</p>"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "and": [
+                  {
+                    "not": {
+                      "equals": [
+                        "@triggerOutputs()?['body/ukn_narrative']",
+                        "@null"
+                      ]
+                    }
+                  },
+                  {
+                    "not": {
+                      "equals": [
+                        "@outputs('Get_Facility')?['body/ukn_investmentid']",
+                        "@null"
+                      ]
+                    }
+                  },
+                  {
+                    "not": {
+                      "equals": [
+                        "@outputs('Get_Currency')?['body/isocurrencycode']",
+                        "@null"
+                      ]
+                    }
+                  },
+                  {
+                    "not": {
+                      "equals": [
+                        "@outputs('Get_Currency')?['body/exchangerate']",
+                        "@null"
+                      ]
+                    }
+                  },
+                  {
+                    "not": {
+                      "equals": [
+                        "@if(equals(variables('TransactionDate'),''),null,variables('TransactionDate'))",
+                        "@null"
+                      ]
+                    }
+                  },
+                  {
+                    "or": [
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_grossamountrequested']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_equalisationpayable']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_capitalrepayments']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_capitalrecallable']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_equalisationreceivable']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_directtopl']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_interestprioritisedreturns']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_nonutiliseddrawdowns']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_commitmentfees']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_arrangementfees']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@triggerOutputs()?['body/ukn_nonutilisationfees']",
+                            "@null"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e8f6be71-d94a-4a79-97d9-868dc253e6ca"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Depends_on_approval_request_type_pass_transaction_date_to_FP": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "25884f80-d655-41a3-bc79-6376e9677be0"
+          },
+          "type": "Foreach"
+        },
+        "Get_Dynamics_Shared_Mailbox_Configuration_record": {
+          "runAfter": {
+            "Get_BizTalk_Configuration_Data": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5264044b-01a7-4ad6-a53a-84cc468e5c6b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "2890368a-f132-eb11-a813-0022481a773b",
+              "$select": "ukn_dynamicscrmemail"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Modified_Users_Email_Address": {
+          "runAfter": {
+            "Get_Dynamics_Shared_Mailbox_Configuration_record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8fbd2507-cb84-4131-8c87-727e6eb5af96"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@triggerOutputs()?['body/_modifiedby_value']",
+              "$select": "internalemailaddress"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Transaction_Date": {
+          "runAfter": {
+            "BizTalk_Secret_Key": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8f52233-7309-42e8-b1fa-fad7985a0caa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "TransactionDate",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Exchange_Rate": {
+          "runAfter": {
+            "Transaction_Date": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4385969f-240f-4eab-b6c4-11349b967596"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Exchange Rate",
+                "type": "float"
+              }
+            ]
+          }
+        },
+        "Check_Exchange_Rate_is_null_in_Approval_Request": {
+          "actions": {
+            "Set_Exchange_Rate_from_Currency": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "799019f2-4f64-43bc-9890-0c38589ac671"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Exchange Rate",
+                "value": "@outputs('Get_Currency')?['body/exchangerate']"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Facility": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Set_Exchange_Rate_from_Approval_Request": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "05885a0b-153e-463e-ad91-b2fbdc17ae15"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "Exchange Rate",
+                  "value": "@triggerOutputs()?['body/ukn_bbbexchangerate']"
+                }
+              }
+            }
+          },
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ukn_approvalrequesttype']",
+                  968200003
+                ]
+              },
+              {
+                "and": [
+                  {
+                    "equals": [
+                      "@triggerOutputs()?['body/ukn_drawdownapprovaltype']",
+                      968200001
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "@triggerOutputs()?['body/ukn_netvalueofdrawdown']",
+                      0
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8ff973c6-ea7e-49d8-ab98-1fed1067b033"
+          },
+          "type": "If"
+        },
+        "Depends_on_approval_request_type_pass_transaction_date_to_FP": {
+          "runAfter": {
+            "Check_Exchange_Rate_is_null_in_Approval_Request": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Drawdown": {
+              "case": 968200000,
+              "actions": {
+                "Condition": {
+                  "actions": {
+                    "Distribution._Set_Transaction_Date_=_Date_To_Be_Paid": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6918b665-aead-445b-bd86-f10fa8ccacec"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "TransactionDate",
+                        "value": "@triggerOutputs()?['body/ukn_datetobepaid']"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Distribution._Set_Transaction_Date_=_Today's_Date": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "25c8f892-2976-4bc9-a61b-4b8dad6d2b8e"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "TransactionDate",
+                          "value": "@triggerOutputs()?['body/ukn_noticereceiveddate']"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "greater": [
+                      "@triggerOutputs()?['body/ukn_netvalueofdrawdown']",
+                      0
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "42fc1bd6-40e7-424c-bfae-7f25f6d29fba"
+                  },
+                  "type": "If"
+                }
+              }
+            },
+            "Distribution": {
+              "case": 968200001,
+              "actions": {
+                "Distribution._Set_Transaction_Date_=_Date_Received_Into_Bank": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "88d27559-4354-4a31-9328-9381f4302f7b"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "TransactionDate",
+                    "value": "@triggerOutputs()?['body/ukn_datereceivedintothebankaccount']"
+                  }
+                }
+              }
+            },
+            "Lender_Settlement": {
+              "case": 968200002,
+              "actions": {
+                "Lender_Settlement._Set_Transaction_Date_=_Date_Received_Into_Bank": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0655ddda-ea47-4d77-b0e8-ac780873334a"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "TransactionDate",
+                    "value": "@triggerOutputs()?['body/ukn_datereceivedintothebankaccount']"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Adjustment._Set_Transaction_Date_=_Adjustment_Date": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "91a20712-23bd-4d0f-9406-a7757049c3cf"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "TransactionDate",
+                  "value": "@triggerOutputs()?['body/ukn_adjustmentdate']"
+                }
+              }
+            }
+          },
+          "expression": "@triggerOutputs()?['body/ukn_approvalrequesttype']",
+          "metadata": {
+            "operationMetadataId": "981aebac-0691-4e48-a9c8-60a52da432f0"
+          },
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

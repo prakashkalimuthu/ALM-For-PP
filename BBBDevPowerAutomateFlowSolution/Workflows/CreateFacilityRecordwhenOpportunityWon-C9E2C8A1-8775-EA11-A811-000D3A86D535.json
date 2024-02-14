@@ -1,0 +1,935 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_313b1"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_313b1"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_3": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Opportunity_is_marked_as_won": {
+          "metadata": {
+            "operationMetadataId": "d24db814-3c9c-4a88-a903-81521a5a96f1"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_3",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "opportunity",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statuscode"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [
+            {
+              "expression": "@equals(triggerbody()?['statuscode'],3)"
+            }
+          ],
+          "description": "Trigger condition for status code"
+        }
+      },
+      "actions": {
+        "Check_if_programme_is_NSSIF_or_BPC": {
+          "actions": {
+            "Terminate_if_Programme_equals_NSSIF_or_BPC": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f0a9fd77-1b28-493e-9ce8-ab35c5d26a7f"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Cancelled"
+              }
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "or": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/_bbb_investmentprogramme_value']",
+                  "c2926131-5289-eb11-a812-0022481a78b3"
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/_bbb_investmentprogramme_value']",
+                  "6feead31-6834-e911-a986-00224800cf35"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8d03468e-ef5c-449e-92a5-12361c55476e"
+          },
+          "type": "If"
+        },
+        "Check_if_it_is_a_Top_Up": {
+          "actions": {
+            "Switch_based_on_Programme_(Top_Up)": {
+              "runAfter": {},
+              "cases": {
+                "Case_Programme_is_BPC_(Top_Up)": {
+                  "case": "6feead31-6834-e911-a986-00224800cf35",
+                  "actions": {
+                    "Check_BPC_NLF_Split_or_Apply_NLF_Split_values": {
+                      "actions": {
+                        "Get_Facility_to_Top_Up_(Only_BPC)": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "8ae6ea7b-41f1-40ba-8b29-b8d3df531f20"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "GetItem",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ukn_facilities",
+                              "recordId": "@triggerOutputs()?['body/_ukn_facilitytotopup_value']"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Update_Facility_Record_(Only_BPC)": {
+                          "runAfter": {
+                            "Get_Facility_to_Top_Up_(Only_BPC)": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "054c25ed-d628-4eaf-bb68-9b93361f3c24"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ukn_facilities",
+                              "recordId": "@triggerOutputs()?['body/_ukn_facilitytotopup_value']",
+                              "item/ukn_bbbcommitment": "@add(outputs('Get_Facility_to_Top_Up_(Only_BPC)')?['body/ukn_bbbcommitment'],triggerOutputs()?['body/bbb_bbbcommitment'])"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Create_Top_Up_Facility_Opportunity_Record_(Only_BPC)": {
+                          "runAfter": {
+                            "Update_Facility_Record_(Only_BPC)": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "55b384c1-99b0-4d71-98b8-d4792f0eb62f"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "CreateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ukn_facilityopportunities",
+                              "item/ukn_facility@odata.bind": "/@{triggerOutputs()?['body/_ukn_facilitytotopup_value@Microsoft.Dynamics.CRM.lookuplogicalname']}/@{outputs('Get_Facility_to_Top_Up_(Only_BPC)')?['body/ukn_facilityid']}",
+                              "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                              "item/ukn_type": 968200001,
+                              "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {},
+                      "else": {
+                        "actions": {
+                          "Set_BPC_Commitment": {
+                            "runAfter": {
+                              "Get_Facility_to_Top_Up_-_NLF": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "dedc2150-c6be-48d0-aa37-107e58923795"
+                            },
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "BPC Commitment",
+                              "value": "@mul(sub(100, outputs('Get_Config_File')?['body/ukn_bpcnlfplit']), div(triggerOutputs()?['body/bbb_bbbcommitment'],100))"
+                            }
+                          },
+                          "Set_NLF_Commitment": {
+                            "runAfter": {
+                              "Set_BPC_Commitment": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "3bd59bb2-04fe-4925-8103-ef88427ed595"
+                            },
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "NLF Commitment",
+                              "value": "@mul(outputs('Get_Config_File')?['body/ukn_bpcnlfplit'], div(triggerOutputs()?['body/bbb_bbbcommitment'],100))"
+                            }
+                          },
+                          "Get_Facility_to_Top_Up_-_BPC": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "1ee81e74-2338-43b2-b734-207c6e067ad4"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "GetItem",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilities",
+                                "recordId": "@triggerOutputs()?['body/_ukn_facilitytotopup_value']"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Get_Facility_to_Top_Up_-_NLF": {
+                            "runAfter": {
+                              "Get_Facility_to_Top_Up_-_BPC": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "0af923ab-858c-4ade-ad68-467e99e5ea12"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "GetItem",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilities",
+                                "recordId": "@triggerOutputs()?['body/_ukn_nlfacilitytotopup_value']"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Update_Facility_Record_-_BPC": {
+                            "runAfter": {
+                              "Set_NLF_Commitment": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "6b45cbe7-96ad-42e8-8b3a-3d9a2912cb09"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "UpdateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilities",
+                                "recordId": "@triggerOutputs()?['body/_ukn_facilitytotopup_value']",
+                                "item/ukn_bbbcommitment": "@add(outputs('Get_Facility_to_Top_Up_-_BPC')?['body/ukn_bbbcommitment'],variables('BPC Commitment'))"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Update_Facility_Record_-_NLF": {
+                            "runAfter": {
+                              "Update_Facility_Record_-_BPC": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "be070fcc-fb98-4d29-8c70-6c4b0161bf13"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "UpdateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilities",
+                                "recordId": "@triggerOutputs()?['body/_ukn_nlfacilitytotopup_value']",
+                                "item/ukn_bbbcommitment": "@add(outputs('Get_Facility_to_Top_Up_-_NLF')?['body/ukn_bbbcommitment'],variables('NLF Commitment'))"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Create_Top_Up_Facility_Opportunity_Record_-_BPC": {
+                            "runAfter": {
+                              "Update_Facility_Record_-_NLF": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "a8e81e38-ffa9-4502-b0e8-fc9b62dfa557"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilityopportunities",
+                                "item/ukn_facility@odata.bind": "/@{triggerOutputs()?['body/_ukn_facilitytotopup_value@Microsoft.Dynamics.CRM.lookuplogicalname']}/@{outputs('Get_Facility_to_Top_Up_-_BPC')?['body/ukn_facilityid']}",
+                                "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                                "item/ukn_type": 968200001,
+                                "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Create_Top_Up_Facility_Opportunity_Record_-_NLF": {
+                            "runAfter": {
+                              "Create_Top_Up_Facility_Opportunity_Record_-_BPC": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "5e95b618-2cf8-4275-8558-a7d97107441b"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilityopportunities",
+                                "item/ukn_facility@odata.bind": "/@{triggerOutputs()?['body/_ukn_nlfacilitytotopup_value@Microsoft.Dynamics.CRM.lookuplogicalname']}/@{outputs('Update_Facility_Record_-_NLF')?['body/ukn_facilityid']}",
+                                "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                                "item/ukn_type": 968200001,
+                                "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        }
+                      },
+                      "expression": {
+                        "or": [
+                          {
+                            "equals": [
+                              "@outputs('Get_Config_File')?['body/ukn_bpcnlfplit']",
+                              0
+                            ]
+                          },
+                          {
+                            "not": {
+                              "equals": [
+                                "@triggerOutputs()?['body/ukn_applynlfsplit']",
+                                968200000
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "46a2fb69-7609-468e-b84d-b733965a7898"
+                      },
+                      "type": "If"
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {
+                  "Get_Facility_to_Top_Up": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "ec41dade-1056-48f6-a4ed-97cfc95f3de9"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "GetItem",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ukn_facilities",
+                        "recordId": "@triggerOutputs()?['body/_ukn_facilitytotopup_value']"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Update_Facility_Record": {
+                    "runAfter": {
+                      "Get_Facility_to_Top_Up": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "5efba5ab-e43c-41fa-a126-a69ab67a3b4b"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ukn_facilities",
+                        "recordId": "@triggerOutputs()?['body/_ukn_facilitytotopup_value']",
+                        "item/ukn_bbbcommitment": "@add(outputs('Get_Facility_to_Top_Up')?['body/ukn_bbbcommitment'],triggerOutputs()?['body/bbb_bbbcommitment'])"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Create_Top_Up_Facility_Opportunity_Record": {
+                    "runAfter": {
+                      "Update_Facility_Record": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "98794515-bf39-4458-bcfb-3491a124a60f"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "CreateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ukn_facilityopportunities",
+                        "item/ukn_facility@odata.bind": "/@{triggerOutputs()?['body/_ukn_facilitytotopup_type']}/@{outputs('Get_Facility_to_Top_Up')?['body/ukn_facilityid']}",
+                        "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                        "item/ukn_type": 968200001,
+                        "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": "@triggerOutputs()?['body/_bbb_investmentprogramme_value']",
+              "metadata": {
+                "operationMetadataId": "085514a3-f90b-40ae-a625-c76634b859c1"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_NLF_Commitment": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Switch_based_on_Programme": {
+                "runAfter": {},
+                "cases": {
+                  "Case_Programme_is_BPC": {
+                    "case": "6feead31-6834-e911-a986-00224800cf35",
+                    "actions": {
+                      "Check_BPC_NLF_Split_or_Apply_NLF_Split_values_2": {
+                        "actions": {
+                          "Create_Facility_Record_(Only_BPC)": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "1716a1d0-858f-4ce4-9ffa-3d5cf0e9162f"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilities",
+                                "item/ukn_name": "@triggerOutputs()?['body/name']",
+                                "item/ukn_Account@odata.bind": "@{if(equals(outputs('Get_Account')?['body/accountid'],''),null,'/accounts/')}@{outputs('Get_Account')?['body/accountid']}",
+                                "item/ukn_completiondate": "@triggerOutputs()?['body/ukn_completiondate']",
+                                "item/transactioncurrencyid@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                                "item/ukn_bbbcommitment": "@triggerOutputs()?['body/bbb_bbbcommitment']",
+                                "item/ukn_endofinvestmentperiod": "@triggerOutputs()?['body/ukn_firstexpirydate']",
+                                "item/ukn_firstcontact@odata.bind": "@if(empty(triggerOutputs()?['body/_bbb_deallead_value']), null, concat('/systemusers(', triggerOutputs()?['body/_bbb_deallead_value'],')'))",
+                                "item/ukn_numberofdays": "@triggerOutputs()?['body/ukn_daysremaining']",
+                                "item/ukn_OpportunityCurrency@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                                "item/ukn_originalcommitment": "@triggerOutputs()?['body/bbb_bbbcommitment']",
+                                "item/ukn_InvestmentProgramme@odata.bind": "@outputs('Get_Investment_Programmes')?['body/@odata.id']",
+                                "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}",
+                                "item/ukn_InvestmentSubProgramme@odata.bind": "@outputs('Get_Sub-Programme')?['body/@odata.id']"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Create_Initial_Facility_Opportunity_Record_(Only_BPC)": {
+                            "runAfter": {
+                              "Create_Facility_Record_(Only_BPC)": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "9c590ef3-2117-4aca-b3ac-10c105285e74"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ukn_facilityopportunities",
+                                "item/ukn_facility@odata.bind": "@outputs('Create_Facility_Record_(Only_BPC)')?['body/@odata.id']",
+                                "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                                "item/ukn_type": 968200000,
+                                "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        },
+                        "runAfter": {},
+                        "else": {
+                          "actions": {
+                            "Create_Facility_Record_-_BPC": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "c5fefa19-8e56-4532-aa59-11456e973994"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "CreateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ukn_facilities",
+                                  "item/ukn_name": "BPC - @{triggerOutputs()?['body/name']}",
+                                  "item/ukn_Account@odata.bind": "@{if(equals(outputs('Get_Account')?['body/accountid'],''),null,'/accounts/')}@{outputs('Get_Account')?['body/accountid']}",
+                                  "item/ukn_completiondate": "@triggerOutputs()?['body/ukn_completiondate']",
+                                  "item/transactioncurrencyid@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                                  "item/ukn_bbbcommitment": "@mul(sub(100, outputs('Get_Config_File')?['body/ukn_bpcnlfplit']), div(triggerOutputs()?['body/bbb_bbbcommitment'],100))",
+                                  "item/ukn_endofinvestmentperiod": "@triggerOutputs()?['body/ukn_firstexpirydate']",
+                                  "item/ukn_firstcontact@odata.bind": "@if(empty(triggerOutputs()?['body/_bbb_deallead_value']), null, concat('/systemusers(', triggerOutputs()?['body/_bbb_deallead_value'],')'))",
+                                  "item/ukn_numberofdays": "@triggerOutputs()?['body/ukn_daysremaining']",
+                                  "item/ukn_OpportunityCurrency@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                                  "item/ukn_originalcommitment": "@mul(sub(100, outputs('Get_Config_File')?['body/ukn_bpcnlfplit']), div(triggerOutputs()?['body/bbb_bbbcommitment'],100))",
+                                  "item/ukn_InvestmentProgramme@odata.bind": "@outputs('Get_Investment_Programmes')?['body/@odata.id']",
+                                  "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}",
+                                  "item/ukn_InvestmentSubProgramme@odata.bind": "@outputs('Get_Sub-Programme')?['body/@odata.id']"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            },
+                            "Create_Facility_Record_-_NLF": {
+                              "runAfter": {
+                                "Create_Facility_Record_-_BPC": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "18e6ee46-6b4e-45a2-bd44-f3de9290bfe3"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "CreateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ukn_facilities",
+                                  "item/ukn_name": "NLF - @{triggerOutputs()?['body/name']}",
+                                  "item/ukn_Account@odata.bind": "@{if(equals(outputs('Get_Account')?['body/accountid'],''),null,'/accounts/')}@{outputs('Get_Account')?['body/accountid']}",
+                                  "item/ukn_completiondate": "@triggerOutputs()?['body/ukn_completiondate']",
+                                  "item/transactioncurrencyid@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                                  "item/ukn_bbbcommitment": "@mul(outputs('Get_Config_File')?['body/ukn_bpcnlfplit'], div(triggerOutputs()?['body/bbb_bbbcommitment'],100))",
+                                  "item/ukn_endofinvestmentperiod": "@triggerOutputs()?['body/ukn_firstexpirydate']",
+                                  "item/ukn_firstcontact@odata.bind": "@if(empty(triggerOutputs()?['body/_bbb_deallead_value']), null, concat('/systemusers(', triggerOutputs()?['body/_bbb_deallead_value'],')'))",
+                                  "item/ukn_numberofdays": "@triggerOutputs()?['body/ukn_daysremaining']",
+                                  "item/ukn_OpportunityCurrency@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                                  "item/ukn_originalcommitment": "@mul(outputs('Get_Config_File')?['body/ukn_bpcnlfplit'], div(triggerOutputs()?['body/bbb_bbbcommitment'],100))",
+                                  "item/ukn_InvestmentProgramme@odata.bind": "@outputs('Get_Sub-Programme')?['body/@odata.id']",
+                                  "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            },
+                            "Create_Initial_Facility_Opportunity_Record_-_BPC": {
+                              "runAfter": {
+                                "Create_Facility_Record_-_NLF": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "43227860-53d2-4509-8f47-26090d9b458d"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "CreateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ukn_facilityopportunities",
+                                  "item/ukn_facility@odata.bind": "@outputs('Create_Facility_Record_-_BPC')?['body/@odata.id']",
+                                  "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                                  "item/ukn_type": 968200000,
+                                  "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            },
+                            "Create_Initial_Facility_Opportunity_Record_-_NLF": {
+                              "runAfter": {
+                                "Create_Initial_Facility_Opportunity_Record_-_BPC": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "864557b3-bcd3-4ecb-aee7-0a268f99dcbc"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "CreateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ukn_facilityopportunities",
+                                  "item/ukn_facility@odata.bind": "@outputs('Create_Facility_Record_-_NLF')?['body/@odata.id']",
+                                  "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                                  "item/ukn_type": 968200000,
+                                  "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          }
+                        },
+                        "expression": {
+                          "or": [
+                            {
+                              "equals": [
+                                "@outputs('Get_Config_File')?['body/ukn_bpcnlfplit']",
+                                0
+                              ]
+                            },
+                            {
+                              "not": {
+                                "equals": [
+                                  "@triggerOutputs()?['body/ukn_applynlfsplit']",
+                                  968200000
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "09d14784-7b8a-4f29-8747-28bff68e4116"
+                        },
+                        "type": "If"
+                      }
+                    }
+                  }
+                },
+                "default": {
+                  "actions": {
+                    "Create_Facility_Record": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "afa5125f-c75d-419c-9760-20744ee029e8"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "CreateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ukn_facilities",
+                          "item/ukn_name": "@triggerOutputs()?['body/name']",
+                          "item/ukn_Account@odata.bind": "@{if(equals(outputs('Get_Account')?['body/accountid'],''),null,'/accounts/')}@{outputs('Get_Account')?['body/accountid']}",
+                          "item/ukn_completiondate": "@triggerOutputs()?['body/ukn_completiondate']",
+                          "item/transactioncurrencyid@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                          "item/ukn_bbbcommitment": "@triggerOutputs()?['body/bbb_bbbcommitment']",
+                          "item/ukn_endofinvestmentperiod": "@triggerOutputs()?['body/ukn_firstexpirydate']",
+                          "item/ukn_firstcontact@odata.bind": "@if(empty(triggerOutputs()?['body/_bbb_deallead_value']), null, concat('/systemusers(', triggerOutputs()?['body/_bbb_deallead_value'],')'))",
+                          "item/ukn_numberofdays": "@triggerOutputs()?['body/ukn_daysremaining']",
+                          "item/ukn_OpportunityCurrency@odata.bind": "/transactioncurrencies/@{triggerOutputs()?['body/_transactioncurrencyid_value']}",
+                          "item/ukn_originalcommitment": "@triggerOutputs()?['body/bbb_bbbcommitment']",
+                          "item/ukn_InvestmentProgramme@odata.bind": "@outputs('Get_Investment_Programmes')?['body/@odata.id']",
+                          "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}",
+                          "item/ukn_InvestmentSubProgramme@odata.bind": "@outputs('Get_Sub-Programme')?['body/@odata.id']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Create_Initial_Facility_Opportunity_Record": {
+                      "runAfter": {
+                        "Create_Facility_Record": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "7874183c-bced-4c8a-8fa5-e3a2a3ba3549"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "CreateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ukn_facilityopportunities",
+                          "item/ukn_facility@odata.bind": "@outputs('Create_Facility_Record')?['body/@odata.id']",
+                          "item/ukn_opportunity@odata.bind": "@{if(equals(triggerOutputs()?['body/opportunityid'],''),null,'/opportunities/')}@{triggerOutputs()?['body/opportunityid']}",
+                          "item/ukn_type": 968200000,
+                          "item/ownerid@odata.bind": "/systemusers/@{triggerOutputs()?['body/_ownerid_value']}"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                },
+                "expression": "@triggerOutputs()?['body/_bbb_investmentprogramme_value']",
+                "metadata": {
+                  "operationMetadataId": "f6afa0a0-da3a-49af-9b1f-4cc6bce4372c"
+                },
+                "type": "Switch"
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ukn_topupexistingfacility']",
+              968200000
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a027fa17-3f03-438f-a338-0cf135c948da"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_BPC_Commitment": {
+          "runAfter": {
+            "Get_Specific_Investment_Programme": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6dd2c3dc-988f-46c8-8ef8-6618ffd7c0f9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "BPC Commitment",
+                "type": "float"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_NLF_Commitment": {
+          "runAfter": {
+            "Initialize_variable_-_BPC_Commitment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f15daed8-3414-48b8-a96e-6cec0dbac2ec"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "NLF Commitment",
+                "type": "float"
+              }
+            ]
+          }
+        },
+        "Get_Config_File": {
+          "runAfter": {
+            "Check_if_programme_is_NSSIF_or_BPC": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "715af48d-25f3-4a7d-a11a-066b3a573e67"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "34f37b40-e774-ea11-a811-0022480076d0"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Account": {
+          "runAfter": {
+            "Get_Config_File": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "68457bae-8350-4fae-8703-168625a0955b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts",
+              "recordId": "@triggerOutputs()?['body/_parentaccountid_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Investment_Programmes": {
+          "runAfter": {
+            "Get_Account": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "03808020-5494-48fe-bf43-f062ed914930"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "bbb_investmentprogrammes",
+              "recordId": "@triggerOutputs()?['body/_bbb_investmentprogramme_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Sub-Programme": {
+          "runAfter": {
+            "Get_Investment_Programmes": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fa12486f-a9c9-4fc2-a45c-ccd082dd78c2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "bbb_investmentsubprogrammes",
+              "recordId": "@triggerOutputs()?['body/_bbb_investmentsubprogramme_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Specific_Investment_Programme": {
+          "runAfter": {
+            "Get_Sub-Programme": [
+              "Succeeded",
+              "Failed"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "46e44dde-7848-4ce2-95c7-0d7cc2da757a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "bbb_investmentprogrammes",
+              "recordId": "5eb4b4fe-ea6c-e911-a98d-00224800bb9b"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

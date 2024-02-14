@@ -1,0 +1,177 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_Account_is_created_or_updated": {
+          "metadata": {
+            "operationMetadataId": "76500f55-c147-46a8-9ee1-4575523a0518"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "account",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ukn_partyrole"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "If_party_role_is_delivery_partner": {
+          "actions": {
+            "List_Active_Facilities_for_Account": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "fae29562-bf13-46b8-ba8d-8dfe758830d3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_facilities",
+                  "fetchXml": "<fetch>\n  <entity name=\"ukn_facility\" >\n    <all-attributes/>\n    <filter type=\"and\" >\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n      <condition attribute=\"ukn_account\" operator=\"eq\" value=\"@{triggerOutputs()?['body/accountid']}\" />\n    </filter>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Check_that_at_least_one_facility_returned": {
+              "actions": {
+                "Set_Delivery_Partner_Status_Live": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "56604bae-90fb-497f-89a9-707d0288c023"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "accounts",
+                      "recordId": "@triggerOutputs()?['body/accountid']",
+                      "item/ukn_deliverypartnerstatus": 968200000
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_Active_Facilities_for_Account": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Set_Delivery_Partner_Status_Prospect": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "9ddbdc23-214c-48f0-aa8f-bacdb18d354c"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "accounts",
+                        "recordId": "@triggerOutputs()?['body/accountid']",
+                        "item/ukn_deliverypartnerstatus": 968200001
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "greater": [
+                  "@length(outputs('List_Active_Facilities_for_Account')?['body/value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ebbf3863-b172-4228-ac20-2ae44326e28d"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Set_Delivery_Partner_Status_to_NA": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "2875b021-c4ff-40a4-8b9a-062cf4224a4e"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "UpdateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "accounts",
+                    "recordId": "@triggerOutputs()?['body/accountid']",
+                    "item/ukn_deliverypartnerstatus": 968200002
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ukn_partyrole']",
+              968200000
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e5f0167c-cad5-4dbc-b22d-e92a5580a564"
+          },
+          "type": "If"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

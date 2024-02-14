@@ -1,0 +1,144 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_ad96f"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_Opportunity_is_added": {
+          "metadata": {
+            "operationMetadataId": "29677691-8aef-4013-b58f-0a7a1fd75f3a"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "opportunity",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "_originatingleadid_value ne null"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Executes only while qualifying the lead. Condition added in filter rows"
+        }
+      },
+      "actions": {
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f76f3b5d-b982-4d03-bfe1-2f2faaeb74ac"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Programme",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/_bbb_investmentprogramme_value']"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "List_rows_DealLeads_using_Lead_id": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "834e461b-603a-4081-b0ca-8793d179ce1f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ukn_secondarydealleads",
+                  "$filter": " _ukn_lead_value eq @{triggerOutputs()?['body/_originatingleadid_value']}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_:_For_Each_Deal_Leads": {
+              "foreach": "@outputs('List_rows_DealLeads_using_Lead_id')?['body/value']",
+              "actions": {
+                "Update_a_row_:_Set_Opportunity_lookup": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "27a8351f-d2a5-41cc-bced-6edd3aaa8d61"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ukn_secondarydealleads",
+                      "recordId": "@items('Apply_to_each_:_For_Each_Deal_Leads')?['ukn_secondarydealleadid']",
+                      "item/ukn_opportunity@odata.bind": "/opportunities(@{triggerOutputs()?['body/opportunityid']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_rows_DealLeads_using_Lead_id": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2bd1b54a-8053-45cf-b21c-e8b632050c66"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('Programme')",
+              "fd831013-b3ca-e711-8108-70106faa2611"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d4094915-a4be-42fd-8920-cdf55fe4cad6"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

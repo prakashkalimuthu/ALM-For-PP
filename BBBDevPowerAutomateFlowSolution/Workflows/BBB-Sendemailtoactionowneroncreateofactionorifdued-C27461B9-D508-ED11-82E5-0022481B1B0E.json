@@ -1,0 +1,516 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_4e8d7"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedoffice365_4094d"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Is daylight savings (ukn_Isdaylightsavings)": {
+          "defaultValue": false,
+          "type": "Bool",
+          "metadata": {
+            "schemaName": "ukn_Isdaylightsavings"
+          }
+        }
+      },
+      "triggers": {
+        "When_action_created": {
+          "metadata": {
+            "operationMetadataId": "b56402dc-bca2-4c02-8f4e-bc3d7a9e4a89"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ukn_action",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "ukn_actionstatus ne 968200002",
+              "subscriptionRequest/runas": 2,
+              "subscriptionRequest/name": "c27461b9-d508-ed11-82e5-0022481b1b0e"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Retrieve_list_of_actions_for_today's_date": {
+          "runAfter": {
+            "Due_date_": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d1bb52a4-1983-41e1-8931-4c36742fad68"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_actions",
+              "$select": "ukn_duedate, ukn_subject, ukn_actionid, _ukn_actionowner_value, _ukn_appointment_value, ownerid",
+              "$filter": "Microsoft.Dynamics.CRM.On(PropertyName='ukn_duedate' ,PropertyValue='@{body('Convert_UTC_to_london_time_zone')}') and statecode eq 0 and ukn_actionid eq '@{triggerOutputs()?['body/ukn_actionid']}'",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Retrieve_list_of_actions_for_today''s_date')?['body/value']",
+          "actions": {
+            "Generate_action_record_URL": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3d925ee2-36b1-4b68-b940-0765b28ca24c"
+              },
+              "type": "Compose",
+              "inputs": "@concat(outputs('Generate_environment_URL'),'main.aspx?pagetype=entityrecord&etn=ukn_action&id=', items('Apply_to_each')?['ukn_actionid'])"
+            },
+            "Switch_case_for_action_owner_polymorphic_lookup": {
+              "runAfter": {
+                "Generate_action_record_URL": [
+                  "Succeeded"
+                ]
+              },
+              "cases": {
+                "If_action_owner_selected_as_user": {
+                  "case": "systemuser",
+                  "actions": {
+                    "Get_action_owner_as_user": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "70601161-1bda-46d7-8288-dddf14a62a97"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "GetItem",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "systemusers",
+                          "recordId": "@items('Apply_to_each')?['_ukn_actionowner_value']",
+                          "$select": "fullname, internalemailaddress"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Send_an_email_to_the_user": {
+                      "runAfter": {
+                        "Get_action_owner_as_user": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "2057d480-99e4-48ac-ba52-0db3da30a705"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_office365",
+                          "operationId": "SharedMailboxSendEmailV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                        },
+                        "parameters": {
+                          "emailMessage/MailboxAddress": "@outputs('Get_dynamics_shared_mailbox_configuration_record')?['body/ukn_dynamicscrmemail']",
+                          "emailMessage/To": "@outputs('Get_action_owner_as_user')?['body/internalemailaddress']",
+                          "emailMessage/Subject": "@items('Apply_to_each')?['ukn_subject']",
+                          "emailMessage/Body": "<p>Hi @{outputs('Get_action_owner_as_user')?['body/fullname']},<br>\n<br>\nThis is a reminder you have an action that is due.<br>\n<br>\nAction Due Date @{items('Apply_to_each')?['ukn_duedate@OData.Community.Display.V1.FormattedValue']}<br>\n<br>\n@{triggerOutputs()?['body/ukn_description']}<br>\n<br>\nIf this action is complete, please change the Action Status to complete to stop receiving the reminders<br>\n<br>\nURL : @{outputs('Generate_action_record_URL')}</p>"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                },
+                "If_action_owner_selected_as_contact": {
+                  "case": "contact",
+                  "actions": {
+                    "Get_action_owner_as_contact": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "d34f3d52-f0ac-4451-b42f-5da68e67038d"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "GetItem",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "contacts",
+                          "recordId": "@items('Apply_to_each')?['_ukn_actionowner_value']",
+                          "$select": "fullname, emailaddress1"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Send_an_email_to_the_contact": {
+                      "runAfter": {
+                        "Get_action_onwer": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "1f1b9b32-704d-42db-82b0-975bfcd3ec91"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_office365",
+                          "operationId": "SharedMailboxSendEmailV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                        },
+                        "parameters": {
+                          "emailMessage/MailboxAddress": "@outputs('Get_dynamics_shared_mailbox_configuration_record')?['body/ukn_dynamicscrmemail']",
+                          "emailMessage/To": "@outputs('Get_action_owner_as_contact')?['body/emailaddress1']",
+                          "emailMessage/Subject": "@items('Apply_to_each')?['ukn_subject']",
+                          "emailMessage/Body": "<p>Hi @{outputs('Get_action_owner_as_contact')?['body/fullname']},<br>\n<br>\nThis is a reminder you have an action that is due following our recent meeting.<br>\n<br>\nAction Due Date &nbsp;@{items('Apply_to_each')?['ukn_duedate@OData.Community.Display.V1.FormattedValue']}<br>\n<br>\n@{triggerOutputs()?['body/ukn_description']}<br>\n<br>\nIf this action is complete, please contact your Account Manager who should change the Action Status to complete once satisfied and the reminders will stop.<br>\n<br>\nKind Regards,<br>\n@{outputs('Get_action_onwer')?['body/fullname']}</p>"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Get_action_onwer": {
+                      "runAfter": {
+                        "Get_action_owner_as_contact": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "339af740-7553-42fa-9df7-59f82ebbd9ad"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "GetItem",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "systemusers",
+                          "recordId": "@items('Apply_to_each')?['_ownerid_value']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {}
+              },
+              "expression": "@items('Apply_to_each')?['_ukn_actionowner_value@Microsoft.Dynamics.CRM.lookuplogicalname']",
+              "metadata": {
+                "operationMetadataId": "77d50507-25d8-424c-80a0-3a1181b28517"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {
+            "Generate_environment_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8869fef8-b1be-4ce5-a957-a40806905365"
+          },
+          "type": "Foreach"
+        },
+        "Get_dynamics_shared_mailbox_configuration_record": {
+          "runAfter": {
+            "Retrieve_list_of_actions_for_today's_date": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5264044b-01a7-4ad6-a53a-84cc468e5c6b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "2890368a-f132-eb11-a813-0022481a773b",
+              "$select": "ukn_dynamicscrmemail"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Generate_environment_URL": {
+          "runAfter": {
+            "Get_dynamics_shared_mailbox_configuration_record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3df57db5-cd8d-45b1-89fb-518e38aa1564"
+          },
+          "type": "Compose",
+          "inputs": "@substring(outputs('Get_dynamics_shared_mailbox_configuration_record')?['body/@odata.id'], 0, indexOf(outputs('Get_dynamics_shared_mailbox_configuration_record')?['body/@odata.id'], 'api'))"
+        },
+        "Convert_UTC_to_london_time_zone": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "07ca128f-19ea-4fcc-8e7d-6cb60d92ffe7"
+          },
+          "type": "Expression",
+          "kind": "ConvertTimeZone",
+          "inputs": {
+            "baseTime": "@{utcNow()}",
+            "formatString": "yyyy/MM/dd",
+            "sourceTimeZone": "UTC",
+            "destinationTimeZone": "GMT Standard Time"
+          }
+        },
+        "Switch_case_for_action_owner_": {
+          "runAfter": {
+            "Check_if_it_is_a_day_light_saving_via_environment_variable_": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "If_action_owner_as_user": {
+              "case": "systemusers",
+              "actions": {
+                "Get_user": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "69735057-f94a-4108-af6c-901cc276759a"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "GetItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "systemusers",
+                      "recordId": "@triggerOutputs()?['body/_ukn_actionowner_value']",
+                      "$select": "fullname, internalemailaddress"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_an_email_to_user": {
+                  "runAfter": {
+                    "Get_user": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f287e1bf-5c69-4522-a9b8-04b8dc54532d"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SharedMailboxSendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/MailboxAddress": "@outputs('Get_dynamics_shared_mailbox_configuration_record')?['body/ukn_dynamicscrmemail']",
+                      "emailMessage/To": "@outputs('Get_user')?['body/internalemailaddress']",
+                      "emailMessage/Subject": "@triggerOutputs()?['body/ukn_subject']",
+                      "emailMessage/Body": "<p>Hi @{outputs('Get_user')?['body/fullname']},<br>\n<br>\nAn action has been created for you.<br>\n<br>\nAction Due Date @{variables('Due Date')}<br>\n<br>\n@{triggerOutputs()?['body/ukn_description']}<br>\n<br>\nURL : @{concat(outputs('Generate_environment_URL'), 'main.aspx?pagetype=entityrecord&etn=ukn_action&id=', triggerOutputs()?['body/ukn_actionid'])}</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "If_action_owner_as_contact": {
+              "case": "contacts",
+              "actions": {
+                "Get_contact": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "8fee497a-21ce-4e39-9754-afccfc027f4c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "GetItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "contacts",
+                      "recordId": "@triggerOutputs()?['body/_ukn_actionowner_value']",
+                      "$select": "fullname, emailaddress1"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Send_an_email_to_contact": {
+                  "runAfter": {
+                    "Get_action_owner": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ec5ba28d-e352-4e21-8b22-29b89397a680"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SharedMailboxSendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/MailboxAddress": "@outputs('Get_dynamics_shared_mailbox_configuration_record')?['body/ukn_dynamicscrmemail']",
+                      "emailMessage/To": "@outputs('Get_contact')?['body/emailaddress1']",
+                      "emailMessage/Subject": "@triggerOutputs()?['body/ukn_subject']",
+                      "emailMessage/Body": "<p>Hi @{outputs('Get_contact')?['body/fullname']},<br>\n<br>\nAn action has been created for you following our recent meeting.<br>\n<br>\nAction Due Date @{variables('Due Date')}<br>\n<br>\n@{triggerOutputs()?['body/ukn_description']}<br>\n<br>\nIf you require any clarification on this action, please contact your Account Manager.<br>\n<br>\nKind Regards,<br>\n@{outputs('Get_action_owner')?['body/fullname']}</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Get_action_owner": {
+                  "runAfter": {
+                    "Get_contact": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a05c42b8-69e1-4042-81e9-d877a7508200"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "GetItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "systemusers",
+                      "recordId": "@triggerOutputs()?['body/_ownerid_value']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerOutputs()?['body/_ukn_actionowner_type']",
+          "metadata": {
+            "operationMetadataId": "8a66d3d9-41b1-41b2-b30b-7f136ed541fd"
+          },
+          "type": "Switch"
+        },
+        "Check_if_it_is_a_day_light_saving_via_environment_variable_": {
+          "actions": {
+            "Set_due_date_variable_with_day_light_savings": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "7ab2c7c9-f5f8-43bc-a433-82419afb89a8"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Due Date",
+                "value": "@{formatDateTime(addDays(triggerOutputs()?['body/ukn_duedate'], 1), 'dd/MM/yyyy')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Generate_environment_URL": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Set_due_date_variable_without_day_light_savings": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "252c3734-a539-4075-881e-ef91b1746361"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "Due Date",
+                  "value": "@{formatDateTime(triggerOutputs()?['body/ukn_duedate'], 'dd/MM/yyyy')}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@parameters('Is daylight savings (ukn_Isdaylightsavings)')",
+              true
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "025591b0-e74b-45a2-9be4-68a3435434bb"
+          },
+          "type": "If"
+        },
+        "Due_date_": {
+          "runAfter": {
+            "Convert_UTC_to_london_time_zone": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7d4c55cd-0dec-4d04-b07b-82b23b6f5cfc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Due Date",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

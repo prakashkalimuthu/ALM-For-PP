@@ -1,0 +1,312 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedoffice365_0402e"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ukn_sharedcommondataserviceforapps_99920"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_BBB_Approval_Request_is_Withdrawn": {
+          "metadata": {
+            "operationMetadataId": "5a63dbca-52ec-4582-a7af-b478ef131ebd"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ukn_approvalrequest",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ukn_withdrawn"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [
+            {
+              "expression": "@equals(triggerOutputs()?['body/ukn_withdrawn'], true)"
+            }
+          ],
+          "description": "Trigger Condition present to check if Withdrawn eq True (yes)"
+        }
+      },
+      "actions": {
+        "Send_an_email_from_a_shared_mailbox_to_Facility_Relationship_Lead_(V2)": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0baf8c5d-6a2c-4dac-a1df-a4995f2037b5"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "operationId": "SharedMailboxSendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/MailboxAddress": "@outputs('Get_Dynamics_Shared_Mailbox_Configuration_Record')?['body/ukn_dynamicscrmemail']",
+              "emailMessage/To": "@outputs('Get_Related_Facility_Relationship_Lead')?['body/internalemailaddress']",
+              "emailMessage/Subject": "@{variables('varApprovalRequestType')} Rejected",
+              "emailMessage/Body": "<p>Dear @{outputs('Get_Related_Facility_Relationship_Lead')?['body/fullname']},<br>\n<br>\nA @{variables('varApprovalRequestType')} request against this facility/delivery partner has been rejected. Please contact the individual who rejected the drawdown as a matter of urgency.<br>\n<br>\n<br>\n<br>\nKind Regards,<br>\n<br>\nSystem Admin.</p>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Dynamics_Shared_Mailbox_Configuration_Record": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "01d2e5bc-a6cc-4d31-88c3-406dde9ba0b5"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_configurations",
+              "recordId": "2890368a-f132-eb11-a813-0022481a773b"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Related_Facility": {
+          "runAfter": {
+            "Get_Dynamics_Shared_Mailbox_Configuration_Record": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd2cc0fe-9711-4add-97b6-37ae24414475"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ukn_facilities",
+              "recordId": "@triggerOutputs()?['body/_ukn_facility_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Related_Facility_Relationship_Lead": {
+          "runAfter": {
+            "Get_Related_Facility": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bbe99304-c644-4bbc-8e4d-651850cbd0cb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('Get_Related_Facility')?['body/_ownerid_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_Queues_with_name_'Product_Team'": {
+          "runAfter": {
+            "Get_Related_Facility_Relationship_Lead": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2ac55baf-3319-4b37-9b28-2cf72f8bdfdd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "queues",
+              "$filter": "name eq 'Product Team'"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Loop_Though_Listed_Queues": {
+          "foreach": "@outputs('List_Queues_with_name_''Product_Team''')?['body/value']",
+          "actions": {
+            "Add_to_Product_Team_queue_item": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "5ee4e394-150d-44e0-adeb-1390ca3d620c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "queueitems",
+                  "item/queueid@odata.bind": "/queues/@{items('Loop_Though_Listed_Queues')?['queueid']}",
+                  "item/objectid_ukn_approvalrequest@odata.bind": "/ukn_approvalrequests/@{triggerOutputs()?['body/ukn_approvalrequestid']}",
+                  "item/transactioncurrencyid@odata.bind": "/transactioncurrencies/346ff918-7384-e711-80fd-70106faa5091"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_Queues_with_name_'Product_Team'": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "614c34c1-40ce-445a-92e0-4985aa5ad4a3"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_-_Approval_Request_Type": {
+          "runAfter": {
+            "Loop_Though_Listed_Queues": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "af168bdb-fcb4-447f-9fba-e271055efc53"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varApprovalRequestType",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable_-_Approval_Request_Type": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Drawdown": {
+              "case": 968200000,
+              "actions": {
+                "Set_variable_as_Drawdown": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varApprovalRequestType",
+                    "value": "Drawdown"
+                  }
+                }
+              }
+            },
+            "Lender_Settlement": {
+              "case": 968200002,
+              "actions": {
+                "Set_variable_as_Lender_Settlement": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varApprovalRequestType",
+                    "value": "Lender Settlement"
+                  }
+                }
+              }
+            },
+            "Distribution": {
+              "case": 968200001,
+              "actions": {
+                "Set_variable_as_Distribution": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "varApprovalRequestType",
+                    "value": "Distribution"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Set_variable_5": {
+                "runAfter": {},
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "varApprovalRequestType",
+                  "value": "@{triggerOutputs()?['body/ukn_approvalrequesttype']}"
+                }
+              }
+            }
+          },
+          "expression": "@triggerOutputs()?['body/ukn_approvalrequesttype']",
+          "metadata": {
+            "operationMetadataId": "7c1063f5-e430-48ed-8474-66185b9dc9fe"
+          },
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
