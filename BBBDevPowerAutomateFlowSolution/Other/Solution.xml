@@ -341,18 +341,6 @@
         <Required type="2" schemaName="ukn_withdrawn" displayName="Withdrawn" parentSchemaName="ukn_approvalrequest" parentDisplayName="BBB Approval Request" solution="Active" />
         <Dependent type="29" displayName="WF - Move Request to Product Team queue" id="{ee3e9b58-85a4-ec11-983f-0022481b9ff8}" />
       </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ukn_sharedcommondataserviceforapps_313b1" solution="Active" id.connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_313b1" />
-        <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ukn_sharedcommondataserviceforapps_ad96f" solution="Active" id.connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_ad96f" />
-        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Seconds" id="{07e12f15-8f58-ee11-be6f-002248c87a25}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ukn_sharedcommondataserviceforapps_ad96f" solution="Active" id.connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_ad96f" />
-        <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Contact" id="{8cba7f8f-3814-ee11-9cbe-002248c87217}" />
-      </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>

@@ -54,6 +54,13 @@
       <statecode>0</statecode>
       <statuscode>1</statuscode>
     </connectionreference>
+    <connectionreference connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_313b1">
+      <connectionreferencedisplayname>Microsoft Dataverse -313b1</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
     <connectionreference connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_4e8d7">
       <connectionreferencedisplayname>Microsoft Dataverse HealthCheckDefectFixPowerAutomateFlow-4e8d7</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
@@ -77,6 +84,13 @@
     </connectionreference>
     <connectionreference connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_99920">
       <connectionreferencedisplayname>Microsoft Dataverse iCoTechmiscellaneous-99920</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ukn_sharedcommondataserviceforapps_ad96f">
+      <connectionreferencedisplayname>Microsoft Dataverse Net Nil Drawdown flow-ad96f</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
       <iscustomizable>1</iscustomizable>
       <statecode>0</statecode>
