@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ImportExportXml version="9.2.24015.174" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
-    <UniqueName>Test1_Patch_914327a6</UniqueName>
+    <UniqueName>test</UniqueName>
     <LocalizedNames>
-      <LocalizedName description="Test 1" languagecode="1033" />
+      <LocalizedName description="test" languagecode="1033" />
     </LocalizedNames>
-    <Descriptions>
-      <Description description="Patch for Test 1" languagecode="1033" />
-    </Descriptions>
-    <ParentUniqueName>Test1</ParentUniqueName>
-    <Version>1.1.1.1</Version>
+    <Descriptions />
+    <Version>1.0.0.0</Version>
     <Managed>1</Managed>
     <Publisher>
       <UniqueName>uknetworkteam</UniqueName>
