@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{1ea1aaa3-151b-ee11-8f6d-002248c87a4c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_name" select="1" icon="1" preview="1">
+        <row name="result" id="ukn_dealcontactid">
+          <cell name="ukn_contact" width="100" />
+          <cell name="ukn_jobrole" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_timespentondeal" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_namedexecutive" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_primarycontact" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_5e23a7823514ee119cbe002248c87695.emailaddress1" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="modifiedon" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="modifiedby" width="100" />
+          <cell name="createdon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ukn_dealcontact">
+          <attribute name="ukn_primarycontact" />
+          <attribute name="ukn_namedexecutive" />
+          <attribute name="ukn_jobrole" />
+          <attribute name="ukn_contact" />
+          <attribute name="modifiedon" />
+          <attribute name="modifiedby" />
+          <attribute name="createdon" />
+          <order attribute="ukn_contact" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ukn_jobrole" operator="not-null" />
+          </filter>
+          <link-entity alias="a_5e23a7823514ee119cbe002248c87695" name="contact" from="contactid" to="ukn_contact" link-type="outer" visible="false">
+            <attribute name="emailaddress1" />
+          </link-entity>
+          <attribute name="ukn_timespentondeal" />
+          <attribute name="ukn_dealcontactid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Deal Contacts - Jobroles" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

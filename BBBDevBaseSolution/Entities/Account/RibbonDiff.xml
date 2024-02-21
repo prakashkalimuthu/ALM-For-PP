@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="bbb.Mscrm.Form.account.AddToList.CustomAction" Location="Mscrm.Form.account.MainTab.Save.Controls._children" Sequence="62">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:Mscrm.Form.account.AddToList.Alt" Command="Mscrm.AddPrimaryToMarketingList" Id="Mscrm.Form.account.AddToList" Image32by32="$webresource:Marketing/_images/ribbon/AddToMarketingList_32.png" Image16by16="$webresource:Marketing/_images/ribbon/AddToMarketingList_16.png" LabelText="$LocLabels:Mscrm.Form.account.AddToList.LabelText" Sequence="62" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.account.AddToList.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.account.AddToList.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="bbb.Mscrm.HomepageGrid.account.AddToList.CustomAction" Location="Mscrm.HomepageGrid.account.MainTab.Collaborate.Controls._children" Sequence="11">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:Mscrm.HomepageGrid.account.AddToList.Alt" Command="Mscrm.AddSelectedToMarketingList" Id="Mscrm.HomepageGrid.account.AddToList" Image32by32="$webresource:Marketing/_images/ribbon/AddToMarketingList_32.png" Image16by16="$webresource:Marketing/_images/ribbon/AddToMarketingList_16.png" LabelText="$LocLabels:Mscrm.HomepageGrid.account.AddToList.LabelText" Sequence="11" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.HomepageGrid.account.AddToList.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.HomepageGrid.account.AddToList.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions />
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="Mscrm.Form.account.AddToList.Alt">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.account.AddToList.LabelText">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.account.AddToList.ToolTipDescription">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.Form.account.AddToList.ToolTipTitle">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.HomepageGrid.account.AddToList.Alt">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.HomepageGrid.account.AddToList.LabelText">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.HomepageGrid.account.AddToList.ToolTipDescription">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Mscrm.HomepageGrid.account.AddToList.ToolTipTitle">
+      <Titles>
+        <Title description="Add To Marketing List" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

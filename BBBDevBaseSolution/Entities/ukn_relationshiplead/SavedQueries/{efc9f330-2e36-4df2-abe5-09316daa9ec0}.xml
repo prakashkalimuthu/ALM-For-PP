@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{efc9f330-2e36-4df2-abe5-09316daa9ec0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ukn_name" select="1" icon="1" preview="1">
+        <row name="result" id="ukn_relationshipleadid">
+          <cell name="ukn_accountrelationshiplead" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ukn_programmeid" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="125" />
+          <cell name="a_104ec3658deaed1188480022481b5118.businessunitid" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ukn_relationshiplead">
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ukn_programmeid" />
+          <attribute name="ukn_accountrelationshiplead" />
+          <link-entity alias="a_104ec3658deaed1188480022481b5118" name="systemuser" from="systemuserid" to="ukn_accountrelationshiplead" link-type="outer" visible="false">
+            <attribute name="businessunitid" />
+          </link-entity>
+          <attribute name="ukn_relationshipleadid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Relationship Leads" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
