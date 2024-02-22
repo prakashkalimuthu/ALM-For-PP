@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.24014.176" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.24015.174" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>BBBDevPowerAutomateFlowSolution</UniqueName>
     <LocalizedNames>
@@ -111,31 +111,31 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10014)</package>
         </Required>
         <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Seconds" id="{07e12f15-8f58-ee11-be6f-002248c87a25}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10014)</package>
         </Required>
         <Dependent type="29" displayName="BBB - Set Opportunity for Lead Deal Contact" id="{8cba7f8f-3814-ee11-9cbe-002248c87217}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10014)</package>
         </Required>
         <Dependent type="29" displayName="BBB - Set Opportunity for Lead Party Role Types" id="{a16efc7a-3597-ed11-aad1-0022481b5965}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10014)</package>
         </Required>
         <Dependent type="29" displayName="BBB - Create facility when opportunity moves from DD to execution for BPC when KYC completed" id="{a1fd47de-b456-ed11-9562-0022481b5217}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10014)</package>
         </Required>
         <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
       </MissingDependency>
@@ -301,7 +301,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.24014.10012)</package>
+          <package>msdynce_SalesAnchor (9.0.24014.10014)</package>
         </Required>
         <Dependent type="29" displayName="Create Facility Record when Opportunity Won" id="{c9e2c8a1-8775-ea11-a811-000d3a86d535}" />
       </MissingDependency>
